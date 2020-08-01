@@ -1,0 +1,2 @@
+rootProject.name='fafwiki'
+include ':app'
