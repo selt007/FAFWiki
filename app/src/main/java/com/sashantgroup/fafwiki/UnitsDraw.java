@@ -28,6 +28,7 @@ import java.util.Map;
 public class UnitsDraw extends AppCompatActivity {
     public static Units unitInfo;
     public static Map loc;
+    int caseLim = 40;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +51,20 @@ public class UnitsDraw extends AppCompatActivity {
                     .contains(MainActivity.fraction.toLowerCase())) {
                 String name = "";
                 final Button button = new Button(this);
-                //String id = attr.getID().toUpperCase();
+                String id = attr.getID().toUpperCase();
                 try {
-                    name = attr.getDescription().substring(5,12);//Functions.attemptTranslations(id)
-//                if (id.equals("UAL0301") || id.equals("UEL0301") ||
-//                        id.equals("URL0301") || id.equals("XSL0301")) {
-//                    name = name.replace(name.substring(0, name.lastIndexOf("\"") + 2),
-//                            "");
-//                }
+                    name = Functions.attemptTranslations(id);//Functions.attemptTranslations(id)
+                if (id.equals("UAL0301") || id.equals("UEL0301") ||
+                        id.equals("URL0301") || id.equals("XSL0301")) {
+                    name = name.replace(name.substring(0, name.lastIndexOf("\"") + 2),
+                            "");
+                }
                 } catch (Exception e) { }
+
+//                if (name.length() > caseLim) {
+//                    name = name.replace(name.substring(caseLim, caseLim + 1),
+//                            name.substring(caseLim, caseLim + 1) + "\n");
+//                }
                 button.setText(name);
                 button.setBackgroundColor(MainActivity.color);
                 button.setTextColor(Color.parseColor("#FFFFFF"));
@@ -110,7 +116,7 @@ public class UnitsDraw extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

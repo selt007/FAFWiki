@@ -24,7 +24,8 @@
         <activity
             android:name=".UnitInfo"
             android:label="Unit Info"
-            android:parentActivityName=".UnitsDraw" >
+            android:parentActivityName=".UnitsDraw"
+            android:noHistory="false">
         </activity>
     </application>
 
