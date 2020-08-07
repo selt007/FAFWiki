@@ -53,7 +53,7 @@ public class UnitsDraw extends AppCompatActivity {
                 final Button button = new Button(this);
                 String id = attr.getID().toUpperCase();
                 try {
-                    name = Functions.attemptTranslations(id);//Functions.attemptTranslations(id)
+                    name = Functions.attemptTranslations(id);//attr.getDescription().substring(18);
                 if (id.equals("UAL0301") || id.equals("UEL0301") ||
                         id.equals("URL0301") || id.equals("XSL0301")) {
                     name = name.replace(name.substring(0, name.lastIndexOf("\"") + 2),
@@ -65,6 +65,9 @@ public class UnitsDraw extends AppCompatActivity {
 //                    name = name.replace(name.substring(caseLim, caseLim + 1),
 //                            name.substring(caseLim, caseLim + 1) + "\n");
 //                }
+                if (name == "") {
+                    name = attr.getDescription().substring(18);
+                }
                 button.setText(name);
                 button.setBackgroundColor(MainActivity.color);
                 button.setTextColor(Color.parseColor("#FFFFFF"));

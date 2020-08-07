@@ -73,22 +73,28 @@ public class Functions {
 
     private String displayVeterancy(String strInfo) {
         Defense defense = info.getDefense();
-        String id = info.getID().toUpperCase();
-        strInfo += "\nVETERANCY\n";
+        String strInfoVeterancy = "";
+        if (defense.getHealth() != null || defense.getRegenRate() != null) {
+            try {
+                String id = info.getID().toUpperCase();
+                strInfoVeterancy += "\nVETERANCY\n";
 
-        if (id.equals("UAL0001") || id.equals("UAL0301") ||
-                id.equals("UEL0001") || id.equals("UEL0301") ||
-                id.equals("URL0001") || id.equals("URL0301") ||
-                id.equals("XS0001") || id.equals("XSL0301")) {
-            strInfo += "T2\n";
+                if (id.equals("UAL0001") || id.equals("UAL0301") ||
+                        id.equals("UEL0001") || id.equals("UEL0301") ||
+                        id.equals("URL0001") || id.equals("URL0301") ||
+                        id.equals("XS0001") || id.equals("XSL0301")) {
+                    strInfoVeterancy += "T2\n";
+                }
+                for (int i = 0; i < 5; i++) {
+                    strInfoVeterancy += (info.getEconomy().getBuildCostMass() != null ? (i + 1) + " lvl: " +
+                            (i + 1) * Integer.parseInt(info.getEconomy().getBuildCostMass()) + "\t\t" +
+                            (Integer.parseInt(defense.getHealth()) + Math.round(Integer.parseInt(defense.getHealth()) *
+                                    (0.1 * (i + 1)))) + "HP + " + (Integer.parseInt(defense.getRegenRate()) + 3 * (i + 1)) + "/s\t\t\n" : "");
+                }
+            }
+            catch (Exception e) { strInfoVeterancy = ""; }
         }
-        for (int i = 0; i < 5; i++) {
-            strInfo += (info.getEconomy().getBuildCostMass() != null ? (i + 1) + " lvl: " +
-                    (i + 1) * Integer.parseInt(info.getEconomy().getBuildCostMass()) + "\t\t" +
-                    (Integer.parseInt(defense.getHealth()) + Math.round(Integer.parseInt(defense.getHealth()) *
-                            (0.1 * (i + 1)))) + "HP + " + (Integer.parseInt(defense.getRegenRate()) + 3 * (i + 1)) + "/s\t\t\n" : "");
-        }
-        return strInfo;
+        return strInfo + strInfoVeterancy;
     }
 
     private String displayWeaponList(String strInfo) {
@@ -173,11 +179,13 @@ public class Functions {
                 }
             }
             buildable = new ArrayList<>(new HashSet<>(buildable));
-            strInfo += "\nBLUEPRINTS\n";
-            for (Units buildUnit : buildable) {
-                String name = attemptTranslations(buildUnit.getID()).replace("null", "");
-                if (!name.equals("")) {
-                    strInfo += "[ " + name + " ]\n";
+            if (buildable.size() > 0) {
+                strInfo += "\nBLUEPRINTS\n";
+                for (Units buildUnit : buildable) {
+                    String name = attemptTranslations(buildUnit.getID()).replace("null", "");
+                    if (!name.equals("")) {
+                        strInfo += "[ " + name + " ]\n";
+                    }
                 }
             }
         }
@@ -203,11 +211,13 @@ public class Functions {
     }
 
     private String displayUnitAbilities(String strInfo) {
-        String[] abilities = info.getDisplay().getAbilities();
-        if (abilities != null) {
-            strInfo += "\nABILITIES\n";
-            for (String ability : abilities) {
-                strInfo += "[ " + attemptTranslations(ability) + " ]\t\t";
+        if (info.getDisplay() != null) {
+            String[] abilities = info.getDisplay().getAbilities();
+            if (abilities != null) {
+                strInfo += "\nABILITIES\n";
+                for (String ability : abilities) {
+                    strInfo += "[ " + attemptTranslations(ability) + " ]\t\t";
+                }
             }
         }
         return strInfo + "\n";

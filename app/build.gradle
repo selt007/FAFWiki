@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId 'com.SaSHAnt.FAFWiki'
-        minSdkVersion 23
-        targetSdkVersion 29
-        versionCode 3
-        versionName '1.1'
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionCode 6
+        versionName '1.1.2'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
