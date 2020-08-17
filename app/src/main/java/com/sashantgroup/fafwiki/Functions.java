@@ -28,6 +28,10 @@ public class Functions {
     Units info = UnitsDraw.unitInfo;
     Double[] veterancy = new Double[] {  0.5, 1.0, 0.33333, 0.25, 0.3, 0.05 };
 
+    public void displayUnitInfoFullNew() {
+        
+    }
+
     public String displayUnitInfoFull(String strInfo) {
         strInfo = displayUnitlistUnit(strInfo).replace("null","");
         strInfo = displayUnitEconomy(strInfo);
