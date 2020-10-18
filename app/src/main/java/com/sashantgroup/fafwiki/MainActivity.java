@@ -51,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         textInfo = findViewById(R.id.textInfo);
 
+        if (prefs.getString(APP_OPS_SERVICE, "").equals("")) {
+            lang = "US";
+            onPause();
+        }
+
         Thread threadUnit = new Thread(() -> {
             LoadDatabaseUnit();
             Thread threadLang = new Thread(() -> LoadDatabaseLang());
@@ -58,11 +63,6 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(loadEndDB);
         });
         threadUnit.start();
-
-        if (prefs.getString(APP_OPS_SERVICE, "").equals("")) {
-            lang = "US";
-            onPause();
-        }
     }
 
     @Override

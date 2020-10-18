@@ -72,17 +72,7 @@ public class UnitsDraw extends AppCompatActivity {
                 button.setBackgroundColor(MainActivity.color);
                 button.setTextColor(Color.parseColor("#FFFFFF"));
 
-                String icoName = "strategic/" + attr.getStrategicIconName() + "_rest.png";
-                try {
-                    DrawImage(button, icoName);
-                }
-                catch(Exception ignored) {
-                    try {
-                        DrawImage(button, "icons/error.png");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+                icoPath(attr.getStrategicIconName() + "_rest.png", button);
 
                 button.setOnClickListener(v -> {
                     unitInfo = attr;
@@ -126,11 +116,26 @@ public class UnitsDraw extends AppCompatActivity {
         }
     }
 
-    private void DrawImage(Button button, String icoName) throws IOException {
+    public void DrawImage(Button button, String icoName) throws IOException {
         InputStream inputStream = getApplicationContext().getAssets().open(icoName);
         Drawable img = Drawable.createFromStream(inputStream, null);
         img.setBounds(50, 10, 110, 70);
         button.setCompoundDrawables(img, null, null, null);
+    }
+
+    private String icoPath(String nameIco, Button button) {
+        String icoName = "strategic/" + nameIco;
+        try {
+            DrawImage(button, icoName);
+        }
+        catch(Exception ignored) {
+            try {
+                DrawImage(button, "icons/error.png");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return icoName;
     }
 
     private void selectLang() {
