@@ -1,7 +1,5 @@
 package com.sashantgroup.fafwiki;
 
-import com.sashantgroup.fafwiki.lang.Lang;
-import com.sashantgroup.fafwiki.units.AdditionalCapacitor;
 import com.sashantgroup.fafwiki.units.AdvancedEngineering;
 import com.sashantgroup.fafwiki.units.Defense;
 import com.sashantgroup.fafwiki.units.Economy;
@@ -9,8 +7,8 @@ import com.sashantgroup.fafwiki.units.Enhancements;
 import com.sashantgroup.fafwiki.units.Intel;
 import com.sashantgroup.fafwiki.units.Physics;
 import com.sashantgroup.fafwiki.units.Shield;
+import com.sashantgroup.fafwiki.units.Unit;
 import com.sashantgroup.fafwiki.units.UnitAir;
-import com.sashantgroup.fafwiki.units.Units;
 import com.sashantgroup.fafwiki.units.Weapon;
 import com.sashantgroup.fafwiki.units.Wreckage;
 
@@ -20,13 +18,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.lang.String;
+import java.util.Optional;
 
 public class Functions {
     public static String strLoc;
-    Units info = UnitsDraw.unitInfo;
+    Unit info = UnitsDraw.unitInfo;
     Double[] veterancy = new Double[] {  0.5, 1.0, 0.33333, 0.25, 0.3, 0.05 };
+
+    public void displayUnitInfoFullNew() {
+        
+    }
 
     public String displayUnitInfoFull(String strInfo) {
         strInfo = displayUnitlistUnit(strInfo).replace("null","");
@@ -47,13 +49,13 @@ public class Functions {
         if (info.getEnhancements() != null) {
             Enhancements enchancements = info.getEnhancements();
             strInfo += "\nENHANCEMENTS\n";
-            if (enchancements.getAdditionalCapacitor() != null) {
-                AdditionalCapacitor additionalCapacitor = enchancements.getAdditionalCapacitor();
-                strInfo += additionalCapacitor.getName() + "\n"
-                        + "Mass:" + additionalCapacitor.getBuildCostMass() + "\n"
-                        + "Energy:" + additionalCapacitor.getBuildCostEnergy() + "\n"
-                        + "Time:" + additionalCapacitor.getBuildTime() + "\n";
-            }
+//            if (enchancements.getAdditionalCapacitor() != null) {
+//                AdditionalCapacitor additionalCapacitor = enchancements.getAdditionalCapacitor();
+//                strInfo += additionalCapacitor.getName() + "\n"
+//                        + "Mass:" + additionalCapacitor.getBuildCostMass() + "\n"
+//                        + "Energy:" + additionalCapacitor.getBuildCostEnergy() + "\n"
+//                        + "Time:" + additionalCapacitor.getBuildTime() + "\n";
+//            }
             if (enchancements.getAdvancedEngineering() != null) {
                 AdvancedEngineering advancedEngineering = enchancements.getAdvancedEngineering();
                 strInfo += attemptTranslations(advancedEngineering.getName()) + "\n";
@@ -61,7 +63,7 @@ public class Functions {
                 strInfo += "Energy:" + advancedEngineering.getBuildCostEnergy() + "\n";
                 strInfo += "Time:" + advancedEngineering.getBuildTime() + "\n";
                 strInfo += advancedEngineering.getNewBuildRate() != null ? "Build rate: " + advancedEngineering.getNewBuildRate() + "\n" : "";
-                strInfo += advancedEngineering.getNewDamageRadius() != null ? "Damage Radius: " + advancedEngineering.getNewDamageRadius() + "\n" : "";
+                strInfo += advancedEngineering.getNewDamageRadiusMod() != null ? "Damage Radius: " + advancedEngineering.getNewDamageRadiusMod() + "\n" : "";
                 strInfo += advancedEngineering.getNewHealth() != null ? "New Health: " + advancedEngineering.getNewHealth() + "\n" : "";
                 strInfo += advancedEngineering.getNewRateOfFire() != null ? "Rate Of Fire: " + advancedEngineering.getNewRateOfFire() + "\n" : "";
                 strInfo += advancedEngineering.getNewRegenRate() != null ? "Regen Rate:" + advancedEngineering.getNewRegenRate() + "\n" : "";
@@ -74,7 +76,7 @@ public class Functions {
     private String displayVeterancy(String strInfo) {
         Defense defense = info.getDefense();
         String strInfoVeterancy = "";
-        if (defense.getHealth() != null || defense.getRegenRate() != null) {
+        if (defense.getHealth() != 0 || defense.getRegenRate() != null) {
             try {
                 String id = info.getID().toUpperCase();
                 strInfoVeterancy += "\nVETERANCY\n";
@@ -86,10 +88,10 @@ public class Functions {
                     strInfoVeterancy += "T2\n";
                 }
                 for (int i = 0; i < 5; i++) {
-                    strInfoVeterancy += (info.getEconomy().getBuildCostMass() != null ? (i + 1) + " lvl: " +
-                            (i + 1) * Integer.parseInt(info.getEconomy().getBuildCostMass()) + "\t\t" +
-                            (Integer.parseInt(defense.getHealth()) + Math.round(Integer.parseInt(defense.getHealth()) *
-                                    (0.1 * (i + 1)))) + "HP + " + (Integer.parseInt(defense.getRegenRate()) + 3 * (i + 1)) + "/s\t\t\n" : "");
+                    strInfoVeterancy += (info.getEconomy().getBuildCostMass() != 0 ? (i + 1) + " lvl: " +
+                            (i + 1) * (info.getEconomy().getBuildCostMass()) + "\t\t" +
+                            ((defense.getHealth()) + Math.round((defense.getHealth()) *
+                                    (0.1 * (i + 1)))) + "HP + " + ((defense.getRegenRate()) + 3 * (i + 1)) + "/s\t\t\n" : "");
                 }
             }
             catch (Exception e) { strInfoVeterancy = ""; }
@@ -98,62 +100,24 @@ public class Functions {
     }
 
     private String displayWeaponList(String strInfo) {
-        Weapon weapon = info.getWeapon();
-        if (weapon != null) {
-            strInfo += "\nWEAPONS\n";
-            List<Method> methodsObj = Arrays.asList(Object.class.getMethods());
-            Method[] methods = weapon.getClass().getMethods();
+        Weapon[] weapons = info.getWeapon();
+        if(weapons != null) {
             StringBuilder strInfoBuilder = new StringBuilder(strInfo);
-            for (Method method : methods) {
-                try {
-                    if (!methodsObj.contains(method)) {
-                        if (method.getParameterTypes().length == 0) {
-                            Object methodObj = method.invoke(weapon);
-                            if (methodObj != null) {
-                                Method[] underMethods = methodObj.getClass().getMethods();
-                                for (Method underMethod : underMethods) {
-                                    if (!methodsObj.contains(underMethod)) {
-                                        if (underMethod.getParameterTypes().length == 0) {
-                                            Object underMethodObj = underMethod.invoke(methodObj);
-                                            if (underMethodObj != null) {
-                                                strInfoBuilder.append((underMethod.getName() != null &&
-                                                        underMethod.getName().equals("getDisplayName")) ?
-                                                        "Weapon Name: " + underMethodObj.toString() + "\n" : "");
-                                                strInfoBuilder.append((underMethod.getName() != null &&
-                                                        underMethod.getName().equals("getDamage")) ?
-                                                        underMethod.getName().replace("get", "")
-                                                                + ": " + underMethodObj.toString() + "\n" : "");
-                                                strInfoBuilder.append((underMethod.getName() != null &&
-                                                        underMethod.getName().equals("getDamageRadius")) ?
-                                                        underMethod.getName().replace("get", "")
-                                                                + ": " + underMethodObj.toString() + "\n" : "");
-                                                strInfoBuilder.append((underMethod.getName() != null &&
-                                                        underMethod.getName().equals("getDamageType")) ?
-                                                        underMethod.getName().replace("get", "")
-                                                                + ": " + underMethodObj.toString() + "\n" : "");
-                                                strInfoBuilder.append((underMethod.getName() != null &&
-                                                        underMethod.getName().equals("getEffectiveRadius")) ?
-                                                        underMethod.getName().replace("get", "")
-                                                                + ": " + underMethodObj.toString() + "\n" : "");
-                                                strInfoBuilder.append((underMethod.getName() != null &&
-                                                        underMethod.getName().equals("getEnergyDrainPerSecond")) ?
-                                                        underMethod.getName().replace("get", "")
-                                                                + ": " + underMethodObj.toString() + "\n" : "");
-                                                strInfoBuilder.append((underMethod.getName() != null &&
-                                                        underMethod.getName().equals("getEnergyRequired")) ?
-                                                        underMethod.getName().replace("get", "")
-                                                                + ": " + underMethodObj.toString() + "\n" : "");
-                                            }
-                                        }
-                                    }
-                                }
-                                strInfoBuilder.append("\r\n");
-                            }
-                        }
-                    }
+            strInfoBuilder.append("\nWEAPONS\n");
+            for (Weapon weapon : weapons) {
+                if (weapon != null) {
+                    if(weapon.getDisplayName() != null ) strInfoBuilder.append("Weapon Name: " + weapon.getDisplayName() + "\n");
+                    if(weapon.getWeaponCategory() != null) strInfoBuilder.append("Weapon category: " + weapon.getWeaponCategory().toValue() + "\n");
+                    if(weapon.getDamageType() != null) strInfoBuilder.append("Damage type: " + weapon.getDamageType().toValue() + "\n");
+                    if(Optional.ofNullable(weapon.getDamage()).orElse(0d) != 0) strInfoBuilder.append("Damage: " + weapon.getDamage() + "\n");
+                    if(Optional.ofNullable(weapon.getRateOfFire()).orElse(0d) != 0) strInfoBuilder.append("Firerate p/s: " + weapon.getRateOfFire() + "\n");
+                    if(Optional.ofNullable(weapon.getDamageRadius()).orElse(0d) != 0) strInfoBuilder.append("Damage radius: " + weapon.getDamageRadius() + "\n");
+                    if(Optional.ofNullable(weapon.getEffectiveRadius()).orElse(0l) != 0) strInfoBuilder.append("Effective radius: " + weapon.getEffectiveRadius() + "\n");
+                    //if(weapon.getEnergyRequired() != null) strInfoBuilder.append("Energy required: " + weapon.getEnergyRequired() + "\n");
+                    if(Optional.ofNullable(weapon.getEnergyDrainPerSecond()).orElse(0l) != 0) strInfoBuilder.append("Energy drain p/s: " + weapon.getEnergyDrainPerSecond() + "\n");
+
+                    strInfoBuilder.append("\r\n");
                 }
-                catch (IllegalAccessException | InvocationTargetException ex)
-                { ex.printStackTrace(); }
             }
             strInfo = strInfoBuilder.toString();
         }
@@ -162,8 +126,8 @@ public class Functions {
 
     private String displayUnitlistArmies(String strInfo) {
         if (info.getEconomy().getBuildableCategory() != null) {
-            ArrayList<Units> buildable = new ArrayList<>();
-            for (Units unit : MainActivity.dataUnits) {
+            ArrayList<Unit> buildable = new ArrayList<>();
+            for (Unit unit : MainActivity.dataUnits) {
                 for (String buildCat : info.getEconomy().getBuildableCategory()) {
                     String[] buildReq = buildCat.split(" ");
                     boolean canBuild = true;
@@ -181,7 +145,7 @@ public class Functions {
             buildable = new ArrayList<>(new HashSet<>(buildable));
             if (buildable.size() > 0) {
                 strInfo += "\nBLUEPRINTS\n";
-                for (Units buildUnit : buildable) {
+                for (Unit buildUnit : buildable) {
                     String name = attemptTranslations(buildUnit.getID()).replace("null", "");
                     if (!name.equals("")) {
                         strInfo += "[ " + name + " ]\n";
@@ -196,14 +160,14 @@ public class Functions {
         Wreckage wreckage = info.getWreckage();
         try {
             if (wreckage != null) {
-                double hpMul = Double.parseDouble(wreckage.getHealthMult());
-                double massMul = Double.parseDouble(wreckage.getMassMult().toValue());
+                double hpMul = (wreckage.getHealthMult());
+                double massMul = (wreckage.getMassMult());
                 strInfo += "\nWRECKAGE\n";
-                strInfo += (wreckage.getHealthMult() != null ?
-                        "HP: " + Math.round(Double.parseDouble(info.getDefense().getHealth())
+                strInfo += (wreckage.getHealthMult() != 0 ?
+                        "HP: " + Math.round((info.getDefense().getHealth())
                                 * hpMul) + " (" + hpMul * 100 + "%)\t\t" : "");
-                strInfo += (wreckage.getMassMult() != null ?
-                        "Mass: " + Math.round(Double.parseDouble(info.getEconomy().getBuildCostMass())
+                strInfo += (wreckage.getMassMult() != 0 ?
+                        "Mass: " + Math.round((info.getEconomy().getBuildCostMass())
                                 * hpMul * massMul) + " (" + massMul * hpMul * 100 + "%)\n" : "");
             }
         } catch (Exception ignored) { }
@@ -225,11 +189,11 @@ public class Functions {
 
     private String displayUnitEconomy(String strInfo) {
         Economy eco = info.getEconomy();
-        if (eco.getBuildCostEnergy() != null || eco.getBuildCostMass() != null || eco.getBuildTime() != null) {
+        if (eco.getBuildCostEnergy() != 0 || eco.getBuildCostMass() != 0 || eco.getBuildTime() != 0) {
             strInfo += "\nBUILD COSTS\n";
-            strInfo += (eco.getBuildCostEnergy() != null ? "Energy: " + eco.getBuildCostEnergy() + "\t\t" : "");
-            strInfo += (eco.getBuildCostMass() != null ? "Mass: " + eco.getBuildCostMass() + "\t\t" : "");
-            strInfo += (eco.getBuildTime() != null ? "Time: " + eco.getBuildTime() : "");
+            strInfo += (eco.getBuildCostEnergy() != 0 ? "Energy: " + eco.getBuildCostEnergy() + "\t\t" : "");
+            strInfo += (eco.getBuildCostMass() != 0 ? "Mass: " + eco.getBuildCostMass() + "\t\t" : "");
+            strInfo += (eco.getBuildTime() != 0 ? "Time: " + eco.getBuildTime() : "");
         }
         if (eco.getProductionPerSecondEnergy() != null || eco.getProductionPerSecondMass() != null || eco.getBuildRate() != null) {
             strInfo += "\nYIELD / DRAIN\n";
@@ -285,7 +249,7 @@ public class Functions {
         else {
             strInfo += name + "\n";
         }
-        strInfo += (def.getMaxHealth() != null ? "HP: " + def.getMaxHealth() + (def.getRegenRate() != null ? " + " +
+        strInfo += (def.getMaxHealth() != 0 ? "HP: " + def.getMaxHealth() + (def.getRegenRate() != null ? " + " +
                 def.getRegenRate() + "/s" : "") + "\n" : "");
         strInfo += (def.getShield() != null ? "Shield: " + def.getShield().getShieldMaxHealth() +
                 " + " + def.getShield().getShieldRegenRate() + "/s\n" : "");
@@ -297,9 +261,8 @@ public class Functions {
         if (physics.getMaxSpeed() != null) {
             strInfo += "\nPHYSICS\n";
 
-            strInfo += (physics.getTurnRate() != null
-                    ? Integer.parseInt(physics.getTurnRate()) != 0
-                    ? "Turn rate: " + physics.getTurnRate() + " °/s\n" : "" : "");
+            strInfo += physics.getTurnRate() != null
+                    ? "Turn rate: " + physics.getTurnRate() + " °/s\n" : "";
             strInfo += (physics.getMaxSpeed() != null
                     ? "Max speed: " + physics.getMaxSpeed() + "\n" : "");
             strInfo += (physics.getFuelRechargeRate() != null
@@ -307,14 +270,14 @@ public class Functions {
             strInfo += (physics.getFuelUseTime() != null
                     ? "Fuel use time: " + physics.getFuelUseTime() + " s\n" : "");
             strInfo += (physics.getLandSpeedMultiplier() != null
-                    ? Integer.parseInt(physics.getLandSpeedMultiplier()) != 1
-                    ? "Land speed multiplier: " + Integer.parseInt(physics.getLandSpeedMultiplier()) * 100 + "%\n" : "" : "");
+                    ? physics.getLandSpeedMultiplier() != 1
+                    ? "Land speed multiplier: " + physics.getLandSpeedMultiplier() * 100 + "%\n" : "" : "");
 
             UnitAir air = info.getAir();
             if (air != null) {
                 strInfo += (air.getTurnSpeed() != null
                         ? "Turn speed: " + air.getTurnSpeed() + "\n" : "");
-                strInfo += (air.getMaxAirspeed() != null
+                strInfo += (air.getMaxAirspeed() != 0
                         ? "Max air speed: " + air.getMaxAirspeed() + "\n" : "");
                 strInfo += (air.getEngageDistance() != null
                         ? "Engage Distance: " + air.getEngageDistance() + "\n" : "");

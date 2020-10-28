@@ -1,61 +1,54 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class Tarmac {
-    private Albedo albedo;
-    private String deathLifetime;
-    private String fadeOut;
-    private String length;
+    private double width;
+    private Long deathLifetime;
     private Normal normal;
-    private String[] orientations;
+    private Albedo albedo;
     private boolean removeWhenDead;
-    private String width;
-    private String albedoKilled;
+    private long fadeOut;
+    private long[] orientations;
+    private double length;
 
-    @JsonProperty("Albedo")
-    public Albedo getAlbedo() { return albedo; }
-    @JsonProperty("Albedo")
-    public void setAlbedo(Albedo value) { this.albedo = value; }
+    @JsonProperty("Width")
+    public double getWidth() { return width; }
+    @JsonProperty("Width")
+    public void setWidth(double value) { this.width = value; }
 
     @JsonProperty("DeathLifetime")
-    public String getDeathLifetime() { return deathLifetime; }
+    public Long getDeathLifetime() { return deathLifetime; }
     @JsonProperty("DeathLifetime")
-    public void setDeathLifetime(String value) { this.deathLifetime = value; }
-
-    @JsonProperty("FadeOut")
-    public String getFadeOut() { return fadeOut; }
-    @JsonProperty("FadeOut")
-    public void setFadeOut(String value) { this.fadeOut = value; }
-
-    @JsonProperty("Length")
-    public String getLength() { return length; }
-    @JsonProperty("Length")
-    public void setLength(String value) { this.length = value; }
+    public void setDeathLifetime(Long value) { this.deathLifetime = value; }
 
     @JsonProperty("Normal")
     public Normal getNormal() { return normal; }
     @JsonProperty("Normal")
     public void setNormal(Normal value) { this.normal = value; }
 
-    @JsonProperty("Orientations")
-    public String[] getOrientations() { return orientations; }
-    @JsonProperty("Orientations")
-    public void setOrientations(String[] value) { this.orientations = value; }
+    @JsonProperty("Albedo")
+    public Albedo getAlbedo() { return albedo; }
+    @JsonProperty("Albedo")
+    public void setAlbedo(Albedo value) { this.albedo = value; }
 
     @JsonProperty("RemoveWhenDead")
     public boolean getRemoveWhenDead() { return removeWhenDead; }
     @JsonProperty("RemoveWhenDead")
     public void setRemoveWhenDead(boolean value) { this.removeWhenDead = value; }
 
-    @JsonProperty("Width")
-    public String getWidth() { return width; }
-    @JsonProperty("Width")
-    public void setWidth(String value) { this.width = value; }
+    @JsonProperty("FadeOut")
+    public long getFadeOut() { return fadeOut; }
+    @JsonProperty("FadeOut")
+    public void setFadeOut(long value) { this.fadeOut = value; }
 
-    @JsonProperty("AlbedoKilled")
-    public String getAlbedoKilled() { return albedoKilled; }
-    @JsonProperty("AlbedoKilled")
-    public void setAlbedoKilled(String value) { this.albedoKilled = value; }
+    @JsonProperty("Orientations")
+    public long[] getOrientations() { return orientations; }
+    @JsonProperty("Orientations")
+    public void setOrientations(long[] value) { this.orientations = value; }
+
+    @JsonProperty("Length")
+    public double getLength() { return length; }
+    @JsonProperty("Length")
+    public void setLength(double value) { this.length = value; }
 }

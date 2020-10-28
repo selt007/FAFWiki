@@ -1,19 +1,18 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class JamRadius {
-    private String max;
-    private String min;
+    private long max;
+    private long min;
 
     @JsonProperty("Max")
-    public String getMax() { return max; }
+    public long getMax() { return max; }
     @JsonProperty("Max")
-    public void setMax(String value) { this.max = value; }
+    public void setMax(long value) { this.max = value; }
 
     @JsonProperty("Min")
-    public String getMin() { return min; }
+    public long getMin() { return min; }
     @JsonProperty("Min")
-    public void setMin(String value) { this.min = value; }
+    public void setMin(long value) { this.min = value; }
 }

@@ -12,21 +12,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.sashantgroup.fafwiki.lang.Lang;
 import com.sashantgroup.fafwiki.units.General;
-import com.sashantgroup.fafwiki.units.Units;
+import com.sashantgroup.fafwiki.units.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
 public class UnitsDraw extends AppCompatActivity {
-    public static Units unitInfo;
+    public static Unit unitInfo;
     public static Map loc;
     int caseLim = 40;
 
@@ -41,11 +40,11 @@ public class UnitsDraw extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Units[] data = MainActivity.dataUnits;
+        Unit[] data = MainActivity.dataUnits;
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
         selectLang();
 
-        for (final Units attr : data) {
+        for (final Unit attr : data) {
             General general = attr.getGeneral();
             if (general.getFactionName().toValue().toLowerCase()
                     .contains(MainActivity.fraction.toLowerCase())) {
@@ -72,17 +71,7 @@ public class UnitsDraw extends AppCompatActivity {
                 button.setBackgroundColor(MainActivity.color);
                 button.setTextColor(Color.parseColor("#FFFFFF"));
 
-                String icoName = "strategic/" + attr.getStrategicIconName() + "_rest.png";
-                try {
-                    DrawImage(button, icoName);
-                }
-                catch(Exception ignored) {
-                    try {
-                        DrawImage(button, "icons/error.png");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+                icoPath(attr.getStrategicIconName() + "_rest.png", button);
 
                 button.setOnClickListener(v -> {
                     unitInfo = attr;
@@ -126,11 +115,26 @@ public class UnitsDraw extends AppCompatActivity {
         }
     }
 
-    private void DrawImage(Button button, String icoName) throws IOException {
+    public void DrawImage(Button button, String icoName) throws IOException {
         InputStream inputStream = getApplicationContext().getAssets().open(icoName);
         Drawable img = Drawable.createFromStream(inputStream, null);
         img.setBounds(50, 10, 110, 70);
         button.setCompoundDrawables(img, null, null, null);
+    }
+
+    private String icoPath(String nameIco, Button button) {
+        String icoName = "strategic/" + nameIco;
+        try {
+            DrawImage(button, icoName);
+        }
+        catch(Exception ignored) {
+            try {
+                DrawImage(button, "icons/error.png");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return icoName;
     }
 
     private void selectLang() {

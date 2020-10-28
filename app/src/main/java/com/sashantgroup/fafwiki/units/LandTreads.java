@@ -1,12 +1,11 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class LandTreads {
     private Boolean scrollTreads;
-    private TreadMarksClass treadMarks;
-    private String scrollMultiplier;
+    private TreadMark[] treadMarks;
+    private Double scrollMultiplier;
 
     @JsonProperty("ScrollTreads")
     public Boolean getScrollTreads() { return scrollTreads; }
@@ -14,12 +13,12 @@ public class LandTreads {
     public void setScrollTreads(Boolean value) { this.scrollTreads = value; }
 
     @JsonProperty("TreadMarks")
-    public TreadMarksClass getTreadMarks() { return treadMarks; }
+    public TreadMark[] getTreadMarks() { return treadMarks; }
     @JsonProperty("TreadMarks")
-    public void setTreadMarks(TreadMarksClass value) { this.treadMarks = value; }
+    public void setTreadMarks(TreadMark[] value) { this.treadMarks = value; }
 
     @JsonProperty("ScrollMultiplier")
-    public String getScrollMultiplier() { return scrollMultiplier; }
+    public Double getScrollMultiplier() { return scrollMultiplier; }
     @JsonProperty("ScrollMultiplier")
-    public void setScrollMultiplier(String value) { this.scrollMultiplier = value; }
+    public void setScrollMultiplier(Double value) { this.scrollMultiplier = value; }
 }

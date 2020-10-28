@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sashantgroup.fafwiki.units.Units;
+import com.sashantgroup.fafwiki.units.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class UnitInfo extends AppCompatActivity {
-    Units info = UnitsDraw.unitInfo;
+    Unit info = UnitsDraw.unitInfo;
     Functions func = new Functions();
 
     public void onCreate(Bundle savedInstanceState) {

@@ -1,25 +1,29 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class TeleportEffects {
-    private ChargeFxAtUnitBones chargeFxAtUnitBones;
+    private boolean playTeleportInFx;
+    private boolean playTeleportOutFx;
     private boolean playChargeFxAtDestination;
     private boolean playChargeFxAtUnit;
-    private boolean playTeleportOutFx;
-    private boolean playTeleportInFx;
-    private String fxOffsetX;
-    private String fxOffsetY;
-    private String fxOffsetZ;
-    private String fxSizeX;
-    private String fxSizeY;
-    private String fxSizeZ;
+    private ChargeFxAtUnitBone[] chargeFxAtUnitBones;
+    private Double fxSizeY;
+    private Double fxSizeZ;
+    private Double fxOffsetZ;
+    private Long fxOffsetX;
+    private Double fxSizeX;
+    private Long fxOffsetY;
 
-    @JsonProperty("ChargeFxAtUnitBones")
-    public ChargeFxAtUnitBones getChargeFxAtUnitBones() { return chargeFxAtUnitBones; }
-    @JsonProperty("ChargeFxAtUnitBones")
-    public void setChargeFxAtUnitBones(ChargeFxAtUnitBones value) { this.chargeFxAtUnitBones = value; }
+    @JsonProperty("PlayTeleportInFx")
+    public boolean getPlayTeleportInFx() { return playTeleportInFx; }
+    @JsonProperty("PlayTeleportInFx")
+    public void setPlayTeleportInFx(boolean value) { this.playTeleportInFx = value; }
+
+    @JsonProperty("PlayTeleportOutFx")
+    public boolean getPlayTeleportOutFx() { return playTeleportOutFx; }
+    @JsonProperty("PlayTeleportOutFx")
+    public void setPlayTeleportOutFx(boolean value) { this.playTeleportOutFx = value; }
 
     @JsonProperty("PlayChargeFxAtDestination")
     public boolean getPlayChargeFxAtDestination() { return playChargeFxAtDestination; }
@@ -31,43 +35,38 @@ public class TeleportEffects {
     @JsonProperty("PlayChargeFxAtUnit")
     public void setPlayChargeFxAtUnit(boolean value) { this.playChargeFxAtUnit = value; }
 
-    @JsonProperty("PlayTeleportOutFx")
-    public boolean getPlayTeleportOutFx() { return playTeleportOutFx; }
-    @JsonProperty("PlayTeleportOutFx")
-    public void setPlayTeleportOutFx(boolean value) { this.playTeleportOutFx = value; }
-
-    @JsonProperty("PlayTeleportInFx")
-    public boolean getPlayTeleportInFx() { return playTeleportInFx; }
-    @JsonProperty("PlayTeleportInFx")
-    public void setPlayTeleportInFx(boolean value) { this.playTeleportInFx = value; }
-
-    @JsonProperty("FxOffsetX")
-    public String getFxOffsetX() { return fxOffsetX; }
-    @JsonProperty("FxOffsetX")
-    public void setFxOffsetX(String value) { this.fxOffsetX = value; }
-
-    @JsonProperty("FxOffsetY")
-    public String getFxOffsetY() { return fxOffsetY; }
-    @JsonProperty("FxOffsetY")
-    public void setFxOffsetY(String value) { this.fxOffsetY = value; }
-
-    @JsonProperty("FxOffsetZ")
-    public String getFxOffsetZ() { return fxOffsetZ; }
-    @JsonProperty("FxOffsetZ")
-    public void setFxOffsetZ(String value) { this.fxOffsetZ = value; }
-
-    @JsonProperty("FxSizeX")
-    public String getFxSizeX() { return fxSizeX; }
-    @JsonProperty("FxSizeX")
-    public void setFxSizeX(String value) { this.fxSizeX = value; }
+    @JsonProperty("ChargeFxAtUnitBones")
+    public ChargeFxAtUnitBone[] getChargeFxAtUnitBones() { return chargeFxAtUnitBones; }
+    @JsonProperty("ChargeFxAtUnitBones")
+    public void setChargeFxAtUnitBones(ChargeFxAtUnitBone[] value) { this.chargeFxAtUnitBones = value; }
 
     @JsonProperty("FxSizeY")
-    public String getFxSizeY() { return fxSizeY; }
+    public Double getFxSizeY() { return fxSizeY; }
     @JsonProperty("FxSizeY")
-    public void setFxSizeY(String value) { this.fxSizeY = value; }
+    public void setFxSizeY(Double value) { this.fxSizeY = value; }
 
     @JsonProperty("FxSizeZ")
-    public String getFxSizeZ() { return fxSizeZ; }
+    public Double getFxSizeZ() { return fxSizeZ; }
     @JsonProperty("FxSizeZ")
-    public void setFxSizeZ(String value) { this.fxSizeZ = value; }
+    public void setFxSizeZ(Double value) { this.fxSizeZ = value; }
+
+    @JsonProperty("FxOffsetZ")
+    public Double getFxOffsetZ() { return fxOffsetZ; }
+    @JsonProperty("FxOffsetZ")
+    public void setFxOffsetZ(Double value) { this.fxOffsetZ = value; }
+
+    @JsonProperty("FxOffsetX")
+    public Long getFxOffsetX() { return fxOffsetX; }
+    @JsonProperty("FxOffsetX")
+    public void setFxOffsetX(Long value) { this.fxOffsetX = value; }
+
+    @JsonProperty("FxSizeX")
+    public Double getFxSizeX() { return fxSizeX; }
+    @JsonProperty("FxSizeX")
+    public void setFxSizeX(Double value) { this.fxSizeX = value; }
+
+    @JsonProperty("FxOffsetY")
+    public Long getFxOffsetY() { return fxOffsetY; }
+    @JsonProperty("FxOffsetY")
+    public void setFxOffsetY(Long value) { this.fxOffsetY = value; }
 }

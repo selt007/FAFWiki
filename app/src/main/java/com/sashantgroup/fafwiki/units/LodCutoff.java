@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,9 +9,9 @@ public enum LodCutoff {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case UNIT_MOVE_LOD_CUTOFF: return "UnitMove_LodCutoff";
-        case WEAPON_BIG_LOD_CUTOFF: return "WeaponBig_LodCutoff";
-        case WEAPON_LOD_CUTOFF: return "Weapon_LodCutoff";
+            case UNIT_MOVE_LOD_CUTOFF: return "UnitMove_LodCutoff";
+            case WEAPON_BIG_LOD_CUTOFF: return "WeaponBig_LodCutoff";
+            case WEAPON_LOD_CUTOFF: return "Weapon_LodCutoff";
         }
         return null;
     }

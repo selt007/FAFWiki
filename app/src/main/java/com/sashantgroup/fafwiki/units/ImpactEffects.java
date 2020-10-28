@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,10 +9,10 @@ public enum ImpactEffects {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case AEON_SHIELD_HIT01: return "AeonShieldHit01";
-        case CYBRAN_SHIELD_HIT01: return "CybranShieldHit01";
-        case SERAPHIM_SHIELD_HIT01: return "SeraphimShieldHit01";
-        case UEF_SHIELD_HIT01: return "UEFShieldHit01";
+            case AEON_SHIELD_HIT01: return "AeonShieldHit01";
+            case CYBRAN_SHIELD_HIT01: return "CybranShieldHit01";
+            case SERAPHIM_SHIELD_HIT01: return "SeraphimShieldHit01";
+            case UEF_SHIELD_HIT01: return "UEFShieldHit01";
         }
         return null;
     }

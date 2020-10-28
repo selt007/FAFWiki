@@ -1,37 +1,34 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
+import java.util.Map;
 
 public class General {
     private Category category;
     private Classification classification;
-    private Map<String, Boolean> commandCaps;
-    private FactionName factionName;
-    private GeneralIcon icon;
-    private TechLevel techLevel;
+    private long unitWeight;
     private String unitName;
-    private String unitWeight;
-    private ToggleCaps toggleCaps;
-    private String tarmacGlowDecal;
-    private String selectionPriority;
+    private FactionName factionName;
+    private TechLevel techLevel;
+    private Icon icon;
+    private Map<String, Boolean> commandCaps;
+    private TarmacGlowDecal tarmacGlowDecal;
     private Boolean constructionBar;
+    private ToggleCaps toggleCaps;
     private OrderOverrides orderOverrides;
-    private BuildBones buildBones;
-    private String upgradesFromBase;
     private String upgradesTo;
+    private String upgradesFromBase;
     private String upgradesFrom;
+    private Long selectionPriority;
+    private BuildBones buildBones;
+    private Boolean excludeFromVeterancy;
+    private Long teleportDelay;
     private String tarmacDecal;
-    private String capCost;
-    private String quickSelectPriority;
-    private String the0;
-    private String the1;
-    private String the2;
+    private Double capCost;
+    private Long quickSelectPriority;
     private Boolean instantDeathOnSelfDestruct;
+    private Double fractionThreshold;
     private BuildBonesAlt1 buildBonesAlt1;
-    private String buildEffectScaleX;
-    private String buildEffectScaleY;
-    private String buildEffectScaleZ;
 
     @JsonProperty("Category")
     public Category getCategory() { return category; }
@@ -43,80 +40,90 @@ public class General {
     @JsonProperty("Classification")
     public void setClassification(Classification value) { this.classification = value; }
 
-    @JsonProperty("CommandCaps")
-    public Map<String, Boolean> getCommandCaps() { return commandCaps; }
-    @JsonProperty("CommandCaps")
-    public void setCommandCaps(Map<String, Boolean> value) { this.commandCaps = value; }
-
-    @JsonProperty("FactionName")
-    public FactionName getFactionName() { return factionName; }
-    @JsonProperty("FactionName")
-    public void setFactionName(FactionName value) { this.factionName = value; }
-
-    @JsonProperty("Icon")
-    public GeneralIcon getIcon() { return icon; }
-    @JsonProperty("Icon")
-    public void setIcon(GeneralIcon value) { this.icon = value; }
-
-    @JsonProperty("TechLevel")
-    public TechLevel getTechLevel() { return techLevel; }
-    @JsonProperty("TechLevel")
-    public void setTechLevel(TechLevel value) { this.techLevel = value; }
+    @JsonProperty("UnitWeight")
+    public long getUnitWeight() { return unitWeight; }
+    @JsonProperty("UnitWeight")
+    public void setUnitWeight(long value) { this.unitWeight = value; }
 
     @JsonProperty("UnitName")
     public String getUnitName() { return unitName; }
     @JsonProperty("UnitName")
     public void setUnitName(String value) { this.unitName = value; }
 
-    @JsonProperty("UnitWeight")
-    public String getUnitWeight() { return unitWeight; }
-    @JsonProperty("UnitWeight")
-    public void setUnitWeight(String value) { this.unitWeight = value; }
+    @JsonProperty("FactionName")
+    public FactionName getFactionName() { return factionName; }
+    @JsonProperty("FactionName")
+    public void setFactionName(FactionName value) { this.factionName = value; }
 
-    @JsonProperty("ToggleCaps")
-    public ToggleCaps getToggleCaps() { return toggleCaps; }
-    @JsonProperty("ToggleCaps")
-    public void setToggleCaps(ToggleCaps value) { this.toggleCaps = value; }
+    @JsonProperty("TechLevel")
+    public TechLevel getTechLevel() { return techLevel; }
+    @JsonProperty("TechLevel")
+    public void setTechLevel(TechLevel value) { this.techLevel = value; }
+
+    @JsonProperty("Icon")
+    public Icon getIcon() { return icon; }
+    @JsonProperty("Icon")
+    public void setIcon(Icon value) { this.icon = value; }
+
+    @JsonProperty("CommandCaps")
+    public Map<String, Boolean> getCommandCaps() { return commandCaps; }
+    @JsonProperty("CommandCaps")
+    public void setCommandCaps(Map<String, Boolean> value) { this.commandCaps = value; }
 
     @JsonProperty("TarmacGlowDecal")
-    public String getTarmacGlowDecal() { return tarmacGlowDecal; }
+    public TarmacGlowDecal getTarmacGlowDecal() { return tarmacGlowDecal; }
     @JsonProperty("TarmacGlowDecal")
-    public void setTarmacGlowDecal(String value) { this.tarmacGlowDecal = value; }
-
-    @JsonProperty("SelectionPriority")
-    public String getSelectionPriority() { return selectionPriority; }
-    @JsonProperty("SelectionPriority")
-    public void setSelectionPriority(String value) { this.selectionPriority = value; }
+    public void setTarmacGlowDecal(TarmacGlowDecal value) { this.tarmacGlowDecal = value; }
 
     @JsonProperty("ConstructionBar")
     public Boolean getConstructionBar() { return constructionBar; }
     @JsonProperty("ConstructionBar")
     public void setConstructionBar(Boolean value) { this.constructionBar = value; }
 
+    @JsonProperty("ToggleCaps")
+    public ToggleCaps getToggleCaps() { return toggleCaps; }
+    @JsonProperty("ToggleCaps")
+    public void setToggleCaps(ToggleCaps value) { this.toggleCaps = value; }
+
     @JsonProperty("OrderOverrides")
     public OrderOverrides getOrderOverrides() { return orderOverrides; }
     @JsonProperty("OrderOverrides")
     public void setOrderOverrides(OrderOverrides value) { this.orderOverrides = value; }
-
-    @JsonProperty("BuildBones")
-    public BuildBones getBuildBones() { return buildBones; }
-    @JsonProperty("BuildBones")
-    public void setBuildBones(BuildBones value) { this.buildBones = value; }
-
-    @JsonProperty("UpgradesFromBase")
-    public String getUpgradesFromBase() { return upgradesFromBase; }
-    @JsonProperty("UpgradesFromBase")
-    public void setUpgradesFromBase(String value) { this.upgradesFromBase = value; }
 
     @JsonProperty("UpgradesTo")
     public String getUpgradesTo() { return upgradesTo; }
     @JsonProperty("UpgradesTo")
     public void setUpgradesTo(String value) { this.upgradesTo = value; }
 
+    @JsonProperty("UpgradesFromBase")
+    public String getUpgradesFromBase() { return upgradesFromBase; }
+    @JsonProperty("UpgradesFromBase")
+    public void setUpgradesFromBase(String value) { this.upgradesFromBase = value; }
+
     @JsonProperty("UpgradesFrom")
     public String getUpgradesFrom() { return upgradesFrom; }
     @JsonProperty("UpgradesFrom")
     public void setUpgradesFrom(String value) { this.upgradesFrom = value; }
+
+    @JsonProperty("SelectionPriority")
+    public Long getSelectionPriority() { return selectionPriority; }
+    @JsonProperty("SelectionPriority")
+    public void setSelectionPriority(Long value) { this.selectionPriority = value; }
+
+    @JsonProperty("BuildBones")
+    public BuildBones getBuildBones() { return buildBones; }
+    @JsonProperty("BuildBones")
+    public void setBuildBones(BuildBones value) { this.buildBones = value; }
+
+    @JsonProperty("ExcludeFromVeterancy")
+    public Boolean getExcludeFromVeterancy() { return excludeFromVeterancy; }
+    @JsonProperty("ExcludeFromVeterancy")
+    public void setExcludeFromVeterancy(Boolean value) { this.excludeFromVeterancy = value; }
+
+    @JsonProperty("TeleportDelay")
+    public Long getTeleportDelay() { return teleportDelay; }
+    @JsonProperty("TeleportDelay")
+    public void setTeleportDelay(Long value) { this.teleportDelay = value; }
 
     @JsonProperty("TarmacDecal")
     public String getTarmacDecal() { return tarmacDecal; }
@@ -124,52 +131,27 @@ public class General {
     public void setTarmacDecal(String value) { this.tarmacDecal = value; }
 
     @JsonProperty("CapCost")
-    public String getCapCost() { return capCost; }
+    public Double getCapCost() { return capCost; }
     @JsonProperty("CapCost")
-    public void setCapCost(String value) { this.capCost = value; }
+    public void setCapCost(Double value) { this.capCost = value; }
 
     @JsonProperty("QuickSelectPriority")
-    public String getQuickSelectPriority() { return quickSelectPriority; }
+    public Long getQuickSelectPriority() { return quickSelectPriority; }
     @JsonProperty("QuickSelectPriority")
-    public void setQuickSelectPriority(String value) { this.quickSelectPriority = value; }
-
-    @JsonProperty("0")
-    public String getThe0() { return the0; }
-    @JsonProperty("0")
-    public void setThe0(String value) { this.the0 = value; }
-
-    @JsonProperty("1")
-    public String getThe1() { return the1; }
-    @JsonProperty("1")
-    public void setThe1(String value) { this.the1 = value; }
-
-    @JsonProperty("2")
-    public String getThe2() { return the2; }
-    @JsonProperty("2")
-    public void setThe2(String value) { this.the2 = value; }
+    public void setQuickSelectPriority(Long value) { this.quickSelectPriority = value; }
 
     @JsonProperty("InstantDeathOnSelfDestruct")
     public Boolean getInstantDeathOnSelfDestruct() { return instantDeathOnSelfDestruct; }
     @JsonProperty("InstantDeathOnSelfDestruct")
     public void setInstantDeathOnSelfDestruct(Boolean value) { this.instantDeathOnSelfDestruct = value; }
 
+    @JsonProperty("FractionThreshold")
+    public Double getFractionThreshold() { return fractionThreshold; }
+    @JsonProperty("FractionThreshold")
+    public void setFractionThreshold(Double value) { this.fractionThreshold = value; }
+
     @JsonProperty("BuildBonesAlt1")
     public BuildBonesAlt1 getBuildBonesAlt1() { return buildBonesAlt1; }
     @JsonProperty("BuildBonesAlt1")
     public void setBuildBonesAlt1(BuildBonesAlt1 value) { this.buildBonesAlt1 = value; }
-
-    @JsonProperty("BuildEffectScaleX")
-    public String getBuildEffectScaleX() { return buildEffectScaleX; }
-    @JsonProperty("BuildEffectScaleX")
-    public void setBuildEffectScaleX(String value) { this.buildEffectScaleX = value; }
-
-    @JsonProperty("BuildEffectScaleY")
-    public String getBuildEffectScaleY() { return buildEffectScaleY; }
-    @JsonProperty("BuildEffectScaleY")
-    public void setBuildEffectScaleY(String value) { this.buildEffectScaleY = value; }
-
-    @JsonProperty("BuildEffectScaleZ")
-    public String getBuildEffectScaleZ() { return buildEffectScaleZ; }
-    @JsonProperty("BuildEffectScaleZ")
-    public void setBuildEffectScaleZ(String value) { this.buildEffectScaleZ = value; }
 }

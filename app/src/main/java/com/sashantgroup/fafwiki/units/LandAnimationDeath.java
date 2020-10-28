@@ -1,13 +1,18 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class LandAnimationDeath {
-    private Property157 property157;
+    private long weight;
+    private String animation;
 
-    @JsonProperty("Property157")
-    public Property157 getProperty157() { return property157; }
-    @JsonProperty("Property157")
-    public void setProperty157(Property157 value) { this.property157 = value; }
+    @JsonProperty("Weight")
+    public long getWeight() { return weight; }
+    @JsonProperty("Weight")
+    public void setWeight(long value) { this.weight = value; }
+
+    @JsonProperty("Animation")
+    public String getAnimation() { return animation; }
+    @JsonProperty("Animation")
+    public void setAnimation(String value) { this.animation = value; }
 }

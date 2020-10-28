@@ -1,22 +1,21 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class ToggleCaps {
-    private Boolean ruleutcSpecialToggle;
+    private Boolean ruleutcShieldToggle;
     private Boolean ruleutcProductionToggle;
     private Boolean ruleutcIntelToggle;
-    private Boolean ruleutcShieldToggle;
     private Boolean ruleutcStealthToggle;
     private Boolean ruleutcWeaponToggle;
     private Boolean ruleutcJammingToggle;
     private Boolean ruleutcCloakToggle;
+    private Boolean ruleutcSpecialToggle;
 
-    @JsonProperty("RULEUTC_SpecialToggle")
-    public Boolean getRuleutcSpecialToggle() { return ruleutcSpecialToggle; }
-    @JsonProperty("RULEUTC_SpecialToggle")
-    public void setRuleutcSpecialToggle(Boolean value) { this.ruleutcSpecialToggle = value; }
+    @JsonProperty("RULEUTC_ShieldToggle")
+    public Boolean getRuleutcShieldToggle() { return ruleutcShieldToggle; }
+    @JsonProperty("RULEUTC_ShieldToggle")
+    public void setRuleutcShieldToggle(Boolean value) { this.ruleutcShieldToggle = value; }
 
     @JsonProperty("RULEUTC_ProductionToggle")
     public Boolean getRuleutcProductionToggle() { return ruleutcProductionToggle; }
@@ -27,11 +26,6 @@ public class ToggleCaps {
     public Boolean getRuleutcIntelToggle() { return ruleutcIntelToggle; }
     @JsonProperty("RULEUTC_IntelToggle")
     public void setRuleutcIntelToggle(Boolean value) { this.ruleutcIntelToggle = value; }
-
-    @JsonProperty("RULEUTC_ShieldToggle")
-    public Boolean getRuleutcShieldToggle() { return ruleutcShieldToggle; }
-    @JsonProperty("RULEUTC_ShieldToggle")
-    public void setRuleutcShieldToggle(Boolean value) { this.ruleutcShieldToggle = value; }
 
     @JsonProperty("RULEUTC_StealthToggle")
     public Boolean getRuleutcStealthToggle() { return ruleutcStealthToggle; }
@@ -52,4 +46,9 @@ public class ToggleCaps {
     public Boolean getRuleutcCloakToggle() { return ruleutcCloakToggle; }
     @JsonProperty("RULEUTC_CloakToggle")
     public void setRuleutcCloakToggle(Boolean value) { this.ruleutcCloakToggle = value; }
+
+    @JsonProperty("RULEUTC_SpecialToggle")
+    public Boolean getRuleutcSpecialToggle() { return ruleutcSpecialToggle; }
+    @JsonProperty("RULEUTC_SpecialToggle")
+    public void setRuleutcSpecialToggle(Boolean value) { this.ruleutcSpecialToggle = value; }
 }

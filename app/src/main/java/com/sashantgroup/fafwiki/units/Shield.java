@@ -1,115 +1,114 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class Shield {
-    private ImpactEffects impactEffects;
+    private long shieldRegenRate;
     private ImpactMesh impactMesh;
+    private long shieldEnergyDrainRechargeTime;
+    private long shieldRechargeTime;
+    private long shieldMaxHealth;
+    private String impactMeshBig;
+    private ImpactEffects impactEffects;
+    private double shieldVerticalOffset;
     private String mesh;
-    private MeshZ meshZ;
-    private String regenAssistMult;
-    private String shieldEnergyDrainRechargeTime;
-    private String shieldMaxHealth;
-    private String shieldRechargeTime;
-    private String shieldRegenRate;
-    private String shieldRegenStartTime;
-    private String shieldSize;
-    private String shieldVerticalOffset;
-    private String ownerShieldMesh;
+    private long regenAssistMult;
+    private long shieldRegenStartTime;
+    private double shieldSize;
     private Boolean personalShield;
+    private String ownerShieldMesh;
+    private Double shieldSpillOverDamageMod;
+    private MeshZ meshZ;
     private Boolean personalBubble;
-    private String shieldSpillOverDamageMod;
     private Boolean transportShield;
-    private String beamOriginBone;
 
-    @JsonProperty("ImpactEffects")
-    public ImpactEffects getImpactEffects() { return impactEffects; }
-    @JsonProperty("ImpactEffects")
-    public void setImpactEffects(ImpactEffects value) { this.impactEffects = value; }
+    @JsonProperty("ShieldRegenRate")
+    public long getShieldRegenRate() { return shieldRegenRate; }
+    @JsonProperty("ShieldRegenRate")
+    public void setShieldRegenRate(long value) { this.shieldRegenRate = value; }
 
     @JsonProperty("ImpactMesh")
     public ImpactMesh getImpactMesh() { return impactMesh; }
     @JsonProperty("ImpactMesh")
     public void setImpactMesh(ImpactMesh value) { this.impactMesh = value; }
 
+    @JsonProperty("ShieldEnergyDrainRechargeTime")
+    public long getShieldEnergyDrainRechargeTime() { return shieldEnergyDrainRechargeTime; }
+    @JsonProperty("ShieldEnergyDrainRechargeTime")
+    public void setShieldEnergyDrainRechargeTime(long value) { this.shieldEnergyDrainRechargeTime = value; }
+
+    @JsonProperty("ShieldRechargeTime")
+    public long getShieldRechargeTime() { return shieldRechargeTime; }
+    @JsonProperty("ShieldRechargeTime")
+    public void setShieldRechargeTime(long value) { this.shieldRechargeTime = value; }
+
+    @JsonProperty("ShieldMaxHealth")
+    public long getShieldMaxHealth() { return shieldMaxHealth; }
+    @JsonProperty("ShieldMaxHealth")
+    public void setShieldMaxHealth(long value) { this.shieldMaxHealth = value; }
+
+    @JsonProperty("ImpactMeshBig")
+    public String getImpactMeshBig() { return impactMeshBig; }
+    @JsonProperty("ImpactMeshBig")
+    public void setImpactMeshBig(String value) { this.impactMeshBig = value; }
+
+    @JsonProperty("ImpactEffects")
+    public ImpactEffects getImpactEffects() { return impactEffects; }
+    @JsonProperty("ImpactEffects")
+    public void setImpactEffects(ImpactEffects value) { this.impactEffects = value; }
+
+    @JsonProperty("ShieldVerticalOffset")
+    public double getShieldVerticalOffset() { return shieldVerticalOffset; }
+    @JsonProperty("ShieldVerticalOffset")
+    public void setShieldVerticalOffset(double value) { this.shieldVerticalOffset = value; }
+
     @JsonProperty("Mesh")
     public String getMesh() { return mesh; }
     @JsonProperty("Mesh")
     public void setMesh(String value) { this.mesh = value; }
 
-    @JsonProperty("MeshZ")
-    public MeshZ getMeshZ() { return meshZ; }
-    @JsonProperty("MeshZ")
-    public void setMeshZ(MeshZ value) { this.meshZ = value; }
-
     @JsonProperty("RegenAssistMult")
-    public String getRegenAssistMult() { return regenAssistMult; }
+    public long getRegenAssistMult() { return regenAssistMult; }
     @JsonProperty("RegenAssistMult")
-    public void setRegenAssistMult(String value) { this.regenAssistMult = value; }
-
-    @JsonProperty("ShieldEnergyDrainRechargeTime")
-    public String getShieldEnergyDrainRechargeTime() { return shieldEnergyDrainRechargeTime; }
-    @JsonProperty("ShieldEnergyDrainRechargeTime")
-    public void setShieldEnergyDrainRechargeTime(String value) { this.shieldEnergyDrainRechargeTime = value; }
-
-    @JsonProperty("ShieldMaxHealth")
-    public String getShieldMaxHealth() { return shieldMaxHealth; }
-    @JsonProperty("ShieldMaxHealth")
-    public void setShieldMaxHealth(String value) { this.shieldMaxHealth = value; }
-
-    @JsonProperty("ShieldRechargeTime")
-    public String getShieldRechargeTime() { return shieldRechargeTime; }
-    @JsonProperty("ShieldRechargeTime")
-    public void setShieldRechargeTime(String value) { this.shieldRechargeTime = value; }
-
-    @JsonProperty("ShieldRegenRate")
-    public String getShieldRegenRate() { return shieldRegenRate; }
-    @JsonProperty("ShieldRegenRate")
-    public void setShieldRegenRate(String value) { this.shieldRegenRate = value; }
+    public void setRegenAssistMult(long value) { this.regenAssistMult = value; }
 
     @JsonProperty("ShieldRegenStartTime")
-    public String getShieldRegenStartTime() { return shieldRegenStartTime; }
+    public long getShieldRegenStartTime() { return shieldRegenStartTime; }
     @JsonProperty("ShieldRegenStartTime")
-    public void setShieldRegenStartTime(String value) { this.shieldRegenStartTime = value; }
+    public void setShieldRegenStartTime(long value) { this.shieldRegenStartTime = value; }
 
     @JsonProperty("ShieldSize")
-    public String getShieldSize() { return shieldSize; }
+    public double getShieldSize() { return shieldSize; }
     @JsonProperty("ShieldSize")
-    public void setShieldSize(String value) { this.shieldSize = value; }
-
-    @JsonProperty("ShieldVerticalOffset")
-    public String getShieldVerticalOffset() { return shieldVerticalOffset; }
-    @JsonProperty("ShieldVerticalOffset")
-    public void setShieldVerticalOffset(String value) { this.shieldVerticalOffset = value; }
-
-    @JsonProperty("OwnerShieldMesh")
-    public String getOwnerShieldMesh() { return ownerShieldMesh; }
-    @JsonProperty("OwnerShieldMesh")
-    public void setOwnerShieldMesh(String value) { this.ownerShieldMesh = value; }
+    public void setShieldSize(double value) { this.shieldSize = value; }
 
     @JsonProperty("PersonalShield")
     public Boolean getPersonalShield() { return personalShield; }
     @JsonProperty("PersonalShield")
     public void setPersonalShield(Boolean value) { this.personalShield = value; }
 
+    @JsonProperty("OwnerShieldMesh")
+    public String getOwnerShieldMesh() { return ownerShieldMesh; }
+    @JsonProperty("OwnerShieldMesh")
+    public void setOwnerShieldMesh(String value) { this.ownerShieldMesh = value; }
+
+    @JsonProperty("ShieldSpillOverDamageMod")
+    public Double getShieldSpillOverDamageMod() { return shieldSpillOverDamageMod; }
+    @JsonProperty("ShieldSpillOverDamageMod")
+    public void setShieldSpillOverDamageMod(Double value) { this.shieldSpillOverDamageMod = value; }
+
+    @JsonProperty("MeshZ")
+    public MeshZ getMeshZ() { return meshZ; }
+    @JsonProperty("MeshZ")
+    public void setMeshZ(MeshZ value) { this.meshZ = value; }
+
     @JsonProperty("PersonalBubble")
     public Boolean getPersonalBubble() { return personalBubble; }
     @JsonProperty("PersonalBubble")
     public void setPersonalBubble(Boolean value) { this.personalBubble = value; }
 
-    @JsonProperty("ShieldSpillOverDamageMod")
-    public String getShieldSpillOverDamageMod() { return shieldSpillOverDamageMod; }
-    @JsonProperty("ShieldSpillOverDamageMod")
-    public void setShieldSpillOverDamageMod(String value) { this.shieldSpillOverDamageMod = value; }
-
     @JsonProperty("TransportShield")
     public Boolean getTransportShield() { return transportShield; }
     @JsonProperty("TransportShield")
     public void setTransportShield(Boolean value) { this.transportShield = value; }
-
-    @JsonProperty("BeamOriginBone")
-    public String getBeamOriginBone() { return beamOriginBone; }
-    @JsonProperty("BeamOriginBone")
-    public void setBeamOriginBone(String value) { this.beamOriginBone = value; }
 }

@@ -1,14 +1,17 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class BeamExhaust {
+    private Boolean landed;
     private String[] bones;
     private boolean cruise;
     private boolean idle;
-    private Boolean landed;
-    private String scale;
+
+    @JsonProperty("Landed")
+    public Boolean getLanded() { return landed; }
+    @JsonProperty("Landed")
+    public void setLanded(Boolean value) { this.landed = value; }
 
     @JsonProperty("Bones")
     public String[] getBones() { return bones; }
@@ -24,14 +27,4 @@ public class BeamExhaust {
     public boolean getIdle() { return idle; }
     @JsonProperty("Idle")
     public void setIdle(boolean value) { this.idle = value; }
-
-    @JsonProperty("Landed")
-    public Boolean getLanded() { return landed; }
-    @JsonProperty("Landed")
-    public void setLanded(Boolean value) { this.landed = value; }
-
-    @JsonProperty("Scale")
-    public String getScale() { return scale; }
-    @JsonProperty("Scale")
-    public void setScale(String value) { this.scale = value; }
 }

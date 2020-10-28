@@ -1,13 +1,12 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class SubBottomUp {
-    private SubBottomUpEffects effects;
+    private SubBottomUpEffect[] effects;
 
     @JsonProperty("Effects")
-    public SubBottomUpEffects getEffects() { return effects; }
+    public SubBottomUpEffect[] getEffects() { return effects; }
     @JsonProperty("Effects")
-    public void setEffects(SubBottomUpEffects value) { this.effects = value; }
+    public void setEffects(SubBottomUpEffect[] value) { this.effects = value; }
 }

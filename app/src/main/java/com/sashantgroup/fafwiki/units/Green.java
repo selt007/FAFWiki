@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,7 +9,7 @@ public enum Green {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case EFFECTS_EMITTERS_LIGHT_GREEN_03__EMIT_BP: return "/effects/emitters/light_green_03_emit.bp";
+            case EFFECTS_EMITTERS_LIGHT_GREEN_03__EMIT_BP: return "/effects/emitters/light_green_03_emit.bp";
         }
         return null;
     }
