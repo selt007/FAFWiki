@@ -1,5 +1,6 @@
 package com.sashantgroup.fafwiki;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -71,7 +72,7 @@ public class UnitsDraw extends AppCompatActivity {
                 button.setBackgroundColor(MainActivity.color);
                 button.setTextColor(Color.parseColor("#FFFFFF"));
 
-                icoPath(attr.getStrategicIconName() + "_rest.png", button);
+                icoPath(this, button, "strategic/" + attr.getStrategicIconName() + "_rest.png");
 
                 button.setOnClickListener(v -> {
                     unitInfo = attr;
@@ -83,23 +84,6 @@ public class UnitsDraw extends AppCompatActivity {
             }
 
             final EditText editText = findViewById(R.id.search);
-            editText.addTextChangedListener(new TextWatcher()
-            {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    //condition = editText.getText().toString();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
             editText.setEnabled(false);
         }
     }
@@ -115,21 +99,21 @@ public class UnitsDraw extends AppCompatActivity {
         }
     }
 
-    public void DrawImage(Button button, String icoName) throws IOException {
-        InputStream inputStream = getApplicationContext().getAssets().open(icoName);
+    public void DrawImage(Context context, Button button, String icoName) throws IOException {
+        InputStream inputStream = context.getAssets().open(icoName);
         Drawable img = Drawable.createFromStream(inputStream, null);
-        img.setBounds(50, 10, 110, 70);
+        img.setBounds(30, 0, 90, 60);
         button.setCompoundDrawables(img, null, null, null);
     }
 
-    private String icoPath(String nameIco, Button button) {
-        String icoName = "strategic/" + nameIco;
+    public String icoPath(Context context, Button button, String nameIco) {
+        String icoName = nameIco;
         try {
-            DrawImage(button, icoName);
+            DrawImage(context, button, icoName);
         }
         catch(Exception ignored) {
             try {
-                DrawImage(button, "icons/error.png");
+                DrawImage(context, button, "icons/error.png");
             } catch (IOException e) {
                 e.printStackTrace();
             }
