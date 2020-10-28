@@ -1,13 +1,12 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class DepthCharge {
-    private String radius;
+    private long radius;
 
     @JsonProperty("Radius")
-    public String getRadius() { return radius; }
+    public long getRadius() { return radius; }
     @JsonProperty("Radius")
-    public void setRadius(String value) { this.radius = value; }
+    public void setRadius(long value) { this.radius = value; }
 }

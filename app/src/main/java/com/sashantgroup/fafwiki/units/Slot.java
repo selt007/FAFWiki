@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,9 +9,9 @@ public enum Slot {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case BACK: return "Back";
-        case LCH: return "LCH";
-        case RCH: return "RCH";
+            case BACK: return "Back";
+            case LCH: return "LCH";
+            case RCH: return "RCH";
         }
         return null;
     }

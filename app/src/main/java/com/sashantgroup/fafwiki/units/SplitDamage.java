@@ -1,19 +1,18 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class SplitDamage {
-    private String damageAmount;
-    private String damageRadius;
+    private long damageAmount;
+    private double damageRadius;
 
     @JsonProperty("DamageAmount")
-    public String getDamageAmount() { return damageAmount; }
+    public long getDamageAmount() { return damageAmount; }
     @JsonProperty("DamageAmount")
-    public void setDamageAmount(String value) { this.damageAmount = value; }
+    public void setDamageAmount(long value) { this.damageAmount = value; }
 
     @JsonProperty("DamageRadius")
-    public String getDamageRadius() { return damageRadius; }
+    public double getDamageRadius() { return damageRadius; }
     @JsonProperty("DamageRadius")
-    public void setDamageRadius(String value) { this.damageRadius = value; }
+    public void setDamageRadius(double value) { this.damageRadius = value; }
 }

@@ -1,31 +1,30 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class RollOffPoint {
-    private String x;
-    private String y;
-    private String z;
-    private String unitSpin;
+    private double x;
+    private long unitSpin;
+    private long y;
+    private double z;
 
     @JsonProperty("X")
-    public String getX() { return x; }
+    public double getX() { return x; }
     @JsonProperty("X")
-    public void setX(String value) { this.x = value; }
-
-    @JsonProperty("Y")
-    public String getY() { return y; }
-    @JsonProperty("Y")
-    public void setY(String value) { this.y = value; }
-
-    @JsonProperty("Z")
-    public String getZ() { return z; }
-    @JsonProperty("Z")
-    public void setZ(String value) { this.z = value; }
+    public void setX(double value) { this.x = value; }
 
     @JsonProperty("UnitSpin")
-    public String getUnitSpin() { return unitSpin; }
+    public long getUnitSpin() { return unitSpin; }
     @JsonProperty("UnitSpin")
-    public void setUnitSpin(String value) { this.unitSpin = value; }
+    public void setUnitSpin(long value) { this.unitSpin = value; }
+
+    @JsonProperty("Y")
+    public long getY() { return y; }
+    @JsonProperty("Y")
+    public void setY(long value) { this.y = value; }
+
+    @JsonProperty("Z")
+    public double getZ() { return z; }
+    @JsonProperty("Z")
+    public void setZ(double value) { this.z = value; }
 }

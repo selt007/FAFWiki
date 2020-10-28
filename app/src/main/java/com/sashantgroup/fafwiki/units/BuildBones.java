@@ -1,24 +1,23 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class BuildBones {
-    private String[] buildEffectBones;
-    private String aimBone;
+    private Bone[] buildEffectBones;
+    private AimBone aimBone;
     private String pitchBone;
     private String yawBone;
     private BuildAttachBone buildAttachBone;
 
     @JsonProperty("BuildEffectBones")
-    public String[] getBuildEffectBones() { return buildEffectBones; }
+    public Bone[] getBuildEffectBones() { return buildEffectBones; }
     @JsonProperty("BuildEffectBones")
-    public void setBuildEffectBones(String[] value) { this.buildEffectBones = value; }
+    public void setBuildEffectBones(Bone[] value) { this.buildEffectBones = value; }
 
     @JsonProperty("AimBone")
-    public String getAimBone() { return aimBone; }
+    public AimBone getAimBone() { return aimBone; }
     @JsonProperty("AimBone")
-    public void setAimBone(String value) { this.aimBone = value; }
+    public void setAimBone(AimBone value) { this.aimBone = value; }
 
     @JsonProperty("PitchBone")
     public String getPitchBone() { return pitchBone; }

@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,8 +9,8 @@ public enum BuildRestriction {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case RULEUBR_ON_HYDROCARBON_DEPOSIT: return "RULEUBR_OnHydrocarbonDeposit";
-        case RULEUBR_ON_MASS_DEPOSIT: return "RULEUBR_OnMassDeposit";
+            case RULEUBR_ON_HYDROCARBON_DEPOSIT: return "RULEUBR_OnHydrocarbonDeposit";
+            case RULEUBR_ON_MASS_DEPOSIT: return "RULEUBR_OnMassDeposit";
         }
         return null;
     }

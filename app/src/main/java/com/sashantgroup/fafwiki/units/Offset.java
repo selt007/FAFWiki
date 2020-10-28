@@ -1,13 +1,12 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class Offset {
-    private String z;
+    private long z;
 
     @JsonProperty("z")
-    public String getZ() { return z; }
+    public long getZ() { return z; }
     @JsonProperty("z")
-    public void setZ(String value) { this.z = value; }
+    public void setZ(long value) { this.z = value; }
 }

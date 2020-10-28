@@ -1,223 +1,222 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class UnitAir {
-    private String autoLandTime;
-    private String bankFactor;
-    private boolean bankForward;
-    private String breakOffDistance;
-    private String breakOffTrigger;
+    private Long autoLandTime;
+    private long liftFactor;
     private boolean canFly;
-    private String kLift;
-    private String kLiftDamping;
-    private String kMove;
-    private String kMoveDamping;
-    private String kRoll;
-    private String kRollDamping;
-    private String kTurn;
-    private String kTurnDamping;
-    private String liftFactor;
-    private String maxAirspeed;
-    private String minAirspeed;
-    private String turnSpeed;
+    private Long kRollDamping;
+    private Long minAirspeed;
+    private double bankFactor;
+    private double maxAirspeed;
+    private double kLiftDamping;
+    private Long engageDistance;
+    private double kTurn;
+    private boolean bankForward;
+    private Double kRoll;
     private Boolean winged;
+    private Double kMoveDamping;
+    private Double combatTurnSpeed;
+    private long kLift;
+    private Double tightTurnMultiplier;
+    private Double startTurnDistance;
+    private Double kMove;
+    private double kTurnDamping;
+    private Double turnSpeed;
+    private Long breakOffDistance;
+    private Long breakOffTrigger;
     private Boolean breakOffIfNearNewTarget;
-    private String combatTurnSpeed;
-    private String engageDistance;
-    private String predictAheadForBombDrop;
-    private String startTurnDistance;
-    private String tightTurnMultiplier;
-    private String randomBreakOffDistanceMult;
-    private Boolean circlingDirChange;
-    private String circlingElevationChangeRatio;
-    private String circlingFlightChangeFrequency;
-    private String circlingRadiusChangeMaxRatio;
-    private String circlingRadiusChangeMinRatio;
-    private String circlingTurnMult;
-    private String transportHoverHeight;
-    private String circlingDirChangeFrequencySEC;
-    private String circlingRadiusVsAirMult;
+    private Double randomBreakOffDistanceMult;
+    private Long predictAheadForBombDrop;
+    private Double circlingElevationChangeRatio;
+    private Long circlingDirChangeFrequencySEC;
+    private Double circlingRadiusVsAirMult;
+    private Long circlingTurnMult;
+    private Double circlingRadiusChangeMaxRatio;
+    private Double circlingRadiusChangeMinRatio;
     private Boolean hoverOverAttack;
+    private Boolean circlingDirChange;
+    private Long circlingFlightChangeFrequency;
+    private Long transportHoverHeight;
 
     @JsonProperty("AutoLandTime")
-    public String getAutoLandTime() { return autoLandTime; }
+    public Long getAutoLandTime() { return autoLandTime; }
     @JsonProperty("AutoLandTime")
-    public void setAutoLandTime(String value) { this.autoLandTime = value; }
+    public void setAutoLandTime(Long value) { this.autoLandTime = value; }
 
-    @JsonProperty("BankFactor")
-    public String getBankFactor() { return bankFactor; }
-    @JsonProperty("BankFactor")
-    public void setBankFactor(String value) { this.bankFactor = value; }
-
-    @JsonProperty("BankForward")
-    public boolean getBankForward() { return bankForward; }
-    @JsonProperty("BankForward")
-    public void setBankForward(boolean value) { this.bankForward = value; }
-
-    @JsonProperty("BreakOffDistance")
-    public String getBreakOffDistance() { return breakOffDistance; }
-    @JsonProperty("BreakOffDistance")
-    public void setBreakOffDistance(String value) { this.breakOffDistance = value; }
-
-    @JsonProperty("BreakOffTrigger")
-    public String getBreakOffTrigger() { return breakOffTrigger; }
-    @JsonProperty("BreakOffTrigger")
-    public void setBreakOffTrigger(String value) { this.breakOffTrigger = value; }
+    @JsonProperty("LiftFactor")
+    public long getLiftFactor() { return liftFactor; }
+    @JsonProperty("LiftFactor")
+    public void setLiftFactor(long value) { this.liftFactor = value; }
 
     @JsonProperty("CanFly")
     public boolean getCanFly() { return canFly; }
     @JsonProperty("CanFly")
     public void setCanFly(boolean value) { this.canFly = value; }
 
-    @JsonProperty("KLift")
-    public String getKLift() { return kLift; }
-    @JsonProperty("KLift")
-    public void setKLift(String value) { this.kLift = value; }
-
-    @JsonProperty("KLiftDamping")
-    public String getKLiftDamping() { return kLiftDamping; }
-    @JsonProperty("KLiftDamping")
-    public void setKLiftDamping(String value) { this.kLiftDamping = value; }
-
-    @JsonProperty("KMove")
-    public String getKMove() { return kMove; }
-    @JsonProperty("KMove")
-    public void setKMove(String value) { this.kMove = value; }
-
-    @JsonProperty("KMoveDamping")
-    public String getKMoveDamping() { return kMoveDamping; }
-    @JsonProperty("KMoveDamping")
-    public void setKMoveDamping(String value) { this.kMoveDamping = value; }
-
-    @JsonProperty("KRoll")
-    public String getKRoll() { return kRoll; }
-    @JsonProperty("KRoll")
-    public void setKRoll(String value) { this.kRoll = value; }
-
     @JsonProperty("KRollDamping")
-    public String getKRollDamping() { return kRollDamping; }
+    public Long getKRollDamping() { return kRollDamping; }
     @JsonProperty("KRollDamping")
-    public void setKRollDamping(String value) { this.kRollDamping = value; }
-
-    @JsonProperty("KTurn")
-    public String getKTurn() { return kTurn; }
-    @JsonProperty("KTurn")
-    public void setKTurn(String value) { this.kTurn = value; }
-
-    @JsonProperty("KTurnDamping")
-    public String getKTurnDamping() { return kTurnDamping; }
-    @JsonProperty("KTurnDamping")
-    public void setKTurnDamping(String value) { this.kTurnDamping = value; }
-
-    @JsonProperty("LiftFactor")
-    public String getLiftFactor() { return liftFactor; }
-    @JsonProperty("LiftFactor")
-    public void setLiftFactor(String value) { this.liftFactor = value; }
-
-    @JsonProperty("MaxAirspeed")
-    public String getMaxAirspeed() { return maxAirspeed; }
-    @JsonProperty("MaxAirspeed")
-    public void setMaxAirspeed(String value) { this.maxAirspeed = value; }
+    public void setKRollDamping(Long value) { this.kRollDamping = value; }
 
     @JsonProperty("MinAirspeed")
-    public String getMinAirspeed() { return minAirspeed; }
+    public Long getMinAirspeed() { return minAirspeed; }
     @JsonProperty("MinAirspeed")
-    public void setMinAirspeed(String value) { this.minAirspeed = value; }
+    public void setMinAirspeed(Long value) { this.minAirspeed = value; }
 
-    @JsonProperty("TurnSpeed")
-    public String getTurnSpeed() { return turnSpeed; }
-    @JsonProperty("TurnSpeed")
-    public void setTurnSpeed(String value) { this.turnSpeed = value; }
+    @JsonProperty("BankFactor")
+    public double getBankFactor() { return bankFactor; }
+    @JsonProperty("BankFactor")
+    public void setBankFactor(double value) { this.bankFactor = value; }
+
+    @JsonProperty("MaxAirspeed")
+    public double getMaxAirspeed() { return maxAirspeed; }
+    @JsonProperty("MaxAirspeed")
+    public void setMaxAirspeed(double value) { this.maxAirspeed = value; }
+
+    @JsonProperty("KLiftDamping")
+    public double getKLiftDamping() { return kLiftDamping; }
+    @JsonProperty("KLiftDamping")
+    public void setKLiftDamping(double value) { this.kLiftDamping = value; }
+
+    @JsonProperty("EngageDistance")
+    public Long getEngageDistance() { return engageDistance; }
+    @JsonProperty("EngageDistance")
+    public void setEngageDistance(Long value) { this.engageDistance = value; }
+
+    @JsonProperty("KTurn")
+    public double getKTurn() { return kTurn; }
+    @JsonProperty("KTurn")
+    public void setKTurn(double value) { this.kTurn = value; }
+
+    @JsonProperty("BankForward")
+    public boolean getBankForward() { return bankForward; }
+    @JsonProperty("BankForward")
+    public void setBankForward(boolean value) { this.bankForward = value; }
+
+    @JsonProperty("KRoll")
+    public Double getKRoll() { return kRoll; }
+    @JsonProperty("KRoll")
+    public void setKRoll(Double value) { this.kRoll = value; }
 
     @JsonProperty("Winged")
     public Boolean getWinged() { return winged; }
     @JsonProperty("Winged")
     public void setWinged(Boolean value) { this.winged = value; }
 
+    @JsonProperty("KMoveDamping")
+    public Double getKMoveDamping() { return kMoveDamping; }
+    @JsonProperty("KMoveDamping")
+    public void setKMoveDamping(Double value) { this.kMoveDamping = value; }
+
+    @JsonProperty("CombatTurnSpeed")
+    public Double getCombatTurnSpeed() { return combatTurnSpeed; }
+    @JsonProperty("CombatTurnSpeed")
+    public void setCombatTurnSpeed(Double value) { this.combatTurnSpeed = value; }
+
+    @JsonProperty("KLift")
+    public long getKLift() { return kLift; }
+    @JsonProperty("KLift")
+    public void setKLift(long value) { this.kLift = value; }
+
+    @JsonProperty("TightTurnMultiplier")
+    public Double getTightTurnMultiplier() { return tightTurnMultiplier; }
+    @JsonProperty("TightTurnMultiplier")
+    public void setTightTurnMultiplier(Double value) { this.tightTurnMultiplier = value; }
+
+    @JsonProperty("StartTurnDistance")
+    public Double getStartTurnDistance() { return startTurnDistance; }
+    @JsonProperty("StartTurnDistance")
+    public void setStartTurnDistance(Double value) { this.startTurnDistance = value; }
+
+    @JsonProperty("KMove")
+    public Double getKMove() { return kMove; }
+    @JsonProperty("KMove")
+    public void setKMove(Double value) { this.kMove = value; }
+
+    @JsonProperty("KTurnDamping")
+    public double getKTurnDamping() { return kTurnDamping; }
+    @JsonProperty("KTurnDamping")
+    public void setKTurnDamping(double value) { this.kTurnDamping = value; }
+
+    @JsonProperty("TurnSpeed")
+    public Double getTurnSpeed() { return turnSpeed; }
+    @JsonProperty("TurnSpeed")
+    public void setTurnSpeed(Double value) { this.turnSpeed = value; }
+
+    @JsonProperty("BreakOffDistance")
+    public Long getBreakOffDistance() { return breakOffDistance; }
+    @JsonProperty("BreakOffDistance")
+    public void setBreakOffDistance(Long value) { this.breakOffDistance = value; }
+
+    @JsonProperty("BreakOffTrigger")
+    public Long getBreakOffTrigger() { return breakOffTrigger; }
+    @JsonProperty("BreakOffTrigger")
+    public void setBreakOffTrigger(Long value) { this.breakOffTrigger = value; }
+
     @JsonProperty("BreakOffIfNearNewTarget")
     public Boolean getBreakOffIfNearNewTarget() { return breakOffIfNearNewTarget; }
     @JsonProperty("BreakOffIfNearNewTarget")
     public void setBreakOffIfNearNewTarget(Boolean value) { this.breakOffIfNearNewTarget = value; }
 
-    @JsonProperty("CombatTurnSpeed")
-    public String getCombatTurnSpeed() { return combatTurnSpeed; }
-    @JsonProperty("CombatTurnSpeed")
-    public void setCombatTurnSpeed(String value) { this.combatTurnSpeed = value; }
-
-    @JsonProperty("EngageDistance")
-    public String getEngageDistance() { return engageDistance; }
-    @JsonProperty("EngageDistance")
-    public void setEngageDistance(String value) { this.engageDistance = value; }
+    @JsonProperty("RandomBreakOffDistanceMult")
+    public Double getRandomBreakOffDistanceMult() { return randomBreakOffDistanceMult; }
+    @JsonProperty("RandomBreakOffDistanceMult")
+    public void setRandomBreakOffDistanceMult(Double value) { this.randomBreakOffDistanceMult = value; }
 
     @JsonProperty("PredictAheadForBombDrop")
-    public String getPredictAheadForBombDrop() { return predictAheadForBombDrop; }
+    public Long getPredictAheadForBombDrop() { return predictAheadForBombDrop; }
     @JsonProperty("PredictAheadForBombDrop")
-    public void setPredictAheadForBombDrop(String value) { this.predictAheadForBombDrop = value; }
+    public void setPredictAheadForBombDrop(Long value) { this.predictAheadForBombDrop = value; }
 
-    @JsonProperty("StartTurnDistance")
-    public String getStartTurnDistance() { return startTurnDistance; }
-    @JsonProperty("StartTurnDistance")
-    public void setStartTurnDistance(String value) { this.startTurnDistance = value; }
+    @JsonProperty("CirclingElevationChangeRatio")
+    public Double getCirclingElevationChangeRatio() { return circlingElevationChangeRatio; }
+    @JsonProperty("CirclingElevationChangeRatio")
+    public void setCirclingElevationChangeRatio(Double value) { this.circlingElevationChangeRatio = value; }
 
-    @JsonProperty("TightTurnMultiplier")
-    public String getTightTurnMultiplier() { return tightTurnMultiplier; }
-    @JsonProperty("TightTurnMultiplier")
-    public void setTightTurnMultiplier(String value) { this.tightTurnMultiplier = value; }
+    @JsonProperty("CirclingDirChangeFrequencySec")
+    public Long getCirclingDirChangeFrequencySEC() { return circlingDirChangeFrequencySEC; }
+    @JsonProperty("CirclingDirChangeFrequencySec")
+    public void setCirclingDirChangeFrequencySEC(Long value) { this.circlingDirChangeFrequencySEC = value; }
 
-    @JsonProperty("RandomBreakOffDistanceMult")
-    public String getRandomBreakOffDistanceMult() { return randomBreakOffDistanceMult; }
-    @JsonProperty("RandomBreakOffDistanceMult")
-    public void setRandomBreakOffDistanceMult(String value) { this.randomBreakOffDistanceMult = value; }
+    @JsonProperty("CirclingRadiusVsAirMult")
+    public Double getCirclingRadiusVsAirMult() { return circlingRadiusVsAirMult; }
+    @JsonProperty("CirclingRadiusVsAirMult")
+    public void setCirclingRadiusVsAirMult(Double value) { this.circlingRadiusVsAirMult = value; }
+
+    @JsonProperty("CirclingTurnMult")
+    public Long getCirclingTurnMult() { return circlingTurnMult; }
+    @JsonProperty("CirclingTurnMult")
+    public void setCirclingTurnMult(Long value) { this.circlingTurnMult = value; }
+
+    @JsonProperty("CirclingRadiusChangeMaxRatio")
+    public Double getCirclingRadiusChangeMaxRatio() { return circlingRadiusChangeMaxRatio; }
+    @JsonProperty("CirclingRadiusChangeMaxRatio")
+    public void setCirclingRadiusChangeMaxRatio(Double value) { this.circlingRadiusChangeMaxRatio = value; }
+
+    @JsonProperty("CirclingRadiusChangeMinRatio")
+    public Double getCirclingRadiusChangeMinRatio() { return circlingRadiusChangeMinRatio; }
+    @JsonProperty("CirclingRadiusChangeMinRatio")
+    public void setCirclingRadiusChangeMinRatio(Double value) { this.circlingRadiusChangeMinRatio = value; }
+
+    @JsonProperty("HoverOverAttack")
+    public Boolean getHoverOverAttack() { return hoverOverAttack; }
+    @JsonProperty("HoverOverAttack")
+    public void setHoverOverAttack(Boolean value) { this.hoverOverAttack = value; }
 
     @JsonProperty("CirclingDirChange")
     public Boolean getCirclingDirChange() { return circlingDirChange; }
     @JsonProperty("CirclingDirChange")
     public void setCirclingDirChange(Boolean value) { this.circlingDirChange = value; }
 
-    @JsonProperty("CirclingElevationChangeRatio")
-    public String getCirclingElevationChangeRatio() { return circlingElevationChangeRatio; }
-    @JsonProperty("CirclingElevationChangeRatio")
-    public void setCirclingElevationChangeRatio(String value) { this.circlingElevationChangeRatio = value; }
-
     @JsonProperty("CirclingFlightChangeFrequency")
-    public String getCirclingFlightChangeFrequency() { return circlingFlightChangeFrequency; }
+    public Long getCirclingFlightChangeFrequency() { return circlingFlightChangeFrequency; }
     @JsonProperty("CirclingFlightChangeFrequency")
-    public void setCirclingFlightChangeFrequency(String value) { this.circlingFlightChangeFrequency = value; }
-
-    @JsonProperty("CirclingRadiusChangeMaxRatio")
-    public String getCirclingRadiusChangeMaxRatio() { return circlingRadiusChangeMaxRatio; }
-    @JsonProperty("CirclingRadiusChangeMaxRatio")
-    public void setCirclingRadiusChangeMaxRatio(String value) { this.circlingRadiusChangeMaxRatio = value; }
-
-    @JsonProperty("CirclingRadiusChangeMinRatio")
-    public String getCirclingRadiusChangeMinRatio() { return circlingRadiusChangeMinRatio; }
-    @JsonProperty("CirclingRadiusChangeMinRatio")
-    public void setCirclingRadiusChangeMinRatio(String value) { this.circlingRadiusChangeMinRatio = value; }
-
-    @JsonProperty("CirclingTurnMult")
-    public String getCirclingTurnMult() { return circlingTurnMult; }
-    @JsonProperty("CirclingTurnMult")
-    public void setCirclingTurnMult(String value) { this.circlingTurnMult = value; }
+    public void setCirclingFlightChangeFrequency(Long value) { this.circlingFlightChangeFrequency = value; }
 
     @JsonProperty("TransportHoverHeight")
-    public String getTransportHoverHeight() { return transportHoverHeight; }
+    public Long getTransportHoverHeight() { return transportHoverHeight; }
     @JsonProperty("TransportHoverHeight")
-    public void setTransportHoverHeight(String value) { this.transportHoverHeight = value; }
-
-    @JsonProperty("CirclingDirChangeFrequencySec")
-    public String getCirclingDirChangeFrequencySEC() { return circlingDirChangeFrequencySEC; }
-    @JsonProperty("CirclingDirChangeFrequencySec")
-    public void setCirclingDirChangeFrequencySEC(String value) { this.circlingDirChangeFrequencySEC = value; }
-
-    @JsonProperty("CirclingRadiusVsAirMult")
-    public String getCirclingRadiusVsAirMult() { return circlingRadiusVsAirMult; }
-    @JsonProperty("CirclingRadiusVsAirMult")
-    public void setCirclingRadiusVsAirMult(String value) { this.circlingRadiusVsAirMult = value; }
-
-    @JsonProperty("HoverOverAttack")
-    public Boolean getHoverOverAttack() { return hoverOverAttack; }
-    @JsonProperty("HoverOverAttack")
-    public void setHoverOverAttack(Boolean value) { this.hoverOverAttack = value; }
+    public void setTransportHoverHeight(Long value) { this.transportHoverHeight = value; }
 }

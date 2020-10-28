@@ -1,151 +1,150 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class ShieldGeneratorField {
-    private String buildCostEnergy;
-    private String buildCostMass;
-    private String buildTime;
-    private String icon;
-    private ImpactEffects impactEffects;
-    private ImpactMesh impactMesh;
-    private String maintenanceConsumptionPerSecondEnergy;
-    private String mesh;
-    private MeshZ meshZ;
-    private String name;
-    private String prerequisite;
-    private String shieldEnergyDrainRechargeTime;
-    private String shieldEnhancementNumber;
-    private String shieldMaxHealth;
-    private String shieldRechargeTime;
-    private String shieldRegenRate;
-    private String shieldRegenStartTime;
-    private String shieldSize;
-    private String shieldSpillOverDamageMod;
-    private String shieldVerticalOffset;
-    private Slot slot;
-    private String[] upgradeEffectBones;
-    private String[] upgradeUnitAmbientBones;
+    private long buildCostEnergy;
     private String[] hideBones;
+    private long shieldRechargeTime;
+    private String mesh;
+    private double shieldSpillOverDamageMod;
+    private long buildCostMass;
+    private String name;
+    private Slot slot;
+    private long shieldRegenRate;
+    private String icon;
+    private long buildTime;
+    private long shieldVerticalOffset;
+    private ImpactEffects impactEffects;
+    private long shieldSize;
+    private long shieldRegenStartTime;
+    private MeshZ meshZ;
+    private long shieldEnergyDrainRechargeTime;
+    private String prerequisite;
+    private long maintenanceConsumptionPerSecondEnergy;
+    private long shieldMaxHealth;
+    private String[] upgradeUnitAmbientBones;
+    private ImpactMesh impactMesh;
+    private String[] upgradeEffectBones;
+    private Long shieldEnhancementNumber;
 
     @JsonProperty("BuildCostEnergy")
-    public String getBuildCostEnergy() { return buildCostEnergy; }
+    public long getBuildCostEnergy() { return buildCostEnergy; }
     @JsonProperty("BuildCostEnergy")
-    public void setBuildCostEnergy(String value) { this.buildCostEnergy = value; }
+    public void setBuildCostEnergy(long value) { this.buildCostEnergy = value; }
 
-    @JsonProperty("BuildCostMass")
-    public String getBuildCostMass() { return buildCostMass; }
-    @JsonProperty("BuildCostMass")
-    public void setBuildCostMass(String value) { this.buildCostMass = value; }
+    @JsonProperty("HideBones")
+    public String[] getHideBones() { return hideBones; }
+    @JsonProperty("HideBones")
+    public void setHideBones(String[] value) { this.hideBones = value; }
 
-    @JsonProperty("BuildTime")
-    public String getBuildTime() { return buildTime; }
-    @JsonProperty("BuildTime")
-    public void setBuildTime(String value) { this.buildTime = value; }
-
-    @JsonProperty("Icon")
-    public String getIcon() { return icon; }
-    @JsonProperty("Icon")
-    public void setIcon(String value) { this.icon = value; }
-
-    @JsonProperty("ImpactEffects")
-    public ImpactEffects getImpactEffects() { return impactEffects; }
-    @JsonProperty("ImpactEffects")
-    public void setImpactEffects(ImpactEffects value) { this.impactEffects = value; }
-
-    @JsonProperty("ImpactMesh")
-    public ImpactMesh getImpactMesh() { return impactMesh; }
-    @JsonProperty("ImpactMesh")
-    public void setImpactMesh(ImpactMesh value) { this.impactMesh = value; }
-
-    @JsonProperty("MaintenanceConsumptionPerSecondEnergy")
-    public String getMaintenanceConsumptionPerSecondEnergy() { return maintenanceConsumptionPerSecondEnergy; }
-    @JsonProperty("MaintenanceConsumptionPerSecondEnergy")
-    public void setMaintenanceConsumptionPerSecondEnergy(String value) { this.maintenanceConsumptionPerSecondEnergy = value; }
+    @JsonProperty("ShieldRechargeTime")
+    public long getShieldRechargeTime() { return shieldRechargeTime; }
+    @JsonProperty("ShieldRechargeTime")
+    public void setShieldRechargeTime(long value) { this.shieldRechargeTime = value; }
 
     @JsonProperty("Mesh")
     public String getMesh() { return mesh; }
     @JsonProperty("Mesh")
     public void setMesh(String value) { this.mesh = value; }
 
-    @JsonProperty("MeshZ")
-    public MeshZ getMeshZ() { return meshZ; }
-    @JsonProperty("MeshZ")
-    public void setMeshZ(MeshZ value) { this.meshZ = value; }
+    @JsonProperty("ShieldSpillOverDamageMod")
+    public double getShieldSpillOverDamageMod() { return shieldSpillOverDamageMod; }
+    @JsonProperty("ShieldSpillOverDamageMod")
+    public void setShieldSpillOverDamageMod(double value) { this.shieldSpillOverDamageMod = value; }
+
+    @JsonProperty("BuildCostMass")
+    public long getBuildCostMass() { return buildCostMass; }
+    @JsonProperty("BuildCostMass")
+    public void setBuildCostMass(long value) { this.buildCostMass = value; }
 
     @JsonProperty("Name")
     public String getName() { return name; }
     @JsonProperty("Name")
     public void setName(String value) { this.name = value; }
 
-    @JsonProperty("Prerequisite")
-    public String getPrerequisite() { return prerequisite; }
-    @JsonProperty("Prerequisite")
-    public void setPrerequisite(String value) { this.prerequisite = value; }
-
-    @JsonProperty("ShieldEnergyDrainRechargeTime")
-    public String getShieldEnergyDrainRechargeTime() { return shieldEnergyDrainRechargeTime; }
-    @JsonProperty("ShieldEnergyDrainRechargeTime")
-    public void setShieldEnergyDrainRechargeTime(String value) { this.shieldEnergyDrainRechargeTime = value; }
-
-    @JsonProperty("ShieldEnhancementNumber")
-    public String getShieldEnhancementNumber() { return shieldEnhancementNumber; }
-    @JsonProperty("ShieldEnhancementNumber")
-    public void setShieldEnhancementNumber(String value) { this.shieldEnhancementNumber = value; }
-
-    @JsonProperty("ShieldMaxHealth")
-    public String getShieldMaxHealth() { return shieldMaxHealth; }
-    @JsonProperty("ShieldMaxHealth")
-    public void setShieldMaxHealth(String value) { this.shieldMaxHealth = value; }
-
-    @JsonProperty("ShieldRechargeTime")
-    public String getShieldRechargeTime() { return shieldRechargeTime; }
-    @JsonProperty("ShieldRechargeTime")
-    public void setShieldRechargeTime(String value) { this.shieldRechargeTime = value; }
-
-    @JsonProperty("ShieldRegenRate")
-    public String getShieldRegenRate() { return shieldRegenRate; }
-    @JsonProperty("ShieldRegenRate")
-    public void setShieldRegenRate(String value) { this.shieldRegenRate = value; }
-
-    @JsonProperty("ShieldRegenStartTime")
-    public String getShieldRegenStartTime() { return shieldRegenStartTime; }
-    @JsonProperty("ShieldRegenStartTime")
-    public void setShieldRegenStartTime(String value) { this.shieldRegenStartTime = value; }
-
-    @JsonProperty("ShieldSize")
-    public String getShieldSize() { return shieldSize; }
-    @JsonProperty("ShieldSize")
-    public void setShieldSize(String value) { this.shieldSize = value; }
-
-    @JsonProperty("ShieldSpillOverDamageMod")
-    public String getShieldSpillOverDamageMod() { return shieldSpillOverDamageMod; }
-    @JsonProperty("ShieldSpillOverDamageMod")
-    public void setShieldSpillOverDamageMod(String value) { this.shieldSpillOverDamageMod = value; }
-
-    @JsonProperty("ShieldVerticalOffset")
-    public String getShieldVerticalOffset() { return shieldVerticalOffset; }
-    @JsonProperty("ShieldVerticalOffset")
-    public void setShieldVerticalOffset(String value) { this.shieldVerticalOffset = value; }
-
     @JsonProperty("Slot")
     public Slot getSlot() { return slot; }
     @JsonProperty("Slot")
     public void setSlot(Slot value) { this.slot = value; }
 
-    @JsonProperty("UpgradeEffectBones")
-    public String[] getUpgradeEffectBones() { return upgradeEffectBones; }
-    @JsonProperty("UpgradeEffectBones")
-    public void setUpgradeEffectBones(String[] value) { this.upgradeEffectBones = value; }
+    @JsonProperty("ShieldRegenRate")
+    public long getShieldRegenRate() { return shieldRegenRate; }
+    @JsonProperty("ShieldRegenRate")
+    public void setShieldRegenRate(long value) { this.shieldRegenRate = value; }
+
+    @JsonProperty("Icon")
+    public String getIcon() { return icon; }
+    @JsonProperty("Icon")
+    public void setIcon(String value) { this.icon = value; }
+
+    @JsonProperty("BuildTime")
+    public long getBuildTime() { return buildTime; }
+    @JsonProperty("BuildTime")
+    public void setBuildTime(long value) { this.buildTime = value; }
+
+    @JsonProperty("ShieldVerticalOffset")
+    public long getShieldVerticalOffset() { return shieldVerticalOffset; }
+    @JsonProperty("ShieldVerticalOffset")
+    public void setShieldVerticalOffset(long value) { this.shieldVerticalOffset = value; }
+
+    @JsonProperty("ImpactEffects")
+    public ImpactEffects getImpactEffects() { return impactEffects; }
+    @JsonProperty("ImpactEffects")
+    public void setImpactEffects(ImpactEffects value) { this.impactEffects = value; }
+
+    @JsonProperty("ShieldSize")
+    public long getShieldSize() { return shieldSize; }
+    @JsonProperty("ShieldSize")
+    public void setShieldSize(long value) { this.shieldSize = value; }
+
+    @JsonProperty("ShieldRegenStartTime")
+    public long getShieldRegenStartTime() { return shieldRegenStartTime; }
+    @JsonProperty("ShieldRegenStartTime")
+    public void setShieldRegenStartTime(long value) { this.shieldRegenStartTime = value; }
+
+    @JsonProperty("MeshZ")
+    public MeshZ getMeshZ() { return meshZ; }
+    @JsonProperty("MeshZ")
+    public void setMeshZ(MeshZ value) { this.meshZ = value; }
+
+    @JsonProperty("ShieldEnergyDrainRechargeTime")
+    public long getShieldEnergyDrainRechargeTime() { return shieldEnergyDrainRechargeTime; }
+    @JsonProperty("ShieldEnergyDrainRechargeTime")
+    public void setShieldEnergyDrainRechargeTime(long value) { this.shieldEnergyDrainRechargeTime = value; }
+
+    @JsonProperty("Prerequisite")
+    public String getPrerequisite() { return prerequisite; }
+    @JsonProperty("Prerequisite")
+    public void setPrerequisite(String value) { this.prerequisite = value; }
+
+    @JsonProperty("MaintenanceConsumptionPerSecondEnergy")
+    public long getMaintenanceConsumptionPerSecondEnergy() { return maintenanceConsumptionPerSecondEnergy; }
+    @JsonProperty("MaintenanceConsumptionPerSecondEnergy")
+    public void setMaintenanceConsumptionPerSecondEnergy(long value) { this.maintenanceConsumptionPerSecondEnergy = value; }
+
+    @JsonProperty("ShieldMaxHealth")
+    public long getShieldMaxHealth() { return shieldMaxHealth; }
+    @JsonProperty("ShieldMaxHealth")
+    public void setShieldMaxHealth(long value) { this.shieldMaxHealth = value; }
 
     @JsonProperty("UpgradeUnitAmbientBones")
     public String[] getUpgradeUnitAmbientBones() { return upgradeUnitAmbientBones; }
     @JsonProperty("UpgradeUnitAmbientBones")
     public void setUpgradeUnitAmbientBones(String[] value) { this.upgradeUnitAmbientBones = value; }
 
-    @JsonProperty("HideBones")
-    public String[] getHideBones() { return hideBones; }
-    @JsonProperty("HideBones")
-    public void setHideBones(String[] value) { this.hideBones = value; }
+    @JsonProperty("ImpactMesh")
+    public ImpactMesh getImpactMesh() { return impactMesh; }
+    @JsonProperty("ImpactMesh")
+    public void setImpactMesh(ImpactMesh value) { this.impactMesh = value; }
+
+    @JsonProperty("UpgradeEffectBones")
+    public String[] getUpgradeEffectBones() { return upgradeEffectBones; }
+    @JsonProperty("UpgradeEffectBones")
+    public void setUpgradeEffectBones(String[] value) { this.upgradeEffectBones = value; }
+
+    @JsonProperty("ShieldEnhancementNumber")
+    public Long getShieldEnhancementNumber() { return shieldEnhancementNumber; }
+    @JsonProperty("ShieldEnhancementNumber")
+    public void setShieldEnhancementNumber(Long value) { this.shieldEnhancementNumber = value; }
 }

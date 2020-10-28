@@ -1,63 +1,72 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class Intel {
-    private String visionRadius;
-    private String radarRadius;
-    private String sonarRadius;
-    private String omniRadius;
-    private String waterVisionRadius;
+    private Long visionRadius;
+    private Long radarRadius;
+    private Long sonarRadius;
+    private Long omniRadius;
+    private Long waterVisionRadius;
+    private Boolean freeIntel;
+    private Boolean showIntelOnSelect;
+    private Long reactivateTime;
     private Boolean radarStealth;
     private Boolean sonarStealth;
-    private String reactivateTime;
-    private Boolean showIntelOnSelect;
-    private String radarStealthFieldRadius;
-    private String sonarStealthFieldRadius;
-    private Boolean freeIntel;
+    private Long sonarStealthFieldRadius;
+    private Long radarStealthFieldRadius;
+    private Long remoteViewingRadius;
+    private Long jammerBlips;
     private JamRadius jamRadius;
-    private String jammerBlips;
     private ActiveIntel activeIntel;
     private Boolean cloak;
     private Boolean radarStealthField;
-    private String remoteViewingRadius;
-    private String maxVisionRadius;
-    private String minVisionRadius;
-    private String intelDurationOnDeath;
-    private String visionRadiusOnDeath;
-    private String stealthWaitTime;
-    private String waterVisionradius;
-    private String overchargeDamageMulti;
-    private String overchargeEnergyCost;
-    private String overchargeEnergyDrainPerSecond;
-    private String overchargeTime;
-    private String overchargeType;
+    private Long minVisionRadius;
+    private Long maxVisionRadius;
+    private Long stealthWaitTime;
+    private Long visionRadiusOnDeath;
+    private Long intelDurationOnDeath;
+    private Long waterVisionradius;
 
     @JsonProperty("VisionRadius")
-    public String getVisionRadius() { return visionRadius; }
+    public Long getVisionRadius() { return visionRadius; }
     @JsonProperty("VisionRadius")
-    public void setVisionRadius(String value) { this.visionRadius = value; }
+    public void setVisionRadius(Long value) { this.visionRadius = value; }
 
     @JsonProperty("RadarRadius")
-    public String getRadarRadius() { return radarRadius; }
+    public Long getRadarRadius() { return radarRadius; }
     @JsonProperty("RadarRadius")
-    public void setRadarRadius(String value) { this.radarRadius = value; }
+    public void setRadarRadius(Long value) { this.radarRadius = value; }
 
     @JsonProperty("SonarRadius")
-    public String getSonarRadius() { return sonarRadius; }
+    public Long getSonarRadius() { return sonarRadius; }
     @JsonProperty("SonarRadius")
-    public void setSonarRadius(String value) { this.sonarRadius = value; }
+    public void setSonarRadius(Long value) { this.sonarRadius = value; }
 
     @JsonProperty("OmniRadius")
-    public String getOmniRadius() { return omniRadius; }
+    public Long getOmniRadius() { return omniRadius; }
     @JsonProperty("OmniRadius")
-    public void setOmniRadius(String value) { this.omniRadius = value; }
+    public void setOmniRadius(Long value) { this.omniRadius = value; }
 
     @JsonProperty("WaterVisionRadius")
-    public String getWaterVisionRadius() { return waterVisionRadius; }
+    public Long getWaterVisionRadius() { return waterVisionRadius; }
     @JsonProperty("WaterVisionRadius")
-    public void setWaterVisionRadius(String value) { this.waterVisionRadius = value; }
+    public void setWaterVisionRadius(Long value) { this.waterVisionRadius = value; }
+
+    @JsonProperty("FreeIntel")
+    public Boolean getFreeIntel() { return freeIntel; }
+    @JsonProperty("FreeIntel")
+    public void setFreeIntel(Boolean value) { this.freeIntel = value; }
+
+    @JsonProperty("ShowIntelOnSelect")
+    public Boolean getShowIntelOnSelect() { return showIntelOnSelect; }
+    @JsonProperty("ShowIntelOnSelect")
+    public void setShowIntelOnSelect(Boolean value) { this.showIntelOnSelect = value; }
+
+    @JsonProperty("ReactivateTime")
+    public Long getReactivateTime() { return reactivateTime; }
+    @JsonProperty("ReactivateTime")
+    public void setReactivateTime(Long value) { this.reactivateTime = value; }
 
     @JsonProperty("RadarStealth")
     public Boolean getRadarStealth() { return radarStealth; }
@@ -69,40 +78,30 @@ public class Intel {
     @JsonProperty("SonarStealth")
     public void setSonarStealth(Boolean value) { this.sonarStealth = value; }
 
-    @JsonProperty("ReactivateTime")
-    public String getReactivateTime() { return reactivateTime; }
-    @JsonProperty("ReactivateTime")
-    public void setReactivateTime(String value) { this.reactivateTime = value; }
-
-    @JsonProperty("ShowIntelOnSelect")
-    public Boolean getShowIntelOnSelect() { return showIntelOnSelect; }
-    @JsonProperty("ShowIntelOnSelect")
-    public void setShowIntelOnSelect(Boolean value) { this.showIntelOnSelect = value; }
+    @JsonProperty("SonarStealthFieldRadius")
+    public Long getSonarStealthFieldRadius() { return sonarStealthFieldRadius; }
+    @JsonProperty("SonarStealthFieldRadius")
+    public void setSonarStealthFieldRadius(Long value) { this.sonarStealthFieldRadius = value; }
 
     @JsonProperty("RadarStealthFieldRadius")
-    public String getRadarStealthFieldRadius() { return radarStealthFieldRadius; }
+    public Long getRadarStealthFieldRadius() { return radarStealthFieldRadius; }
     @JsonProperty("RadarStealthFieldRadius")
-    public void setRadarStealthFieldRadius(String value) { this.radarStealthFieldRadius = value; }
+    public void setRadarStealthFieldRadius(Long value) { this.radarStealthFieldRadius = value; }
 
-    @JsonProperty("SonarStealthFieldRadius")
-    public String getSonarStealthFieldRadius() { return sonarStealthFieldRadius; }
-    @JsonProperty("SonarStealthFieldRadius")
-    public void setSonarStealthFieldRadius(String value) { this.sonarStealthFieldRadius = value; }
+    @JsonProperty("RemoteViewingRadius")
+    public Long getRemoteViewingRadius() { return remoteViewingRadius; }
+    @JsonProperty("RemoteViewingRadius")
+    public void setRemoteViewingRadius(Long value) { this.remoteViewingRadius = value; }
 
-    @JsonProperty("FreeIntel")
-    public Boolean getFreeIntel() { return freeIntel; }
-    @JsonProperty("FreeIntel")
-    public void setFreeIntel(Boolean value) { this.freeIntel = value; }
+    @JsonProperty("JammerBlips")
+    public Long getJammerBlips() { return jammerBlips; }
+    @JsonProperty("JammerBlips")
+    public void setJammerBlips(Long value) { this.jammerBlips = value; }
 
     @JsonProperty("JamRadius")
     public JamRadius getJamRadius() { return jamRadius; }
     @JsonProperty("JamRadius")
     public void setJamRadius(JamRadius value) { this.jamRadius = value; }
-
-    @JsonProperty("JammerBlips")
-    public String getJammerBlips() { return jammerBlips; }
-    @JsonProperty("JammerBlips")
-    public void setJammerBlips(String value) { this.jammerBlips = value; }
 
     @JsonProperty("ActiveIntel")
     public ActiveIntel getActiveIntel() { return activeIntel; }
@@ -119,63 +118,33 @@ public class Intel {
     @JsonProperty("RadarStealthField")
     public void setRadarStealthField(Boolean value) { this.radarStealthField = value; }
 
-    @JsonProperty("RemoteViewingRadius")
-    public String getRemoteViewingRadius() { return remoteViewingRadius; }
-    @JsonProperty("RemoteViewingRadius")
-    public void setRemoteViewingRadius(String value) { this.remoteViewingRadius = value; }
+    @JsonProperty("MinVisionRadius")
+    public Long getMinVisionRadius() { return minVisionRadius; }
+    @JsonProperty("MinVisionRadius")
+    public void setMinVisionRadius(Long value) { this.minVisionRadius = value; }
 
     @JsonProperty("MaxVisionRadius")
-    public String getMaxVisionRadius() { return maxVisionRadius; }
+    public Long getMaxVisionRadius() { return maxVisionRadius; }
     @JsonProperty("MaxVisionRadius")
-    public void setMaxVisionRadius(String value) { this.maxVisionRadius = value; }
-
-    @JsonProperty("MinVisionRadius")
-    public String getMinVisionRadius() { return minVisionRadius; }
-    @JsonProperty("MinVisionRadius")
-    public void setMinVisionRadius(String value) { this.minVisionRadius = value; }
-
-    @JsonProperty("IntelDurationOnDeath")
-    public String getIntelDurationOnDeath() { return intelDurationOnDeath; }
-    @JsonProperty("IntelDurationOnDeath")
-    public void setIntelDurationOnDeath(String value) { this.intelDurationOnDeath = value; }
-
-    @JsonProperty("VisionRadiusOnDeath")
-    public String getVisionRadiusOnDeath() { return visionRadiusOnDeath; }
-    @JsonProperty("VisionRadiusOnDeath")
-    public void setVisionRadiusOnDeath(String value) { this.visionRadiusOnDeath = value; }
+    public void setMaxVisionRadius(Long value) { this.maxVisionRadius = value; }
 
     @JsonProperty("StealthWaitTime")
-    public String getStealthWaitTime() { return stealthWaitTime; }
+    public Long getStealthWaitTime() { return stealthWaitTime; }
     @JsonProperty("StealthWaitTime")
-    public void setStealthWaitTime(String value) { this.stealthWaitTime = value; }
+    public void setStealthWaitTime(Long value) { this.stealthWaitTime = value; }
+
+    @JsonProperty("VisionRadiusOnDeath")
+    public Long getVisionRadiusOnDeath() { return visionRadiusOnDeath; }
+    @JsonProperty("VisionRadiusOnDeath")
+    public void setVisionRadiusOnDeath(Long value) { this.visionRadiusOnDeath = value; }
+
+    @JsonProperty("IntelDurationOnDeath")
+    public Long getIntelDurationOnDeath() { return intelDurationOnDeath; }
+    @JsonProperty("IntelDurationOnDeath")
+    public void setIntelDurationOnDeath(Long value) { this.intelDurationOnDeath = value; }
 
     @JsonProperty("WaterVisionradius")
-    public String getWaterVisionradius() { return waterVisionradius; }
+    public Long getWaterVisionradius() { return waterVisionradius; }
     @JsonProperty("WaterVisionradius")
-    public void setWaterVisionradius(String value) { this.waterVisionradius = value; }
-
-    @JsonProperty("OverchargeDamageMulti")
-    public String getOverchargeDamageMulti() { return overchargeDamageMulti; }
-    @JsonProperty("OverchargeDamageMulti")
-    public void setOverchargeDamageMulti(String value) { this.overchargeDamageMulti = value; }
-
-    @JsonProperty("OverchargeEnergyCost")
-    public String getOverchargeEnergyCost() { return overchargeEnergyCost; }
-    @JsonProperty("OverchargeEnergyCost")
-    public void setOverchargeEnergyCost(String value) { this.overchargeEnergyCost = value; }
-
-    @JsonProperty("OverchargeEnergyDrainPerSecond")
-    public String getOverchargeEnergyDrainPerSecond() { return overchargeEnergyDrainPerSecond; }
-    @JsonProperty("OverchargeEnergyDrainPerSecond")
-    public void setOverchargeEnergyDrainPerSecond(String value) { this.overchargeEnergyDrainPerSecond = value; }
-
-    @JsonProperty("OverchargeTime")
-    public String getOverchargeTime() { return overchargeTime; }
-    @JsonProperty("OverchargeTime")
-    public void setOverchargeTime(String value) { this.overchargeTime = value; }
-
-    @JsonProperty("OverchargeType")
-    public String getOverchargeType() { return overchargeType; }
-    @JsonProperty("OverchargeType")
-    public void setOverchargeType(String value) { this.overchargeType = value; }
+    public void setWaterVisionradius(Long value) { this.waterVisionradius = value; }
 }

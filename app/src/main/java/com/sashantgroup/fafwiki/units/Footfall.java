@@ -1,17 +1,16 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class Footfall {
-    private FootfallBones bones;
+    private BoneClass[] bones;
     private CameraShake cameraShake;
     private Damage damage;
 
     @JsonProperty("Bones")
-    public FootfallBones getBones() { return bones; }
+    public BoneClass[] getBones() { return bones; }
     @JsonProperty("Bones")
-    public void setBones(FootfallBones value) { this.bones = value; }
+    public void setBones(BoneClass[] value) { this.bones = value; }
 
     @JsonProperty("CameraShake")
     public CameraShake getCameraShake() { return cameraShake; }

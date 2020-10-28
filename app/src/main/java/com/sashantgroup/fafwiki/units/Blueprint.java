@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,8 +9,8 @@ public enum Blueprint {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case ENV_WRECKAGE_PROPS_WALLS_UEB5101_PROP_BP: return "/env/Wreckage/props/Walls/UEB5101_prop.bp";
-        case PROPS_DEFAULT_WRECKAGE_DEFAULT_WRECKAGE_PROP_BP: return "/props/DefaultWreckage/DefaultWreckage_prop.bp";
+            case ENV_WRECKAGE_PROPS_WALLS_UEB5101_PROP_BP: return "/env/Wreckage/props/Walls/UEB5101_prop.bp";
+            case PROPS_DEFAULT_WRECKAGE_DEFAULT_WRECKAGE_PROP_BP: return "/props/DefaultWreckage/DefaultWreckage_prop.bp";
         }
         return null;
     }

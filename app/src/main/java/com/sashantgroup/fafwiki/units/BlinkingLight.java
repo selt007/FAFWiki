@@ -1,37 +1,36 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class BlinkingLight {
-    private String blBone;
-    private String blOffsetX;
-    private String blOffsetY;
-    private String blOffsetZ;
-    private String blScale;
+    private Bone blBone;
+    private double blOffsetX;
+    private double blOffsetZ;
+    private double blScale;
+    private double blOffsetY;
 
     @JsonProperty("BLBone")
-    public String getBlBone() { return blBone; }
+    public Bone getBlBone() { return blBone; }
     @JsonProperty("BLBone")
-    public void setBlBone(String value) { this.blBone = value; }
+    public void setBlBone(Bone value) { this.blBone = value; }
 
     @JsonProperty("BLOffsetX")
-    public String getBlOffsetX() { return blOffsetX; }
+    public double getBlOffsetX() { return blOffsetX; }
     @JsonProperty("BLOffsetX")
-    public void setBlOffsetX(String value) { this.blOffsetX = value; }
-
-    @JsonProperty("BLOffsetY")
-    public String getBlOffsetY() { return blOffsetY; }
-    @JsonProperty("BLOffsetY")
-    public void setBlOffsetY(String value) { this.blOffsetY = value; }
+    public void setBlOffsetX(double value) { this.blOffsetX = value; }
 
     @JsonProperty("BLOffsetZ")
-    public String getBlOffsetZ() { return blOffsetZ; }
+    public double getBlOffsetZ() { return blOffsetZ; }
     @JsonProperty("BLOffsetZ")
-    public void setBlOffsetZ(String value) { this.blOffsetZ = value; }
+    public void setBlOffsetZ(double value) { this.blOffsetZ = value; }
 
     @JsonProperty("BLScale")
-    public String getBlScale() { return blScale; }
+    public double getBlScale() { return blScale; }
     @JsonProperty("BLScale")
-    public void setBlScale(String value) { this.blScale = value; }
+    public void setBlScale(double value) { this.blScale = value; }
+
+    @JsonProperty("BLOffsetY")
+    public double getBlOffsetY() { return blOffsetY; }
+    @JsonProperty("BLOffsetY")
+    public void setBlOffsetY(double value) { this.blOffsetY = value; }
 }

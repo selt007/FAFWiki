@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,9 +9,9 @@ public enum Name {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case LOC_BACK: return "<LOC _Back>";
-        case LOC_LCH: return "<LOC _LCH>";
-        case LOC_RCH: return "<LOC _RCH>";
+            case LOC_BACK: return "<LOC _Back>";
+            case LOC_LCH: return "<LOC _LCH>";
+            case LOC_RCH: return "<LOC _RCH>";
         }
         return null;
     }

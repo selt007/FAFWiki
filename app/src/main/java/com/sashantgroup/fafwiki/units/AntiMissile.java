@@ -1,25 +1,24 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class AntiMissile {
+    private long radius;
+    private long redirectRateOfFire;
     private String attachBone;
-    private String radius;
-    private String redirectRateOfFire;
+
+    @JsonProperty("Radius")
+    public long getRadius() { return radius; }
+    @JsonProperty("Radius")
+    public void setRadius(long value) { this.radius = value; }
+
+    @JsonProperty("RedirectRateOfFire")
+    public long getRedirectRateOfFire() { return redirectRateOfFire; }
+    @JsonProperty("RedirectRateOfFire")
+    public void setRedirectRateOfFire(long value) { this.redirectRateOfFire = value; }
 
     @JsonProperty("AttachBone")
     public String getAttachBone() { return attachBone; }
     @JsonProperty("AttachBone")
     public void setAttachBone(String value) { this.attachBone = value; }
-
-    @JsonProperty("Radius")
-    public String getRadius() { return radius; }
-    @JsonProperty("Radius")
-    public void setRadius(String value) { this.radius = value; }
-
-    @JsonProperty("RedirectRateOfFire")
-    public String getRedirectRateOfFire() { return redirectRateOfFire; }
-    @JsonProperty("RedirectRateOfFire")
-    public void setRedirectRateOfFire(String value) { this.redirectRateOfFire = value; }
 }

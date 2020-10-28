@@ -1,19 +1,23 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class Tread {
-    private String treadLifeTime;
+    private double[] treadOffset;
+    private double treadMarksSizeZ;
     private TreadTreadMarks treadMarks;
-    private String treadMarksSizeX;
-    private String treadMarksSizeZ;
-    private String[] treadOffset;
+    private double treadMarksSizeX;
+    private Long treadLifeTime;
 
-    @JsonProperty("TreadLifeTime")
-    public String getTreadLifeTime() { return treadLifeTime; }
-    @JsonProperty("TreadLifeTime")
-    public void setTreadLifeTime(String value) { this.treadLifeTime = value; }
+    @JsonProperty("TreadOffset")
+    public double[] getTreadOffset() { return treadOffset; }
+    @JsonProperty("TreadOffset")
+    public void setTreadOffset(double[] value) { this.treadOffset = value; }
+
+    @JsonProperty("TreadMarksSizeZ")
+    public double getTreadMarksSizeZ() { return treadMarksSizeZ; }
+    @JsonProperty("TreadMarksSizeZ")
+    public void setTreadMarksSizeZ(double value) { this.treadMarksSizeZ = value; }
 
     @JsonProperty("TreadMarks")
     public TreadTreadMarks getTreadMarks() { return treadMarks; }
@@ -21,17 +25,12 @@ public class Tread {
     public void setTreadMarks(TreadTreadMarks value) { this.treadMarks = value; }
 
     @JsonProperty("TreadMarksSizeX")
-    public String getTreadMarksSizeX() { return treadMarksSizeX; }
+    public double getTreadMarksSizeX() { return treadMarksSizeX; }
     @JsonProperty("TreadMarksSizeX")
-    public void setTreadMarksSizeX(String value) { this.treadMarksSizeX = value; }
+    public void setTreadMarksSizeX(double value) { this.treadMarksSizeX = value; }
 
-    @JsonProperty("TreadMarksSizeZ")
-    public String getTreadMarksSizeZ() { return treadMarksSizeZ; }
-    @JsonProperty("TreadMarksSizeZ")
-    public void setTreadMarksSizeZ(String value) { this.treadMarksSizeZ = value; }
-
-    @JsonProperty("TreadOffset")
-    public String[] getTreadOffset() { return treadOffset; }
-    @JsonProperty("TreadOffset")
-    public void setTreadOffset(String[] value) { this.treadOffset = value; }
+    @JsonProperty("TreadLifeTime")
+    public Long getTreadLifeTime() { return treadLifeTime; }
+    @JsonProperty("TreadLifeTime")
+    public void setTreadLifeTime(Long value) { this.treadLifeTime = value; }
 }

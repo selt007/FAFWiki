@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,10 +9,10 @@ public enum TechLevel {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case RULEUTL_ADVANCED: return "RULEUTL_Advanced";
-        case RULEUTL_BASIC: return "RULEUTL_Basic";
-        case RULEUTL_EXPERIMENTAL: return "RULEUTL_Experimental";
-        case RULEUTL_SECRET: return "RULEUTL_Secret";
+            case RULEUTL_ADVANCED: return "RULEUTL_Advanced";
+            case RULEUTL_BASIC: return "RULEUTL_Basic";
+            case RULEUTL_EXPERIMENTAL: return "RULEUTL_Experimental";
+            case RULEUTL_SECRET: return "RULEUTL_Secret";
         }
         return null;
     }

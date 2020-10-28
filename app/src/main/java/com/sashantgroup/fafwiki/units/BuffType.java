@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,7 +9,7 @@ public enum BuffType {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case STUN: return "STUN";
+            case STUN: return "STUN";
         }
         return null;
     }

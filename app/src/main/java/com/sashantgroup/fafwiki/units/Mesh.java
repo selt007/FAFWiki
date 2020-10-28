@@ -1,19 +1,18 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class Mesh {
-    private String iconFadeInZoom;
-    private LODs loDs;
-
-    @JsonProperty("IconFadeInZoom")
-    public String getIconFadeInZoom() { return iconFadeInZoom; }
-    @JsonProperty("IconFadeInZoom")
-    public void setIconFadeInZoom(String value) { this.iconFadeInZoom = value; }
+    private Lod[] loDs;
+    private long iconFadeInZoom;
 
     @JsonProperty("LODs")
-    public LODs getLoDs() { return loDs; }
+    public Lod[] getLoDs() { return loDs; }
     @JsonProperty("LODs")
-    public void setLoDs(LODs value) { this.loDs = value; }
+    public void setLoDs(Lod[] value) { this.loDs = value; }
+
+    @JsonProperty("IconFadeInZoom")
+    public long getIconFadeInZoom() { return iconFadeInZoom; }
+    @JsonProperty("IconFadeInZoom")
+    public void setIconFadeInZoom(long value) { this.iconFadeInZoom = value; }
 }

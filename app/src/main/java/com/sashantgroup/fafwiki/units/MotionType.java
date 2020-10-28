@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,14 +9,14 @@ public enum MotionType {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case RULEUMT_AIR: return "RULEUMT_Air";
-        case RULEUMT_AMPHIBIOUS: return "RULEUMT_Amphibious";
-        case RULEUMT_AMPHIBIOUS_FLOATING: return "RULEUMT_AmphibiousFloating";
-        case RULEUMT_HOVER: return "RULEUMT_Hover";
-        case RULEUMT_LAND: return "RULEUMT_Land";
-        case RULEUMT_NONE: return "RULEUMT_None";
-        case RULEUMT_SURFACING_SUB: return "RULEUMT_SurfacingSub";
-        case RULEUMT_WATER: return "RULEUMT_Water";
+            case RULEUMT_AIR: return "RULEUMT_Air";
+            case RULEUMT_AMPHIBIOUS: return "RULEUMT_Amphibious";
+            case RULEUMT_AMPHIBIOUS_FLOATING: return "RULEUMT_AmphibiousFloating";
+            case RULEUMT_HOVER: return "RULEUMT_Hover";
+            case RULEUMT_LAND: return "RULEUMT_Land";
+            case RULEUMT_NONE: return "RULEUMT_None";
+            case RULEUMT_SURFACING_SUB: return "RULEUMT_SurfacingSub";
+            case RULEUMT_WATER: return "RULEUMT_Water";
         }
         return null;
     }

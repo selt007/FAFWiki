@@ -1,18 +1,17 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import com.fasterxml.jackson.annotation.*;
 
 public class MovementEffectsLand {
-    private LandEffectsClass effects;
+    private SubBottomUpEffect[] effects;
     private LandTreads treads;
     private Footfall footfall;
     private CameraShake cameraShake;
 
     @JsonProperty("Effects")
-    public LandEffectsClass getEffects() { return effects; }
+    public SubBottomUpEffect[] getEffects() { return effects; }
     @JsonProperty("Effects")
-    public void setEffects(LandEffectsClass value) { this.effects = value; }
+    public void setEffects(SubBottomUpEffect[] value) { this.effects = value; }
 
     @JsonProperty("Treads")
     public LandTreads getTreads() { return treads; }

@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 import com.sashantgroup.fafwiki.lang.ConverterLang;
 import com.sashantgroup.fafwiki.lang.Lang;
-import com.sashantgroup.fafwiki.units.ConverterUnits;
-import com.sashantgroup.fafwiki.units.Units;
+import com.sashantgroup.fafwiki.units.Converter;
+import com.sashantgroup.fafwiki.units.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static String fraction = null;
     private static String fileBP = "blueprints.json";
     private static String fileLang = "localization.json";
-    public static Units[] dataUnits;
+    public static Unit[] dataUnits;
     public static Lang dataLang;
     public static int color, progress = 1;
     public static String lang;
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             jsonStr = new String(buffer, "UTF-8");
 
             HandleMsg(handlerTxtInfo,"Key", "Please wait! Loading data from JSON file...");
-            if (jsonStr != null) dataUnits = ConverterUnits.fromJsonString(jsonStr);
+            if (jsonStr != null) dataUnits = Converter.fromJsonString(jsonStr);
             else throw new NullPointerException("Exception: Units JSON-string is null!");
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,6 +1,5 @@
-package com.sashantgroup.fafwiki.units;
+package  com.sashantgroup.fafwiki.units;
 
-import java.util.*;
 import java.io.IOException;
 import com.fasterxml.jackson.annotation.*;
 
@@ -10,19 +9,19 @@ public enum Classification {
     @JsonValue
     public String toValue() {
         switch (this) {
-        case RULEUC_COMMANDER: return "RULEUC_Commander";
-        case RULEUC_COUNTER_MEASURE: return "RULEUC_CounterMeasure";
-        case RULEUC_ENGINEER: return "RULEUC_Engineer";
-        case RULEUC_FACTORY: return "RULEUC_Factory";
-        case RULEUC_MILITARY_AIRCRAFT: return "RULEUC_MilitaryAircraft";
-        case RULEUC_MILITARY_SHIP: return "RULEUC_MilitaryShip";
-        case RULEUC_MILITARY_SUB: return "RULEUC_MilitarySub";
-        case RULEUC_MILITARY_VEHICLE: return "RULEUC_MilitaryVehicle";
-        case RULEUC_MISC_SUPPORT: return "RULEUC_MiscSupport";
-        case RULEUC_RESOURCE: return "RULEUC_Resource";
-        case RULEUC_SENSOR: return "RULEUC_Sensor";
-        case RULEUC_WEAPON: return "RULEUC_Weapon";
-        case RULEUMT_AMPHIBIOUS: return "RULEUMT_Amphibious";
+            case RULEUC_COMMANDER: return "RULEUC_Commander";
+            case RULEUC_COUNTER_MEASURE: return "RULEUC_CounterMeasure";
+            case RULEUC_ENGINEER: return "RULEUC_Engineer";
+            case RULEUC_FACTORY: return "RULEUC_Factory";
+            case RULEUC_MILITARY_AIRCRAFT: return "RULEUC_MilitaryAircraft";
+            case RULEUC_MILITARY_SHIP: return "RULEUC_MilitaryShip";
+            case RULEUC_MILITARY_SUB: return "RULEUC_MilitarySub";
+            case RULEUC_MILITARY_VEHICLE: return "RULEUC_MilitaryVehicle";
+            case RULEUC_MISC_SUPPORT: return "RULEUC_MiscSupport";
+            case RULEUC_RESOURCE: return "RULEUC_Resource";
+            case RULEUC_SENSOR: return "RULEUC_Sensor";
+            case RULEUC_WEAPON: return "RULEUC_Weapon";
+            case RULEUMT_AMPHIBIOUS: return "RULEUMT_Amphibious";
         }
         return null;
     }
