@@ -32,9 +32,9 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
     public static String fraction = null;
     private static String fileBP = "blueprints.json";
-    private static String fileLang = "localization.json";
+    public static String fileLang = "localization.json";
     public static Unit[] dataUnits;
-    public static Lang dataLang;
+    public static Translator translator;
     public static int color, progress = 1;
     public static String lang;
     ProgressBar progressBar;
@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences prefs;
     Toast toast;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         Thread threadUnit = new Thread(() -> {
             LoadDatabaseUnit();
-            Thread threadLang = new Thread(() -> LoadDatabaseLang());
-            threadLang.start();
             runOnUiThread(loadEndDB);
         });
         threadUnit.start();
@@ -170,26 +167,6 @@ public class MainActivity extends AppCompatActivity {
             HandleMsg(handlerTxtInfo,"Key", "Please wait! Loading data from JSON file...");
             if (jsonStr != null) dataUnits = Converter.fromJsonString(jsonStr);
             else throw new NullPointerException("Exception: Units JSON-string is null!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void LoadDatabaseLang() {
-        try {
-            String file = fileLang;
-            String jsonStr;
-
-            InputStream inputStream = this.getAssets().open(file);
-            int size = inputStream.available();
-            byte[] buffer = new byte[size];
-            inputStream.read(buffer);
-            inputStream.close();
-            jsonStr = new String(buffer, "UTF-8");
-
-            if (jsonStr != null) dataLang = ConverterLang.fromJsonString(jsonStr);
-            else throw new NullPointerException("Exception: Lang JSON-string is null!");
         } catch (IOException e) {
             e.printStackTrace();
         }

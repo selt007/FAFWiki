@@ -49,7 +49,6 @@ import java.util.Optional;
 
 public class UnitInfo extends AppCompatActivity {
     Unit info = UnitsDraw.unitInfo;
-    Functions func = new Functions();
     UnitsDraw unitsDraw = new UnitsDraw();
     LinearLayout linearLayout3;
     LinearLayout.LayoutParams layoutParamsBut;
@@ -129,7 +128,7 @@ public class UnitInfo extends AppCompatActivity {
             }
             if (enchancements.getAdvancedEngineering() != null) {
                 AdvancedEngineering advancedEngineering = enchancements.getAdvancedEngineering();
-                strEnchancements += Functions.attemptTranslations(advancedEngineering.getName()) + "\n";
+                strEnchancements += MainActivity.translator.Attempt(advancedEngineering.getName()) + "\n";
                 strEnchancements += "Mass:" + advancedEngineering.getBuildCostMass() + "\n";
                 strEnchancements += "Energy:" + advancedEngineering.getBuildCostEnergy() + "\n";
                 strEnchancements += "Time:" + advancedEngineering.getBuildTime() + "\n";
@@ -182,9 +181,9 @@ public class UnitInfo extends AppCompatActivity {
                 }
                 for (int i = 0; i < 5; i++) {
                     strInfoVeterancy += (info.getEconomy().getBuildCostMass() != 0 ? (i + 1) + " lvl: " +
-                            (i + 1) * info.getEconomy().getBuildCostMass() + "\t\t" +
-                            (defense.getHealth() + Math.round(defense.getHealth() *
-                                    (0.1 * (i + 1)))) + "HP + " + (defense.getRegenRate() + 3 * (i + 1)) + "/s\t\t\n" : "");
+                            (i + 1) * (info.getEconomy().getBuildCostMass()) + "\t\t" +
+                            ((defense.getHealth()) + Math.round((defense.getHealth()) *
+                                    (0.1 * (i + 1)))) + "HP + " + ((defense.getRegenRate()) + 3 * (i + 1)) + "/s\t\t\n" : "");
                 }
             }
             catch (Exception e) { strInfoVeterancy = ""; }
@@ -215,7 +214,7 @@ public class UnitInfo extends AppCompatActivity {
                 TextView header = setParamsText("BLUEPRINTS");
                 linearLayout3.addView(header, layoutParamsHeader);
                 for (Unit buildUnit : buildable) {
-                    String name = func.attemptTranslations(buildUnit.getID())
+                    String name = MainActivity.translator.Attempt(buildUnit.getID())
                             .replace("null", "");
                     if (!name.equals("")) {
                         Button butBlueprint = setParamsButton(name, "#4B4B4B",
@@ -335,7 +334,7 @@ public class UnitInfo extends AppCompatActivity {
                 linearLayout3.addView(header, layoutParamsHeader);
                 String strAllAbility = null;
                 for (String ability : abilities) {
-                    strAllAbility += "[ " + func.attemptTranslations(ability) + " ]\t\t";
+                    strAllAbility += "[ " + MainActivity.translator.Attempt(ability) + " ]\t\t";
                 }
                 TextView textAbility = setParamsText(strAllAbility);
                 textAbility.setTextSize(14);
@@ -402,7 +401,7 @@ public class UnitInfo extends AppCompatActivity {
     private void displayUnitlistUnit(TextView mainInfo) {
         Defense def = info.getDefense();
         String id = info.getID().toUpperCase();
-        String name = func.attemptTranslations(info.getID());
+        String name = MainActivity.translator.Attempt(info.getID());
         if (id.equals("UAL0301") || id.equals("UEL0301") ||
                 id.equals("URL0301") || id.equals("XSL0301")) {
             mainInfo.setText(name.replace(name.substring(0, name.lastIndexOf("\"") + 2),

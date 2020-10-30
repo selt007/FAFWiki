@@ -27,8 +27,6 @@ import java.util.Map;
 
 public class UnitsDraw extends AppCompatActivity {
     public static Unit unitInfo;
-    public static Map loc;
-    int caseLim = 40;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +38,10 @@ public class UnitsDraw extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        MainActivity.translator = new Translator(this);
 
         Unit[] data = MainActivity.dataUnits;
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
-        selectLang();
 
         for (final Unit attr : data) {
             General general = attr.getGeneral();
@@ -53,18 +51,9 @@ public class UnitsDraw extends AppCompatActivity {
                 final Button button = new Button(this);
                 String id = attr.getID().toUpperCase();
                 try {
-                    name = Functions.attemptTranslations(id);//attr.getDescription().substring(18);
-                if (id.equals("UAL0301") || id.equals("UEL0301") ||
-                        id.equals("URL0301") || id.equals("XSL0301")) {
-                    name = name.replace(name.substring(0, name.lastIndexOf("\"") + 2),
-                            "");
-                }
+                    name = MainActivity.translator.Attempt(id);//attr.getDescription().substring(18);
                 } catch (Exception e) { }
 
-//                if (name.length() > caseLim) {
-//                    name = name.replace(name.substring(caseLim, caseLim + 1),
-//                            name.substring(caseLim, caseLim + 1) + "\n");
-//                }
                 if (name == "") {
                     name = attr.getDescription().substring(18);
                 }
@@ -119,39 +108,5 @@ public class UnitsDraw extends AppCompatActivity {
             }
         }
         return icoName;
-    }
-
-    private void selectLang() {
-        Lang locData = MainActivity.dataLang;
-        switch (MainActivity.lang) {
-            case "RU":
-                loc = locData.getRu();
-                break;
-            case "CZ":
-                loc = locData.getCz();
-                break;
-            case "DE":
-                loc = locData.getDe();
-                break;
-            case "ES":
-                loc = locData.getEs();
-                break;
-            case "FR":
-                loc = locData.getFr();
-                break;
-            case "IT":
-                loc = locData.getIt();
-                break;
-            case "PL":
-                loc = locData.getPl();
-                break;
-            case "TZM":
-                loc = locData.getTzm();
-                break;
-            default:
-                loc = locData.getUs();
-                break;
-        }
-        Functions.strLoc = loc.toString();
     }
 }
