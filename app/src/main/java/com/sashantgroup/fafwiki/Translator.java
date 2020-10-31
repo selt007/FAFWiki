@@ -39,15 +39,15 @@ public class Translator {
                 if (unitLoc.getKey().contains("_desc"))
                 {
                     infoStr = unitLoc.getValue().replace("\"", "") + " ";
+                    if (id.equals("UAL0301") || id.equals("UEL0301") ||
+                            id.equals("URL0301") || id.equals("XSL0301")) {
+                        infoStr = infoStr.substring(0, infoStr.indexOf(" ("));
+                    }
                 }
                 if (unitLoc.getKey().contains("_name"))
                 {
                     infoStr += unitLoc.getValue()
                             .replace("\\\"", "");
-                    if (id.equals("UAL0301") || id.equals("UEL0301") ||
-                            id.equals("URL0301") || id.equals("XSL0301")) {
-                        infoStr = infoStr.substring(0, infoStr.indexOf("("));
-                    }
                 }
             }
         }
