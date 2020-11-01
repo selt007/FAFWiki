@@ -116,82 +116,80 @@ public class UnitInfo extends AppCompatActivity {
                     icoPath += "Nomads/";
                     break;
             }
-            if (enchancements.getAdvancedEngineering() != null) {
-                List<Method> methodsObj = Arrays.asList(Object.class.getMethods());
-                Method[] methods = enchancements.getClass().getMethods();
-                for (Method method : methods) {
-                    String icoPathLoc = null;
-                    String strName = null;
-                    String strEnergy = null;
-                    String strMass = null;
-                    String strTime = null;
-                    String strInfo = null;
-                    try {
-                        if (!methodsObj.contains(method)) {
-                            if (method.getParameterTypes().length == 0) {
-                                Object methodObj = method.invoke(enchancements);
-                                if (methodObj != null) {
-                                    if (!method.getName().contains("Remove")) {
-                                        Method[] underMethods = methodObj.getClass().getMethods();
-                                        for (Method underMethod : underMethods) {
-                                            if (!methodsObj.contains(underMethod)) {
-                                                if (underMethod.getParameterTypes().length == 0) {
-                                                    Object underMethodObj = underMethod.invoke(methodObj);
-                                                    if (underMethodObj != null) {
-                                                        if (underMethod.getName().contains("getName"))
-                                                            strName = underMethodObj + "";
-                                                        else if (underMethod.getName().contains("getIcon"))
-                                                            icoPathLoc = icoPath + underMethodObj + "_btn_up.png";
-                                                        else if ((underMethod.getName().contains("getBuildCostEnergy")))
-                                                            strEnergy = underMethodObj + "";
-                                                        else if ((underMethod.getName().contains("getBuildCostMass")))
-                                                            strMass = underMethodObj + "";
-                                                        else if ((underMethod.getName().contains("getBuildTime")))
-                                                            strTime = underMethodObj + "";
-                                                        else {
-                                                            if (!underMethod.getName().contains("Bones"))
-                                                                if (!underMethod.getName().contains("Mesh"))
-                                                                    if (!underMethod.getName().contains("Adds"))
-                                                                        if (!underMethod.getName().contains("Effects"))
-                                                                        strInfo += underMethod.getName()
-                                                                                .replace("get", "") + ": " + underMethodObj + "\n";
-                                                        }
+            List<Method> methodsObj = Arrays.asList(Object.class.getMethods());
+            Method[] methods = enchancements.getClass().getMethods();
+            for (Method method : methods) {
+                String icoPathLoc = null;
+                String strName = null;
+                String strEnergy = null;
+                String strMass = null;
+                String strTime = null;
+                String strInfo = null;
+                try {
+                    if (!methodsObj.contains(method)) {
+                        if (method.getParameterTypes().length == 0) {
+                            Object methodObj = method.invoke(enchancements);
+                            if (methodObj != null) {
+                                if (!method.getName().contains("Remove")) {
+                                    Method[] underMethods = methodObj.getClass().getMethods();
+                                    for (Method underMethod : underMethods) {
+                                        if (!methodsObj.contains(underMethod)) {
+                                            if (underMethod.getParameterTypes().length == 0) {
+                                                Object underMethodObj = underMethod.invoke(methodObj);
+                                                if (underMethodObj != null) {
+                                                    if (underMethod.getName().contains("getName"))
+                                                        strName = underMethodObj + "";
+                                                    else if (underMethod.getName().contains("getIcon"))
+                                                        icoPathLoc = icoPath + underMethodObj + "_btn_up.png";
+                                                    else if ((underMethod.getName().contains("getBuildCostEnergy")))
+                                                        strEnergy = underMethodObj + "";
+                                                    else if ((underMethod.getName().contains("getBuildCostMass")))
+                                                        strMass = underMethodObj + "";
+                                                    else if ((underMethod.getName().contains("getBuildTime")))
+                                                        strTime = underMethodObj + "";
+                                                    else {
+                                                        if (!underMethod.getName().contains("Bones"))
+                                                            if (!underMethod.getName().contains("Mesh"))
+                                                                if (!underMethod.getName().contains("Adds"))
+                                                                    if (!underMethod.getName().contains("Effects"))
+                                                                    strInfo += underMethod.getName()
+                                                                            .replace("get", "") + ": " + underMethodObj + "\n";
                                                     }
                                                 }
                                             }
                                         }
-                                        if (strName != null) {
-                                            Button butEnchancements = setParamsButton(MainActivity.translator.Attempt(strName), "#4B4B4B", icoPathLoc);
-                                            linearLayout3.addView(butEnchancements, layoutParamsWrap);
-
-                                            LinearLayout linLayEco = new LinearLayout(this);
-                                            if (strEnergy != null) {
-                                                Button butEnergy = setParamsButton(strEnergy, "#705B27", "icons/energy.png");
-                                                linLayEco.addView(butEnergy, layoutParamsBut);
-                                            }
-                                            if (strMass != null) {
-                                                Button butMass = setParamsButton(strMass, "#4D814A", "icons/mass.png");
-                                                linLayEco.addView(butMass, layoutParamsBut);
-                                            }
-                                            if (strTime != null) {
-                                                Button butTime = setParamsButton(strTime, "#858585", "icons/time.png");
-                                                linLayEco.addView(butTime, layoutParamsBut);
-                                            }
-                                            linearLayout3.addView(linLayEco, layoutParamsBut);
-
-                                            TextView textEnchancements = setParamsText(strInfo);
-                                            textEnchancements.setTextSize(14);
-                                            linearLayout3.addView(textEnchancements, layoutParamsWrap);
-                                        }
-
                                     }
+                                    if (strName != null) {
+                                        Button butEnchancements = setParamsButton(MainActivity.translator.Attempt(strName), "#4B4B4B", icoPathLoc);
+                                        linearLayout3.addView(butEnchancements, layoutParamsWrap);
+
+                                        LinearLayout linLayEco = new LinearLayout(this);
+                                        if (strEnergy != null) {
+                                            Button butEnergy = setParamsButton(strEnergy, "#705B27", "icons/energy.png");
+                                            linLayEco.addView(butEnergy, layoutParamsBut);
+                                        }
+                                        if (strMass != null) {
+                                            Button butMass = setParamsButton(strMass, "#4D814A", "icons/mass.png");
+                                            linLayEco.addView(butMass, layoutParamsBut);
+                                        }
+                                        if (strTime != null) {
+                                            Button butTime = setParamsButton(strTime, "#858585", "icons/time.png");
+                                            linLayEco.addView(butTime, layoutParamsBut);
+                                        }
+                                        linearLayout3.addView(linLayEco, layoutParamsBut);
+
+                                        TextView textEnchancements = setParamsText(strInfo);
+                                        textEnchancements.setTextSize(14);
+                                        linearLayout3.addView(textEnchancements, layoutParamsWrap);
+                                    }
+
                                 }
                             }
                         }
                     }
-                    catch (IllegalAccessException | InvocationTargetException ex)
-                        { ex.printStackTrace(); }
                 }
+                catch (IllegalAccessException | InvocationTargetException ex)
+                    { ex.printStackTrace(); }
             }
         }
     }
@@ -465,7 +463,8 @@ public class UnitInfo extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void displayUnitlistUnit(TextView mainInfo) {
         Defense def = info.getDefense();
-        String name = MainActivity.translator.Attempt(info.getID());
+        String id = info.getID().toLowerCase();
+        String name = MainActivity.translator.Attempt(id);
         mainInfo.setText(name);
         if (def.getMaxHealth() != 0) {
             final Button butHP = setParamsButton(def.getMaxHealth() + (def.getRegenRate() != null ? " + " +
