@@ -49,14 +49,10 @@ public class UnitsDraw extends AppCompatActivity {
                     .contains(MainActivity.fraction.toLowerCase())) {
                 String name = "";
                 final Button button = new Button(this);
-                String id = attr.getID().toUpperCase();
+                String id = attr.getID().toLowerCase();
                 try {
                     name = MainActivity.translator.Attempt(id);//attr.getDescription().substring(18);
                 } catch (Exception e) { }
-
-                if (name == "") {
-                    name = attr.getDescription().substring(18);
-                }
                 button.setText(name);
                 button.setBackgroundColor(MainActivity.color);
                 button.setTextColor(Color.parseColor("#FFFFFF"));

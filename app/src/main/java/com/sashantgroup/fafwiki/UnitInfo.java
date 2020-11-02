@@ -1,23 +1,15 @@
 package com.sashantgroup.fafwiki;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.icu.text.Transliterator;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,8 +24,8 @@ import com.sashantgroup.fafwiki.units.Enhancements;
 import com.sashantgroup.fafwiki.units.Intel;
 import com.sashantgroup.fafwiki.units.Physics;
 import com.sashantgroup.fafwiki.units.Shield;
-import com.sashantgroup.fafwiki.units.UnitAir;
 import com.sashantgroup.fafwiki.units.Unit;
+import com.sashantgroup.fafwiki.units.UnitAir;
 import com.sashantgroup.fafwiki.units.Weapon;
 import com.sashantgroup.fafwiki.units.Wreckage;
 
@@ -95,7 +87,7 @@ public class UnitInfo extends AppCompatActivity {
         displayUnitSupport();
         displayUnitWreckage();
         displayUnitlistArmies();
-        //displayVeterancy();
+        displayVeterancy();
         displayWeaponList();
         displayEnchancements();
     }
@@ -105,8 +97,6 @@ public class UnitInfo extends AppCompatActivity {
             Enhancements enchancements = info.getEnhancements();
             TextView header = setParamsText("ENHANCEMENTS");
             linearLayout3.addView(header, layoutParamsHeader);
-            LinearLayout linLayEco = new LinearLayout(this);
-            String strEnchancements = null;
 
             String icoPath = "enhancements/";
             switch (info.getGeneral().getFactionName().toValue().toLowerCase()) {
@@ -114,30 +104,92 @@ public class UnitInfo extends AppCompatActivity {
                     icoPath += "Aeon/";
                     break;
                 case "uef":
-                    icoPath += "Cybran/";
+                    icoPath += "UEF/";
                     break;
                 case "cybran":
-                    icoPath += "Nomads/";
+                    icoPath += "Cybran/";
                     break;
                 case "seraphim":
                     icoPath += "Seraphim/";
                     break;
                 case "nomads":
-                    icoPath += "UEF/";
+                    icoPath += "Nomads/";
                     break;
             }
-            if (enchancements.getAdvancedEngineering() != null) {
-                AdvancedEngineering advancedEngineering = enchancements.getAdvancedEngineering();
-                strEnchancements += MainActivity.translator.Attempt(advancedEngineering.getName()) + "\n";
-                strEnchancements += "Mass:" + advancedEngineering.getBuildCostMass() + "\n";
-                strEnchancements += "Energy:" + advancedEngineering.getBuildCostEnergy() + "\n";
-                strEnchancements += "Time:" + advancedEngineering.getBuildTime() + "\n";
-                strEnchancements += advancedEngineering.getNewBuildRate() != null ? "Build rate: " + advancedEngineering.getNewBuildRate() + "\n" : "";
-                strEnchancements += advancedEngineering.getNewDamageRadiusMod() != null ? "Damage Radius: " + advancedEngineering.getNewDamageRadiusMod() + "\n" : "";
-                strEnchancements += advancedEngineering.getNewHealth() != null ? "New Health: " + advancedEngineering.getNewHealth() + "\n" : "";
-                strEnchancements += advancedEngineering.getNewRateOfFire() != null ? "Rate Of Fire: " + advancedEngineering.getNewRateOfFire() + "\n" : "";
-                strEnchancements += advancedEngineering.getNewRegenRate() != null ? "Regen Rate:" + advancedEngineering.getNewRegenRate() + "\n" : "";
-                strEnchancements += advancedEngineering.getNewVisionRadius() != null ? "Vision Radius: " + advancedEngineering.getNewVisionRadius() + "\n" : "";
+            List<Method> methodsObj = Arrays.asList(Object.class.getMethods());
+            Method[] methods = enchancements.getClass().getMethods();
+            for (Method method : methods) {
+                String icoPathLoc = null;
+                String strName = null;
+                String strEnergy = null;
+                String strMass = null;
+                String strTime = null;
+                String strInfo = null;
+                try {
+                    if (!methodsObj.contains(method)) {
+                        if (method.getParameterTypes().length == 0) {
+                            Object methodObj = method.invoke(enchancements);
+                            if (methodObj != null) {
+                                if (!method.getName().contains("Remove")) {
+                                    Method[] underMethods = methodObj.getClass().getMethods();
+                                    for (Method underMethod : underMethods) {
+                                        if (!methodsObj.contains(underMethod)) {
+                                            if (underMethod.getParameterTypes().length == 0) {
+                                                Object underMethodObj = underMethod.invoke(methodObj);
+                                                if (underMethodObj != null) {
+                                                    if (underMethod.getName().contains("getName"))
+                                                        strName = underMethodObj + "";
+                                                    else if (underMethod.getName().contains("getIcon"))
+                                                        icoPathLoc = icoPath + underMethodObj + "_btn_up.png";
+                                                    else if ((underMethod.getName().contains("getBuildCostEnergy")))
+                                                        strEnergy = underMethodObj + "";
+                                                    else if ((underMethod.getName().contains("getBuildCostMass")))
+                                                        strMass = underMethodObj + "";
+                                                    else if ((underMethod.getName().contains("getBuildTime")))
+                                                        strTime = underMethodObj + "";
+                                                    else {
+                                                        if (!underMethod.getName().contains("Bones"))
+                                                            if (!underMethod.getName().contains("Mesh"))
+                                                                if (!underMethod.getName().contains("Adds"))
+                                                                    if (!underMethod.getName().contains("Effects"))
+                                                                    strInfo += underMethod.getName()
+                                                                            .replace("get", "") + ": " + underMethodObj + "\n";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (strName != null) {
+                                        Button butEnchancements = setParamsButton(MainActivity.translator.Attempt(strName), "#4B4B4B", icoPathLoc);
+                                        linearLayout3.addView(butEnchancements, layoutParamsWrap);
+
+                                        LinearLayout linLayEco = new LinearLayout(this);
+                                        if (strEnergy != null) {
+                                            Button butEnergy = setParamsButton(strEnergy, "#705B27", "icons/energy.png");
+                                            linLayEco.addView(butEnergy, layoutParamsBut);
+                                        }
+                                        if (strMass != null) {
+                                            Button butMass = setParamsButton(strMass, "#4D814A", "icons/mass.png");
+                                            linLayEco.addView(butMass, layoutParamsBut);
+                                        }
+                                        if (strTime != null) {
+                                            Button butTime = setParamsButton(strTime, "#858585", "icons/time.png");
+                                            linLayEco.addView(butTime, layoutParamsBut);
+                                        }
+                                        linearLayout3.addView(linLayEco, layoutParamsBut);
+
+                                        TextView textEnchancements = setParamsText(strInfo);
+                                        textEnchancements.setTextSize(14);
+                                        linearLayout3.addView(textEnchancements, layoutParamsWrap);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (IllegalAccessException | InvocationTargetException ex)
+                    { ex.printStackTrace(); }
             }
         }
     }
@@ -146,10 +198,11 @@ public class UnitInfo extends AppCompatActivity {
         Weapon[] weapons = info.getWeapon();
         if(weapons != null) {
             StringBuilder strInfoBuilder = new StringBuilder("");
-            strInfoBuilder.append("\nWEAPONS\n");
+            TextView header = setParamsText("WEAPONS");
+            linearLayout3.addView(header, layoutParamsHeader);
             for (Weapon weapon : weapons) {
                 if (weapon != null) {
-                    if(weapon.getDisplayName() != null ) strInfoBuilder.append("Weapon Name: " + weapon.getDisplayName() + "\n");
+                    if(weapon.getDisplayName() != null ) strInfoBuilder.append("Weapon Name: " + weapon.getDisplayName().toUpperCase() + "\n");
                     if(weapon.getWeaponCategory() != null) strInfoBuilder.append("Weapon category: " + weapon.getWeaponCategory().toValue() + "\n");
                     if(weapon.getDamageType() != null) strInfoBuilder.append("Damage type: " + weapon.getDamageType().toValue() + "\n");
                     if(Optional.ofNullable(weapon.getDamage()).orElse(0d) != 0) strInfoBuilder.append("Damage: " + weapon.getDamage() + "\n");
@@ -162,33 +215,43 @@ public class UnitInfo extends AppCompatActivity {
                     strInfoBuilder.append("\r\n");
                 }
             }
+            TextView textWeapon = setParamsText(strInfoBuilder.toString());
+            textWeapon.setTextSize(14);
+            linearLayout3.addView(textWeapon, layoutParamsWrap);
         }
     }
 
-    private String displayVeterancy(String strInfo) {
+    private void displayVeterancy() {
         Defense defense = info.getDefense();
         String strInfoVeterancy = "";
         if (defense.getHealth() != 0 || defense.getRegenRate() != null) {
             try {
                 String id = info.getID().toUpperCase();
-                strInfoVeterancy += "\nVETERANCY\n";
+                TextView header = setParamsText("VETERANCY");
+                linearLayout3.addView(header, layoutParamsHeader);
 
                 if (id.equals("UAL0001") || id.equals("UAL0301") ||
                         id.equals("UEL0001") || id.equals("UEL0301") ||
                         id.equals("URL0001") || id.equals("URL0301") ||
                         id.equals("XS0001") || id.equals("XSL0301")) {
-                    strInfoVeterancy += "T2\n";
                 }
                 for (int i = 0; i < 5; i++) {
-                    strInfoVeterancy += (info.getEconomy().getBuildCostMass() != 0 ? (i + 1) + " lvl: " +
+                    LinearLayout linLayEco = new LinearLayout(this);
+                    Button veterancyIco = setParamsButton(i + 1 + "", "#4B4B4B", "icons/" + info.getGeneral()
+                            .getFactionName().toValue().toLowerCase() + "-veteran.png");
+                    linLayEco.addView(veterancyIco, LinearLayout.LayoutParams.WRAP_CONTENT,110);
+
+                    strInfoVeterancy = (info.getEconomy().getBuildCostMass() != 0 ?
                             (i + 1) * (info.getEconomy().getBuildCostMass()) + "\t\t" +
                             ((defense.getHealth()) + Math.round((defense.getHealth()) *
                                     (0.1 * (i + 1)))) + "HP + " + ((defense.getRegenRate()) + 3 * (i + 1)) + "/s\t\t\n" : "");
+                    Button veterancyInfo = setParamsButton(strInfoVeterancy, "#4B4B4B", "icons/mass.png");
+                    linLayEco.addView(veterancyInfo, layoutParamsBut);
+                    linearLayout3.addView(linLayEco, layoutParamsBut);
                 }
             }
-            catch (Exception e) { strInfoVeterancy = ""; }
+            catch (Exception e) { }
         }
-        return strInfo + strInfoVeterancy;
     }
 
     private void displayUnitlistArmies() {
@@ -400,16 +463,9 @@ public class UnitInfo extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void displayUnitlistUnit(TextView mainInfo) {
         Defense def = info.getDefense();
-        String id = info.getID().toUpperCase();
-        String name = MainActivity.translator.Attempt(info.getID());
-        if (id.equals("UAL0301") || id.equals("UEL0301") ||
-                id.equals("URL0301") || id.equals("XSL0301")) {
-            mainInfo.setText(name.replace(name.substring(0, name.lastIndexOf("\"") + 2),
-                    ""));
-        }
-        else {
-            mainInfo.setText(name);
-        }
+        String id = info.getID().toLowerCase();
+        String name = MainActivity.translator.Attempt(id);
+        mainInfo.setText(name);
         if (def.getMaxHealth() != 0) {
             final Button butHP = setParamsButton(def.getMaxHealth() + (def.getRegenRate() != null ? " + " +
                     def.getRegenRate() + "/s" : ""), "#20711B", null);

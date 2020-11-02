@@ -36,17 +36,17 @@ public class Translator {
                     .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
             for(Map.Entry<String, String> unitLoc : unitLocs.entrySet())
             {
-                if (unitLoc.getKey().contains("_desc"))
-                {
-                    infoStr = unitLoc.getValue().replace("\"", "") + " ";
+                if (unitLoc.getKey().contains("ual0301") || unitLoc.getKey().contains("uel0301") ||
+                        unitLoc.getKey().contains("url0301") || unitLoc.getKey().contains("xsl0301")) {
+                    if (unitLoc.getKey().contains("1_desc"))
+                        infoStr = unitLoc.getValue().replace("\"", "");
                 }
-                if (unitLoc.getKey().contains("_name"))
-                {
-                    infoStr += unitLoc.getValue()
-                            .replace("\\\"", "");
-                    if (id.equals("UAL0301") || id.equals("UEL0301") ||
-                            id.equals("URL0301") || id.equals("XSL0301")) {
-                        infoStr = infoStr.substring(0, infoStr.indexOf("("));
+                else {
+                    if (unitLoc.getKey().contains("_desc"))
+                        infoStr = unitLoc.getValue().replace("\"", "") + " ";
+                    if (unitLoc.getKey().contains("_name")) {
+                        infoStr += unitLoc.getValue()
+                                .replace("\\\"", "");
                     }
                 }
             }
