@@ -414,7 +414,7 @@ public class UnitInfoActivity extends AppCompatActivity {
             linearLayout3.addView(header, layoutParamsHeader);
             LinearLayout linLayEco = new LinearLayout(this);
             if (eco.getBuildCostEnergy() != 0) {
-                Button butEnergy = setParamsButton(eco.getBuildCostEnergy()+"", "#705B27", "icons/energy.png");
+                Button butEnergy = setParamsButton(Math.round(eco.getBuildCostEnergy())+"", "#705B27", "icons/energy.png");
                 linLayEco.addView(butEnergy, layoutParamsBut);
             }
             if (eco.getBuildCostMass() != 0) {
