@@ -1,11 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/action_us"
-        android:orderInCategory="1"
-        android:title="English" />
-    <item
-        android:id="@+id/action_ru"
-        android:orderInCategory="2"
-        android:title="Русский" />
+    <item android:title="Language">
+        <menu>
+            <item
+                android:id="@+id/action_us"
+                android:orderInCategory="2"
+                android:title="English" />
+            <item
+                android:id="@+id/action_ru"
+                android:orderInCategory="3"
+                android:title="Русский" />
+            <item
+                android:id="@+id/action_de"
+                android:orderInCategory="4"
+                android:title="Deutsche" />
+            <item
+                android:id="@+id/action_cz"
+                android:orderInCategory="5"
+                android:title="Česky" />
+            <item
+                android:id="@+id/action_es"
+                android:orderInCategory="6"
+                android:title="Español" />
+            <item
+                android:id="@+id/action_fr"
+                android:orderInCategory="7"
+                android:title="Francés" />
+            <item
+                android:id="@+id/action_it"
+                android:orderInCategory="8"
+                android:title="Italiano" />
+            <item
+                android:id="@+id/action_pl"
+                android:orderInCategory="9"
+                android:title="Polskie" />
+            <item
+                android:id="@+id/action_tmz"
+                android:orderInCategory="10"
+                android:title="Türk" />
+        </menu>
+    </item>
+    <item android:title="About"
+        android:id="@+id/action_about"
+        android:orderInCategory="1"/>
 </menu>

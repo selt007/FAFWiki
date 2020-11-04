@@ -69,7 +69,7 @@ public class UnitsDraw extends AppCompatActivity {
             }
 
             final EditText editText = findViewById(R.id.search);
-            editText.setEnabled(false);
+            //editText.setEnabled(false);
         }
     }
 

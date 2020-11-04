@@ -9,24 +9,26 @@
         android:label="FAForever Wiki"
         android:roundIcon="@mipmap/sc_faf_ico_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".AboutActivity"
+            android:label="Units Draw"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".UnitsDraw"
             android:label="Units Draw"
-            android:parentActivityName=".MainActivity" >
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".UnitInfo"
             android:label="Unit Info"
-            android:parentActivityName=".UnitsDraw"
-            android:noHistory="false">
-        </activity>
+            android:noHistory="false"
+            android:parentActivityName=".UnitsDraw"></activity>
     </application>
 
 </manifest>

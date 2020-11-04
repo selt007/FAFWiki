@@ -80,6 +80,38 @@ public class MainActivity extends AppCompatActivity {
                 lang = "RU";
                 textToast("Выбран русский язык!");
                 return true;
+            case R.id.action_cz:
+                lang = "CZ";
+                textToast("Byl vybrán jazyk Chezh!");
+                return true;
+            case R.id.action_de:
+                lang = "DE";
+                textToast("Deutsche Sprache ausgewählt!");
+                return true;
+            case R.id.action_es:
+                lang = "ES";
+                textToast("Español seleccionado!");
+                return true;
+            case R.id.action_fr:
+                lang = "FR";
+                textToast("Langue française sélectionnée!");
+                return true;
+            case R.id.action_it:
+                lang = "IT";
+                textToast("Lingua italiana selezionata!");
+                return true;
+            case R.id.action_pl:
+                lang = "PL";
+                textToast("Wybrano język polski!");
+                return true;
+            case R.id.action_tmz:
+                lang = "TMZ";
+                textToast("Türk dili seçildi!");
+                return true;
+            case R.id.action_about:
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
