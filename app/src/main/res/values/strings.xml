@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">fafwiki</string>
+    <string name="linkDonation"><a href="https://www.donationalerts.com/r/sashflacko">--- Donation Alerts ---</a></string>
 </resources>

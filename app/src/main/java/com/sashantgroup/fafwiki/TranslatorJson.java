@@ -9,10 +9,11 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Translator {
+public class TranslatorJson {
     Map<String, String> loc;
+    String fileLang = "localization.json";
 
-    public Translator(Context context) {
+    public TranslatorJson(Context context) {
         try {
             getFileData(context);
         }
@@ -55,7 +56,7 @@ public class Translator {
     }
 
     private void getFileData(Context context) throws IOException {
-        InputStream inputStream = context.getAssets().open(MainActivity.fileLang);
+        InputStream inputStream = context.getAssets().open(fileLang);
         int size = inputStream.available();
         byte[] buffer = new byte[size];
         inputStream.read(buffer);

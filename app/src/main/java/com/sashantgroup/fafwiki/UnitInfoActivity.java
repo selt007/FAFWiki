@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sashantgroup.fafwiki.units.AdvancedEngineering;
 import com.sashantgroup.fafwiki.units.Defense;
 import com.sashantgroup.fafwiki.units.Economy;
 import com.sashantgroup.fafwiki.units.Enhancements;
@@ -37,11 +36,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-public class UnitInfo extends AppCompatActivity {
-    Unit info = UnitsDraw.unitInfo;
-    UnitsDraw unitsDraw = new UnitsDraw();
+public class UnitInfoActivity extends AppCompatActivity {
+    Unit info = UnitsDrawActivity.unitInfo;
+    UnitsDrawActivity unitsDrawActivity = new UnitsDrawActivity();
+    Map<String, String> mapMain = MainActivity.mapMain;
     LinearLayout linearLayout3;
     LinearLayout.LayoutParams layoutParamsBut;
     LinearLayout.LayoutParams layoutParamsHeader;
@@ -95,11 +96,11 @@ public class UnitInfo extends AppCompatActivity {
     private void displayEnchancements() {
         if (info.getEnhancements() != null) {
             Enhancements enchancements = info.getEnhancements();
-            TextView header = setParamsText("ENHANCEMENTS");
+            TextView header = setParamsText(mapMain.get("enhancements"));
             linearLayout3.addView(header, layoutParamsHeader);
 
             String icoPath = "enhancements/";
-            switch (info.getGeneral().getFactionName().toValue().toLowerCase()) {
+            switch (MainActivity.fraction) {
                 case "aeon":
                     icoPath += "Aeon/";
                     break;
@@ -160,7 +161,7 @@ public class UnitInfo extends AppCompatActivity {
                                         }
                                     }
                                     if (strName != null) {
-                                        Button butEnchancements = setParamsButton(MainActivity.translator.Attempt(strName), "#4B4B4B", icoPathLoc);
+                                        Button butEnchancements = setParamsButton(MainActivity.translatorJson.Attempt(strName), "#4B4B4B", icoPathLoc);
                                         linearLayout3.addView(butEnchancements, layoutParamsWrap);
 
                                         LinearLayout linLayEco = new LinearLayout(this);
@@ -198,7 +199,7 @@ public class UnitInfo extends AppCompatActivity {
         Weapon[] weapons = info.getWeapon();
         if(weapons != null) {
             StringBuilder strInfoBuilder = new StringBuilder("");
-            TextView header = setParamsText("WEAPONS");
+            TextView header = setParamsText(mapMain.get("weapons"));
             linearLayout3.addView(header, layoutParamsHeader);
             for (Weapon weapon : weapons) {
                 if (weapon != null) {
@@ -227,7 +228,7 @@ public class UnitInfo extends AppCompatActivity {
         if (defense.getHealth() != 0 || defense.getRegenRate() != null) {
             try {
                 String id = info.getID().toUpperCase();
-                TextView header = setParamsText("VETERANCY");
+                TextView header = setParamsText(mapMain.get("veterancy"));
                 linearLayout3.addView(header, layoutParamsHeader);
 
                 if (id.equals("UAL0001") || id.equals("UAL0301") ||
@@ -244,7 +245,7 @@ public class UnitInfo extends AppCompatActivity {
                     strInfoVeterancy = (info.getEconomy().getBuildCostMass() != 0 ?
                             (i + 1) * (info.getEconomy().getBuildCostMass()) + "\t\t" +
                             ((defense.getHealth()) + Math.round((defense.getHealth()) *
-                                    (0.1 * (i + 1)))) + "HP + " + ((defense.getRegenRate()) + 3 * (i + 1)) + "/s\t\t\n" : "");
+                                    (0.1 * (i + 1)))) + "HP + " + ((defense.getRegenRate()) + 3 * (i + 1)) + mapMain.get("perSec") + "\t\t\n" : "");
                     Button veterancyInfo = setParamsButton(strInfoVeterancy, "#4B4B4B", "icons/mass.png");
                     linLayEco.addView(veterancyInfo, layoutParamsBut);
                     linearLayout3.addView(linLayEco, layoutParamsBut);
@@ -274,10 +275,10 @@ public class UnitInfo extends AppCompatActivity {
             }
             buildable = new ArrayList<>(new HashSet<>(buildable));
             if (buildable.size() > 0) {
-                TextView header = setParamsText("BLUEPRINTS");
+                TextView header = setParamsText(mapMain.get("blueprints"));
                 linearLayout3.addView(header, layoutParamsHeader);
                 for (Unit buildUnit : buildable) {
-                    String name = MainActivity.translator.Attempt(buildUnit.getID())
+                    String name = MainActivity.translatorJson.Attempt(buildUnit.getID())
                             .replace("null", "");
                     if (!name.equals("")) {
                         Button butBlueprint = setParamsButton(name, "#4B4B4B",
@@ -296,14 +297,14 @@ public class UnitInfo extends AppCompatActivity {
             if (wreckage != null) {
                 double hpMul = wreckage.getHealthMult();
                 double massMul = wreckage.getMassMult();
-                TextView header = setParamsText("WRECKAGE");
+                TextView header = setParamsText(mapMain.get("wreckage"));
                 linearLayout3.addView(header, layoutParamsHeader);
                 String strWreckage = null;
                 strWreckage += (wreckage.getHealthMult() != 0 ?
                         "HP: " + Math.round(info.getDefense().getHealth()
                                 * hpMul) + " (" + hpMul * 100 + "%)\t\t" : "");
                 strWreckage += (wreckage.getMassMult() != 0 ?
-                        "Mass: " + Math.round(info.getEconomy().getBuildCostMass()
+                        mapMain.get("mass") + Math.round(info.getEconomy().getBuildCostMass()
                                 * hpMul * massMul) + " (" + massMul * hpMul * 100 + "%)\n" : "");
                 TextView txtWreckage = setParamsText(strWreckage);
                 txtWreckage.setTextSize(14);
@@ -315,19 +316,19 @@ public class UnitInfo extends AppCompatActivity {
     private void displayUnitSupport() {
         Intel intel = info.getIntel();
         if (intel != null) {
-            TextView header = setParamsText("SUPPORT");
+            TextView header = setParamsText(mapMain.get("support"));
             linearLayout3.addView(header, layoutParamsHeader);
             LinearLayout linLayEco = new LinearLayout(this);
             if (intel.getVisionRadius() != null) {
-                Button butVision = setParamsButton("Vision: " + intel.getVisionRadius(), "#631111", null);
+                Button butVision = setParamsButton(mapMain.get("vision") + intel.getVisionRadius(), "#631111", null);
                 linLayEco.addView(butVision, layoutParamsBut);
             }
             if (intel.getRadarRadius() != null) {
-                Button butRadar = setParamsButton("Radar: " + intel.getRadarRadius(), "#063A03", null);
+                Button butRadar = setParamsButton(mapMain.get("radar") + intel.getRadarRadius(), "#063A03", null);
                 linLayEco.addView(butRadar, layoutParamsBut);
             }
             if (intel.getSonarRadius() != null) {
-                Button butSonar = setParamsButton("Sonar: " + intel.getSonarRadius(), "#0C656E", null);
+                Button butSonar = setParamsButton(mapMain.get("sonar") + intel.getSonarRadius(), "#0C656E", null);
                 linLayEco.addView(butSonar, layoutParamsBut);
             }
             linearLayout3.addView(linLayEco, layoutParamsBut);
@@ -338,7 +339,7 @@ public class UnitInfo extends AppCompatActivity {
                 strSupport += (intel.getRadarStealth() != null
                         ? "Radar stealth: " + intel.getRadarStealthFieldRadius() + "\n" : "");
                 strSupport += (intel.getSonarStealth() != null
-                        ? "Radar stealth: " + intel.getSonarStealthFieldRadius() + "\n" : "");
+                        ? "Sonar stealth: " + intel.getSonarStealthFieldRadius() + "\n" : "");
                 Shield shield = info.getDefense().getShield();
                 strSupport += (shield != null
                         ? "Shield size: " + shield.getShieldSize() + "\n" +
@@ -354,34 +355,34 @@ public class UnitInfo extends AppCompatActivity {
     private void displayUnitPhysics() {
         Physics physics = info.getPhysics();
         if (physics.getMaxSpeed() != null) {
-            TextView header = setParamsText("PHYSICS");
+            TextView header = setParamsText(mapMain.get("physics"));
             linearLayout3.addView(header, layoutParamsHeader);
             String strInfoPhysics = null;
             strInfoPhysics += (physics.getTurnRate() != null
                     ? physics.getTurnRate() != 0
-                    ? "Turn rate: " + physics.getTurnRate() + " °/s\n" : "" : "");
+                    ? mapMain.get("turnRate") + physics.getTurnRate() + "°" + mapMain.get("perSec") + "\n" : "" : "");
             strInfoPhysics += (physics.getMaxSpeed() != null
-                    ? "Max speed: " + physics.getMaxSpeed() + "\n" : "");
+                    ? mapMain.get("maxSpeed") + physics.getMaxSpeed() + "\n" : "");
             strInfoPhysics += (physics.getFuelRechargeRate() != null
-                    ? "Fuel refill rate: " + physics.getFuelRechargeRate() + "\n" : "");
+                    ? mapMain.get("fuelRefillRate") + physics.getFuelRechargeRate() + "\n" : "");
             strInfoPhysics += (physics.getFuelUseTime() != null
-                    ? "Fuel use time: " + physics.getFuelUseTime() + " s\n" : "");
+                    ? mapMain.get("fuelUseTime") + physics.getFuelUseTime() + mapMain.get("sec") + "\n" : "");
             strInfoPhysics += (physics.getLandSpeedMultiplier() != null
                     ? physics.getLandSpeedMultiplier() != 1
-                    ? "Land speed multiplier: " + physics.getLandSpeedMultiplier() * 100 + "%\n" : "" : "");
+                    ? mapMain.get("landSpeedMultiplier") + physics.getLandSpeedMultiplier() * 100 + "%\n" : "" : "");
 
             UnitAir air = info.getAir();
             if (air != null) {
                 strInfoPhysics += (air.getTurnSpeed() != null
-                        ? "Turn speed: " + air.getTurnSpeed() + "\n" : "");
+                        ? mapMain.get("turnSpeed") + air.getTurnSpeed() + "\n" : "");
                 strInfoPhysics += (air.getMaxAirspeed() != 0
-                        ? "Max air speed: " + air.getMaxAirspeed() + "\n" : "");
+                        ? mapMain.get("maxAirSpeed") + air.getMaxAirspeed() + "\n" : "");
                 strInfoPhysics += (air.getEngageDistance() != null
-                        ? "Engage Distance: " + air.getEngageDistance() + "\n" : "");
+                        ? mapMain.get("engageDistance") + air.getEngageDistance() + "\n" : "");
                 strInfoPhysics += (air.getMinAirspeed() != null
-                        ? "Min air speed: " + air.getMinAirspeed() + "\n" : "");
+                        ? mapMain.get("minAirSpeed") + air.getMinAirspeed() + "\n" : "");
                 strInfoPhysics += (air.getCombatTurnSpeed() != null
-                        ? "Combat turn speed: " + air.getCombatTurnSpeed() + "\n" : "");
+                        ? mapMain.get("combatTurnSpeed") + air.getCombatTurnSpeed() + "\n" : "");
             }
             TextView txtInfoPhysics = setParamsText(strInfoPhysics);
             txtInfoPhysics.setTextSize(14);
@@ -393,11 +394,11 @@ public class UnitInfo extends AppCompatActivity {
         if (info.getDisplay() != null) {
             String[] abilities = info.getDisplay().getAbilities();
             if (abilities != null) {
-                TextView header = setParamsText("ABILITIES");
+                TextView header = setParamsText(mapMain.get("abilities"));
                 linearLayout3.addView(header, layoutParamsHeader);
                 String strAllAbility = null;
                 for (String ability : abilities) {
-                    strAllAbility += "[ " + MainActivity.translator.Attempt(ability) + " ]\t\t";
+                    strAllAbility += "[ " + MainActivity.translatorJson.Attempt(ability) + " ]\t\t";
                 }
                 TextView textAbility = setParamsText(strAllAbility);
                 textAbility.setTextSize(14);
@@ -409,7 +410,7 @@ public class UnitInfo extends AppCompatActivity {
     private void displayUnitEconomy() {
         Economy eco = info.getEconomy();
         if (eco.getBuildCostEnergy() != 0 || eco.getBuildCostMass() != 0 || eco.getBuildTime() != 0) {
-            TextView header = setParamsText("BUILD COSTS");
+            TextView header = setParamsText(mapMain.get("buildCost"));
             linearLayout3.addView(header, layoutParamsHeader);
             LinearLayout linLayEco = new LinearLayout(this);
             if (eco.getBuildCostEnergy() != 0) {
@@ -427,7 +428,7 @@ public class UnitInfo extends AppCompatActivity {
             linearLayout3.addView(linLayEco, layoutParamsBut);
         }
         if (eco.getProductionPerSecondEnergy() != null || eco.getProductionPerSecondMass() != null || eco.getBuildRate() != null) {
-            TextView header = setParamsText("YIELD / DRAIN");
+            TextView header = setParamsText(mapMain.get("yield"));
             LinearLayout linLayEco = new LinearLayout(this);
             if (eco.getProductionPerSecondEnergy() != null) {
                 Button butEnergy = setParamsButton(eco.getProductionPerSecondEnergy()+"", "#705B27", "icons/energy.png");
@@ -445,7 +446,7 @@ public class UnitInfo extends AppCompatActivity {
             linearLayout3.addView(linLayEco, layoutParamsBut);
         }
         if (eco.getStorageEnergy() != null || eco.getStorageMass() != null) {
-            TextView header = setParamsText("STORAGE");
+            TextView header = setParamsText(mapMain.get("storage"));
             LinearLayout linLayEco = new LinearLayout(this);
             if (eco.getStorageEnergy() != null) {
                 Button butEnergy = setParamsButton(eco.getStorageEnergy()+"", "#705B27", "icons/energy.png");
@@ -464,16 +465,16 @@ public class UnitInfo extends AppCompatActivity {
     private void displayUnitlistUnit(TextView mainInfo) {
         Defense def = info.getDefense();
         String id = info.getID().toLowerCase();
-        String name = MainActivity.translator.Attempt(id);
+        String name = MainActivity.translatorJson.Attempt(id);
         mainInfo.setText(name);
         if (def.getMaxHealth() != 0) {
             final Button butHP = setParamsButton(def.getMaxHealth() + (def.getRegenRate() != null ? " + " +
-                    def.getRegenRate() + "/s" : ""), "#20711B", null);
+                    def.getRegenRate() + mapMain.get("perSec") : ""), "#20711B", null);
             linearLayout3.addView(butHP, layoutParamsBut);
         }
         if (def.getShield() != null) {
             Button butShield = setParamsButton(def.getShield().getShieldMaxHealth() +
-                    " + " + def.getShield().getShieldRegenRate() + "/s", "#3E677A", null);
+                    " + " + def.getShield().getShieldRegenRate() + mapMain.get("perSec"), "#3E677A", null);
             linearLayout3.addView(butShield, layoutParamsBut);
         }
     }
@@ -490,7 +491,7 @@ public class UnitInfo extends AppCompatActivity {
         button.setLayoutParams(layoutParamsBut);
 
         if (ico != null) {
-            unitsDraw.icoPath(this, button,ico);
+            unitsDrawActivity.icoPath(this, button,ico);
         }
         return button;
     }

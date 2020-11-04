@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AboutActivity"
-            android:label="Units Draw"
+            android:label="About"
             android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -21,14 +21,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UnitsDraw"
+            android:name=".UnitsDrawActivity"
             android:label="Units Draw"
             android:parentActivityName=".MainActivity"></activity>
         <activity
-            android:name=".UnitInfo"
+            android:name=".UnitInfoActivity"
             android:label="Unit Info"
             android:noHistory="false"
-            android:parentActivityName=".UnitsDraw"></activity>
+            android:parentActivityName=".UnitsDrawActivity"></activity>
     </application>
 
 </manifest>

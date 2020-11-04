@@ -1,6 +1,5 @@
 package com.sashantgroup.fafwiki;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -8,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,21 +19,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sashantgroup.fafwiki.lang.ConverterLang;
-import com.sashantgroup.fafwiki.lang.Lang;
 import com.sashantgroup.fafwiki.units.Converter;
 import com.sashantgroup.fafwiki.units.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    public static String fraction = null;
+    public static TranslatorMap translatorMap = new TranslatorMap();
     private static String fileBP = "blueprints.json";
-    public static String fileLang = "localization.json";
-    public static Unit[] dataUnits;
-    public static Translator translator;
     public static int color, progress = 1;
+    public static Map<String, String> mapMain = MainActivity.translatorMap.getRU();//////////////////
+    public static String fraction;
+    public static Unit[] dataUnits;
+    public static TranslatorJson translatorJson;
     public static String lang;
     ProgressBar progressBar;
     TextView textInfo;
@@ -65,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        menu.getItem(0).setTitle(mapMain.get("action_language"));
+        menu.getItem(1).setTitle(mapMain.get("action_about"));
         return true;
     }
 
@@ -157,22 +157,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void FractionButton(View view) {
         Button button = (Button)view;
-        fraction = button.getText().toString();
+        fraction = button.getText().toString().toLowerCase();
 
         switch (fraction){
-            case "Aeon":
+            case "aeon":
                 color = Color.parseColor("#388E3C");
                 break;
-            case "UEF":
+            case "uef":
                 color = Color.parseColor("#1976D2");
                 break;
-            case "Cybran":
+            case "cybran":
                 color = Color.parseColor("#912626");
                 break;
-            case "Seraphim":
+            case "seraphim":
                 color = Color.parseColor("#FFA000");
                 break;
-            case "Nomads":
+            case "nomads":
                 color = Color.parseColor("#E65C00");
                 break;
             default:
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        Intent intent = new Intent(MainActivity.this, UnitsDraw.class);
+        Intent intent = new Intent(MainActivity.this, UnitsDrawActivity.class);
         startActivity(intent);
     }
 
@@ -195,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
             inputStream.read(buffer);
             inputStream.close();
             jsonStr = new String(buffer, "UTF-8");
-
             HandleMsg(handlerTxtInfo,"Key", "Please wait! Loading data from JSON file...");
             if (jsonStr != null) dataUnits = Converter.fromJsonString(jsonStr);
             else throw new NullPointerException("Exception: Units JSON-string is null!");

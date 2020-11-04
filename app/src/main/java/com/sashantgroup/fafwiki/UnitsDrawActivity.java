@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +15,13 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sashantgroup.fafwiki.lang.Lang;
 import com.sashantgroup.fafwiki.units.General;
 import com.sashantgroup.fafwiki.units.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 
-public class UnitsDraw extends AppCompatActivity {
+public class UnitsDrawActivity extends AppCompatActivity {
     public static Unit unitInfo;
 
     @Override
@@ -38,7 +34,7 @@ public class UnitsDraw extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        MainActivity.translator = new Translator(this);
+        MainActivity.translatorJson = new TranslatorJson(this);
 
         Unit[] data = MainActivity.dataUnits;
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
@@ -46,12 +42,12 @@ public class UnitsDraw extends AppCompatActivity {
         for (final Unit attr : data) {
             General general = attr.getGeneral();
             if (general.getFactionName().toValue().toLowerCase()
-                    .contains(MainActivity.fraction.toLowerCase())) {
+                    .contains(MainActivity.fraction)) {
                 String name = "";
                 final Button button = new Button(this);
                 String id = attr.getID().toLowerCase();
                 try {
-                    name = MainActivity.translator.Attempt(id);//attr.getDescription().substring(18);
+                    name = MainActivity.translatorJson.Attempt(id);
                 } catch (Exception e) { }
                 button.setText(name);
                 button.setBackgroundColor(MainActivity.color);
@@ -61,7 +57,7 @@ public class UnitsDraw extends AppCompatActivity {
 
                 button.setOnClickListener(v -> {
                     unitInfo = attr;
-                    Intent intent = new Intent(UnitsDraw.this, UnitInfo.class);
+                    Intent intent = new Intent(UnitsDrawActivity.this, UnitInfoActivity.class);
                     startActivity(intent);
                 });
                 linearLayout.addView(button, ViewGroup.LayoutParams.MATCH_PARENT,
