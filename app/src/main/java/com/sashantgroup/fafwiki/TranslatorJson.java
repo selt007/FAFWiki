@@ -70,6 +70,7 @@ public class TranslatorJson {
         switch (MainActivity.lang) {
             case "RU":
                 mapLoc = ConverterLang.fromJsonString(localizeStr).getRu();
+                //MainActivity.mapMain = MainActivity.translatorMap.getRU();
                 break;
             case "CZ":
                 mapLoc = ConverterLang.fromJsonString(localizeStr).getCz();
@@ -89,11 +90,9 @@ public class TranslatorJson {
             case "PL":
                 mapLoc = ConverterLang.fromJsonString(localizeStr).getPl();
                 break;
-            case "TZM":
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getTzm();
-                break;
             default:
                 mapLoc = ConverterLang.fromJsonString(localizeStr).getUs();
+                //MainActivity.mapMain = MainActivity.translatorMap.getUS();
                 break;
         }
         return mapLoc;

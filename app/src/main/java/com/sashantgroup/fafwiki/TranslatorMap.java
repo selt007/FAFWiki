@@ -28,6 +28,11 @@ public class TranslatorMap {
         map.put("vision", "Vision: ");
         map.put("radar", "Radar: ");
         map.put("mass", "Mass: ");
+        map.put("radarStealth", "Radar stealth: ");
+        map.put("sonarStealth", "Sonar stealth: ");
+        map.put("shieldSize", "Shield size: ");
+        map.put("regenAssistMult", "Regen assist mult: ");
+        map.put("shieldRegenStartTime", "Shield regen start time: ");
 
         map.put("buildCost", "BUILD COSTS");
         map.put("yield", "YIELD / DRAIN");
@@ -51,6 +56,16 @@ public class TranslatorMap {
         map.put("engageDistance", "Engage Distance: ");
         map.put("minAirSpeed", "Min air speed: ");
         map.put("combatTurnSpeed", "Combat turn speed: ");
+
+        map.put("weaponName", "Weapon Name: ");
+        map.put("weaponCategory", "Weapon category: ");
+        map.put("damageType", "Damage type: ");
+        map.put("damage", "Damage: ");
+        map.put("firerate", "Firerate p/s: ");
+        map.put("damageRadius", "Damage radius: ");
+        map.put("effectiveRadius", "Effective radius: ");
+        map.put("energyDrain", "Energy drain p/s: ");
+        //map.put("energyRequired", "Energy required: ");
 
         return map;
     }
@@ -78,6 +93,11 @@ public class TranslatorMap {
         map.put("vision", "Обзор: ");
         map.put("radar", "Радар: ");
         map.put("mass", "Масса: ");
+        map.put("radarStealth", "Радар-невидимка: ");
+        map.put("sonarStealth", "Сонар-невидимка: ");
+        map.put("shieldSize", "Размер щита: ");
+        map.put("regenAssistMult", "Помощь при регенерации: ");
+        map.put("shieldRegenStartTime", "Время начала регенерации щита: ");
 
         map.put("buildCost", "СТОИМОСТЬ ПОСТРОЙКИ");
         map.put("yield", "ДОХОД / ПОТРЕБЛЕНИЕ");
@@ -101,6 +121,16 @@ public class TranslatorMap {
         map.put("engageDistance", "Расстояние взаимодействия: ");
         map.put("minAirSpeed", "Мин. скорость в воздухе: ");
         map.put("combatTurnSpeed", "Боевая скорость поворота: ");
+
+        map.put("weaponName", "Имя оружия: ");
+        map.put("weaponCategory", "Категория оружия: ");
+        map.put("damageType", "Тип урона: ");
+        map.put("damage", "Урон: ");
+        map.put("firerate", "Урон в секунду: ");
+        map.put("damageRadius", "Радиус урона: ");
+        map.put("effectiveRadius", "Область приминения: ");
+        map.put("energyDrain", "Трата энергии в сек.: ");
+        //map.put("energyRequired", "Требуемая энергия: ");
 
         return map;
     }
