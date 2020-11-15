@@ -203,15 +203,15 @@ public class UnitInfoActivity extends AppCompatActivity {
             linearLayout3.addView(header, layoutParamsHeader);
             for (Weapon weapon : weapons) {
                 if (weapon != null) {
-                    if(weapon.getDisplayName() != null ) strInfoBuilder.append("Weapon Name: " + weapon.getDisplayName().toUpperCase() + "\n");
-                    if(weapon.getWeaponCategory() != null) strInfoBuilder.append("Weapon category: " + weapon.getWeaponCategory().toValue() + "\n");
-                    if(weapon.getDamageType() != null) strInfoBuilder.append("Damage type: " + weapon.getDamageType().toValue() + "\n");
-                    if(Optional.ofNullable(weapon.getDamage()).orElse(0d) != 0) strInfoBuilder.append("Damage: " + weapon.getDamage() + "\n");
-                    if(Optional.ofNullable(weapon.getRateOfFire()).orElse(0d) != 0) strInfoBuilder.append("Firerate p/s: " + weapon.getRateOfFire() + "\n");
-                    if(Optional.ofNullable(weapon.getDamageRadius()).orElse(0d) != 0) strInfoBuilder.append("Damage radius: " + weapon.getDamageRadius() + "\n");
-                    if(Optional.ofNullable(weapon.getEffectiveRadius()).orElse(0l) != 0) strInfoBuilder.append("Effective radius: " + weapon.getEffectiveRadius() + "\n");
-                    //if(weapon.getEnergyRequired() != null) strInfoBuilder.append("Energy required: " + weapon.getEnergyRequired() + "\n");
-                    if(Optional.ofNullable(weapon.getEnergyDrainPerSecond()).orElse(0l) != 0) strInfoBuilder.append("Energy drain p/s: " + weapon.getEnergyDrainPerSecond() + "\n");
+                    if(weapon.getDisplayName() != null ) strInfoBuilder.append(mapMain.get("weaponName") + weapon.getDisplayName().toUpperCase() + "\n");
+                    if(weapon.getWeaponCategory() != null) strInfoBuilder.append(mapMain.get("weaponCategory") + weapon.getWeaponCategory().toValue() + "\n");
+                    if(weapon.getDamageType() != null) strInfoBuilder.append(mapMain.get("damageType") + weapon.getDamageType().toValue() + "\n");
+                    if(Optional.ofNullable(weapon.getDamage()).orElse(0d) != 0) strInfoBuilder.append(mapMain.get("damage") + weapon.getDamage() + "\n");
+                    if(Optional.ofNullable(weapon.getRateOfFire()).orElse(0d) != 0) strInfoBuilder.append(mapMain.get("firerate") + weapon.getRateOfFire() + "\n");
+                    if(Optional.ofNullable(weapon.getDamageRadius()).orElse(0d) != 0) strInfoBuilder.append(mapMain.get("damageRadius") + weapon.getDamageRadius() + "\n");
+                    if(Optional.ofNullable(weapon.getEffectiveRadius()).orElse(0l) != 0) strInfoBuilder.append(mapMain.get("effectiveRadius") + weapon.getEffectiveRadius() + "\n");
+                    //if(weapon.getEnergyRequired() != null) strInfoBuilder.append(mapMain.get("energyRequired") + weapon.getEnergyRequired() + "\n");
+                    if(Optional.ofNullable(weapon.getEnergyDrainPerSecond()).orElse(0l) != 0) strInfoBuilder.append(mapMain.get("energyDrain") + weapon.getEnergyDrainPerSecond() + "\n");
 
                     strInfoBuilder.append("\r\n");
                 }
@@ -337,14 +337,14 @@ public class UnitInfoActivity extends AppCompatActivity {
                     info.getDefense() != null || intel.getWaterVisionRadius() != null || intel.getOmniRadius() != null) {
                 String strSupport = null;
                 strSupport += (intel.getRadarStealth() != null
-                        ? "Radar stealth: " + intel.getRadarStealthFieldRadius() + "\n" : "");
+                        ? mapMain.get("radarStealth") + intel.getRadarStealthFieldRadius() + "\n" : "");
                 strSupport += (intel.getSonarStealth() != null
-                        ? "Sonar stealth: " + intel.getSonarStealthFieldRadius() + "\n" : "");
+                        ? mapMain.get("sonarStealth") + intel.getSonarStealthFieldRadius() + "\n" : "");
                 Shield shield = info.getDefense().getShield();
                 strSupport += (shield != null
-                        ? "Shield size: " + shield.getShieldSize() + "\n" +
-                        "Regen assist mult: " + shield.getRegenAssistMult() + "\n" +
-                        "Shield regen start time: " + shield.getShieldRegenStartTime() + "\n" : "");
+                        ? mapMain.get("shieldSize") + shield.getShieldSize() + "\n" +
+                        mapMain.get("regenAssistMult") + shield.getRegenAssistMult() + "\n" +
+                        mapMain.get("shieldRegenStartTime") + shield.getShieldRegenStartTime() + "\n" : "");
                 TextView txtSupport = setParamsText(strSupport);
                 txtSupport.setTextSize(14);
                 linearLayout3.addView(txtSupport, layoutParamsWrap);

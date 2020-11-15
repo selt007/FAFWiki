@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,30 +16,33 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.BundleCompat;
 
 import com.sashantgroup.fafwiki.units.General;
 import com.sashantgroup.fafwiki.units.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class UnitsDrawActivity extends AppCompatActivity {
     public static Unit unitInfo;
+    Unit[] data = MainActivity.dataUnits;
+    LinearLayout linearLayout;
+    ArrayList<Button> arrayListUnit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draw_units);
         EditText txtSearch = findViewById(R.id.search);
-        txtSearch.setVisibility(View.INVISIBLE);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         MainActivity.translatorJson = new TranslatorJson(this);
-
-        Unit[] data = MainActivity.dataUnits;
-        LinearLayout linearLayout = findViewById(R.id.linearLayout);
+        linearLayout = findViewById(R.id.linearLayout);
+        arrayListUnit = new ArrayList<>();
 
         for (final Unit attr : data) {
             General general = attr.getGeneral();
@@ -60,12 +65,42 @@ public class UnitsDrawActivity extends AppCompatActivity {
                     Intent intent = new Intent(UnitsDrawActivity.this, UnitInfoActivity.class);
                     startActivity(intent);
                 });
-                linearLayout.addView(button, ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                arrayListUnit.add(button);
+            }
+        }
+
+        initUnit("");
+        txtSearch.addTextChangedListener(new TextWatcher(){
+            @Override
+            public void afterTextChanged(Editable s) {
+                initUnit(txtSearch.getText().toString());
             }
 
-            final EditText editText = findViewById(R.id.search);
-            //editText.setEnabled(false);
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+    }
+
+    public void initUnit(String query) {
+        linearLayout.removeAllViews();
+        if (query.equals(""))
+            for (Button but : arrayListUnit)
+                linearLayout.addView(but, ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+        else {
+            for (Button but : arrayListUnit) {
+                if (but.getText().toString().toLowerCase().contains(query) ||
+                        but.getText().toString().contains(query) ||
+                        but.getText().toString().toUpperCase().contains(query)) {
+                    linearLayout.addView(but, ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+            }
         }
     }
 

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public static TranslatorMap translatorMap = new TranslatorMap();
     private static String fileBP = "blueprints.json";
     public static int color, progress = 1;
-    public static Map<String, String> mapMain = MainActivity.translatorMap.getRU();//////////////////
+    public static Map<String, String> mapMain = MainActivity.translatorMap.getRU();///////////
     public static String fraction;
     public static Unit[] dataUnits;
     public static TranslatorJson translatorJson;
@@ -104,10 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 lang = "PL";
                 textToast("Wybrano język polski!");
                 return true;
-            case R.id.action_tmz:
-                lang = "TMZ";
-                textToast("Türk dili seçildi!");
-                return true;
             case R.id.action_about:
                 Intent intent = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intent);
@@ -179,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
                 color = Color.WHITE;
                 break;
         }
-
         Intent intent = new Intent(MainActivity.this, UnitsDrawActivity.class);
         startActivity(intent);
     }
