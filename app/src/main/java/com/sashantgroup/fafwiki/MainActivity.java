@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public static TranslatorMap translatorMap = new TranslatorMap();
     private static String fileBP = "blueprints.json";
     public static int color, progress = 1;
-    public static Map<String, String> mapMain = MainActivity.translatorMap.getRU();///////////
+    public static Map<String, String> mapMain;///////////
     public static String fraction;
     public static Unit[] dataUnits;
     public static TranslatorJson translatorJson;
@@ -63,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        TranslatorJson translatorJson = new TranslatorJson(this);
+        try {
+            translatorJson.selectLang("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu.getItem(0).setTitle(mapMain.get("action_language"));
         menu.getItem(1).setTitle(mapMain.get("action_about"));
         return true;
