@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "137308118281",
+    "firebase_url": "https://faf-wiki-588526.firebaseio.com",
+    "project_id": "faf-wiki-588526",
+    "storage_bucket": "faf-wiki-588526.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137308118281:android:a07b5f806c0219c0c1c7d8",
+        "android_client_info": {
+          "package_name": "com.SaSHAnt.FAFWiki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137308118281-s490mk25mg64teghvd3k8rs1vc74gbqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx3NcTk_6B3UNMjRurrW1HlCmtfTHgYYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137308118281-s490mk25mg64teghvd3k8rs1vc74gbqu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9426458721249532~3975324328"
+    }
+  ],
+  "configuration_version": "1"
+}

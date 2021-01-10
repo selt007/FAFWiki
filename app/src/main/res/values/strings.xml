@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">fafwiki</string>
     <string name="linkDonation"><a href="https://www.donationalerts.com/r/sashflacko">--- Donation Alerts ---</a></string>
+    <string name="banner_ad_unit_id">ca-app-pub-9426458721249532/2662242659</string>
+    <string name="title_activity_compare">CompareActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

@@ -66,38 +66,46 @@ public class TranslatorJson {
     }
 
     public Map<String, String> selectLang(String localizeStr) throws IOException {
-        Map<String, String> mapLoc;
+        Map<String, String> mapLoc = null;
         switch (MainActivity.lang) {
             case "RU":
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getRu();
+                if (!localizeStr.equals(""))
+                    mapLoc = ConverterLang.fromJsonString(localizeStr).getRu();
                 MainActivity.mapMain = MainActivity.translatorMap.getRU();
                 break;
             case "CZ":
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getCz();
+                if (!localizeStr.equals(""))
+                    mapLoc = ConverterLang.fromJsonString(localizeStr).getCz();
                 MainActivity.mapMain = MainActivity.translatorMap.getUS();
                 break;
             case "DE":
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getDe();
+                if (!localizeStr.equals(""))
+                    mapLoc = ConverterLang.fromJsonString(localizeStr).getDe();
                 MainActivity.mapMain = MainActivity.translatorMap.getUS();
                 break;
             case "ES":
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getEs();
+                if (!localizeStr.equals(""))
+                    mapLoc = ConverterLang.fromJsonString(localizeStr).getEs();
                 MainActivity.mapMain = MainActivity.translatorMap.getUS();
                 break;
             case "FR":
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getFr();
+                if (!localizeStr.equals(""))
+                    mapLoc = ConverterLang.fromJsonString(localizeStr).getFr();
                 MainActivity.mapMain = MainActivity.translatorMap.getUS();
                 break;
             case "IT":
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getIt();
+                if (!localizeStr.equals(""))
+                    mapLoc = ConverterLang.fromJsonString(localizeStr).getIt();
                 MainActivity.mapMain = MainActivity.translatorMap.getUS();
                 break;
             case "PL":
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getPl();
+                if (!localizeStr.equals(""))
+                    mapLoc = ConverterLang.fromJsonString(localizeStr).getPl();
                 MainActivity.mapMain = MainActivity.translatorMap.getUS();
                 break;
             default:
-                mapLoc = ConverterLang.fromJsonString(localizeStr).getUs();
+                if (!localizeStr.equals(""))
+                    mapLoc = ConverterLang.fromJsonString(localizeStr).getUs();
                 MainActivity.mapMain = MainActivity.translatorMap.getUS();
                 break;
         }

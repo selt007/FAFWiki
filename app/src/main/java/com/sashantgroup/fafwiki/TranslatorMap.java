@@ -12,15 +12,18 @@ public class TranslatorMap {
                 "SAG clan \"SashAntGroup\"\n\n" +
                 "[SAG] SaSH\n" +
                 "[SAG] pavanvo\n\n" +
-                "If you find flaws in the app, you can write to the mail:\n" +
+                "If you find flaws in the app, you can write to the mail or discord chanel (button 'Bug report'):\n" +
                 "all1992ex@gmail.com\n\n" +
-                "If there is a desire to financially support the project, then here is the resource " +
-                "through which this can be done:");
-        map.put("aboutSpec", "If you wish, you can specify a nickname, we will add you " +
+                "If you want to financially support the project, then click the button 'Donate'.\n" +
+                "If you wish, you can specify a nickname, we will add you " +
                 "to the list of sponsors and display you in this window.\nThanks! =)\n\n" +
                 "See you in the game, good luck!");
         map.put("action_language", "Language");
         map.put("action_about", "About");
+        map.put("addCompare", "Add to compare!");
+        map.put("delCompare", "Delete from compare!");
+        map.put("deletedCompare", "Units deleted from compare!");
+        map.put("delAllCompare", "All units delete from compare!");
 
         map.put("perSec", " \\s");
         map.put("sec", " s");
@@ -78,14 +81,18 @@ public class TranslatorMap {
                 "Клан SAG \"SashAntGroup\"\n\n" +
                 "[SAG] SaSH\n" +
                 "[SAG] pavanvo\n\n" +
-                "При нахождении недочетов в приложении можете написать на почту:\n" +
+                "При нахождении недочетов в приложении можете написать на почту или в дискорд канал (кнопка 'Bug report'):\n" +
                 "all1992ex@gmail.com\n\n" +
-                "Если есть желание финансово поддержать проект, то вот ресурс через который это можно сделать:");
-        map.put("aboutSpec", "При желании можете указать ник, мы вас добавим в " +
+                "Если есть желание финансово поддержать проект, то нажмите кнопку 'Donate'.\n" +
+                "При желании можете указать ник, мы вас добавим в " +
                 "список спонсоров и отобразим в этом окне.\nСпасибо! =)\n\n" +
                 "Увидимся в игре, удачи!");
         map.put("action_language", "Язык");
         map.put("action_about", "О нас");
+        map.put("addCompare", "Добавлено для сравнения!");
+        map.put("delCompare", "Удалено из сравнения!");
+        map.put("deletedCompare", "Юниты уже удалены из сравнения!");
+        map.put("delAllCompare", "Все юниты удалены из сравнения!");
 
         map.put("perSec", " \\сек");
         map.put("sec", " сек");

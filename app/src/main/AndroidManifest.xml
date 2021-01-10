@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.sashantgroup.fafwiki">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/sc_faf_ico_foreground"
@@ -10,10 +12,16 @@
         android:roundIcon="@mipmap/sc_faf_ico_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutActivity"
-            android:label="About"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label="Compare Units"
+            android:noHistory="false"
+            android:parentActivityName=".CompareActivity"/>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9426458721249532~3975324328" />
+
+        <activity android:name=".CompareActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,12 +31,13 @@
         <activity
             android:name=".UnitsDrawActivity"
             android:label="Units Draw"
-            android:parentActivityName=".MainActivity"></activity>
+            android:noHistory="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UnitInfoActivity"
             android:label="Unit Info"
             android:noHistory="false"
-            android:parentActivityName=".UnitsDrawActivity"></activity>
+            android:parentActivityName=".UnitsDrawActivity" />
     </application>
 
 </manifest>

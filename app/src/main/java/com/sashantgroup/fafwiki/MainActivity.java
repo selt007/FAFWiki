@@ -1,8 +1,10 @@
 package com.sashantgroup.fafwiki;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
+import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,35 +17,50 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 import com.sashantgroup.fafwiki.units.Converter;
 import com.sashantgroup.fafwiki.units.Unit;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private AdView mAdView;
     public static TranslatorMap translatorMap = new TranslatorMap();
     private static String fileBP = "blueprints.json";
     public static int color, progress = 1;
-    public static Map<String, String> mapMain;///////////
+    public static Map<String, String> mapMain;
     public static String fraction;
     public static Unit[] dataUnits;
     public static TranslatorJson translatorJson;
     public static String lang;
+    public static AdRequest adRequest;
+    FloatingActionButton fab;
     ProgressBar progressBar;
     TextView textInfo;
     SharedPreferences prefs;
-    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fab = findViewById(R.id.fab);
+
+        mAdView = findViewById(R.id.adView);
+        adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
         prefs = getSharedPreferences("config", Context.MODE_PRIVATE);
         progressBar = findViewById(R.id.progressBar);
         textInfo = findViewById(R.id.textInfo);
@@ -58,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(loadEndDB);
         });
         threadUnit.start();
+
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CompareActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -85,48 +107,50 @@ public class MainActivity extends AppCompatActivity {
         switch(id) {
             case R.id.action_us:
                 lang = "US";
-                textToast("Selected english language!");
+                textToast("Selected english language!",this);
                 return true;
             case R.id.action_ru:
                 lang = "RU";
-                textToast("Выбран русский язык!");
+                textToast("Выбран русский язык!",this);
                 return true;
             case R.id.action_cz:
                 lang = "CZ";
-                textToast("Byl vybrán jazyk Chezh!");
+                textToast("Byl vybrán jazyk Chezh!",this);
                 return true;
             case R.id.action_de:
                 lang = "DE";
-                textToast("Deutsche Sprache ausgewählt!");
+                textToast("Deutsche Sprache ausgewählt!",this);
                 return true;
             case R.id.action_es:
                 lang = "ES";
-                textToast("Español seleccionado!");
+                textToast("Español seleccionado!",this);
                 return true;
             case R.id.action_fr:
                 lang = "FR";
-                textToast("Langue française sélectionnée!");
+                textToast("Langue française sélectionnée!",this);
                 return true;
             case R.id.action_it:
                 lang = "IT";
-                textToast("Lingua italiana selezionata!");
+                textToast("Lingua italiana selezionata!",this);
                 return true;
             case R.id.action_pl:
                 lang = "PL";
-                textToast("Wybrano język polski!");
+                textToast("Wybrano język polski!",this);
                 return true;
             case R.id.action_about:
-                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(intent);
+                FragmentManager manager = getSupportFragmentManager();
+                DialogFragment dialogFragment = new DialogFragment();
+                dialogFragment.show(manager, "dialog");
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void textToast(String str) {
-        toast = Toast.makeText(this,
+    public static void textToast(String str, Context context) {
+        Toast toast;
+        toast = Toast.makeText(context,
                 str, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0, 10);
+        toast.setGravity(Gravity.BOTTOM, 0, 140);
         toast.show();
     }
 
@@ -152,10 +176,12 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.uefBut),
                     findViewById(R.id.cybranBut),
                     findViewById(R.id.seraphimBut) };
+                    //findViewById(R.id.nomandsBut) };
 
             for (int i = 0; i < buttons.length; i++) {
                 buttons[i].setVisibility(View.VISIBLE);
             }
+            fab.setVisibility(View.VISIBLE);
 
             progressBar.setVisibility(View.INVISIBLE);
             textInfo.setVisibility(View.INVISIBLE);
@@ -186,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 color = Color.WHITE;
                 break;
         }
-        Intent intent = new Intent(MainActivity.this, UnitsDrawActivity.class);
+        Intent intent = new Intent(this, UnitsDrawActivity.class);
         startActivity(intent);
     }
 
