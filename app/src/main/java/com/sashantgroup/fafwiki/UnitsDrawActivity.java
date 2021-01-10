@@ -1,23 +1,31 @@
 package com.sashantgroup.fafwiki;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.BundleCompat;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.sashantgroup.fafwiki.units.General;
 import com.sashantgroup.fafwiki.units.Unit;
 
@@ -29,13 +37,19 @@ public class UnitsDrawActivity extends AppCompatActivity {
     public static Unit unitInfo;
     Unit[] data = MainActivity.dataUnits;
     LinearLayout linearLayout;
+    private AdView mAdView;
     ArrayList<Button> arrayListUnit;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draw_units);
         EditText txtSearch = findViewById(R.id.search);
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = MainActivity.adRequest;
+        mAdView.loadAd(adRequest);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
@@ -60,10 +74,29 @@ public class UnitsDrawActivity extends AppCompatActivity {
 
                 icoPath(this, button, "strategic/" + attr.getStrategicIconName() + "_rest.png");
 
-                button.setOnClickListener(v -> {
-                    unitInfo = attr;
-                    Intent intent = new Intent(UnitsDrawActivity.this, UnitInfoActivity.class);
-                    startActivity(intent);
+                button.setOnTouchListener(new View.OnTouchListener() {
+                    long lastAction = 0L;
+                    @Override
+                    public boolean onTouch(View v, MotionEvent e) {
+                        long currTime = SystemClock.uptimeMillis();
+                        switch (e.getActionMasked()) {
+                            case MotionEvent.ACTION_DOWN:
+                                lastAction = currTime;
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                if (currTime - lastAction >= 350L) {
+                                    //add compare
+                                    //textToast(MainActivity.mapMain.get("addCompare"));
+                                }
+                                else {
+                                    unitInfo = attr;
+                                    Intent intent = new Intent(UnitsDrawActivity.this, UnitInfoActivity.class);
+                                    startActivity(intent);
+                                }
+                                break;
+                        }
+                        return true;
+                    }
                 });
                 arrayListUnit.add(button);
             }
@@ -102,6 +135,11 @@ public class UnitsDrawActivity extends AppCompatActivity {
                 }
             }
         }
+        TextView textView = new TextView(this);
+        textView.setTextSize(14);
+        textView.setText("\n\n");
+        linearLayout.addView(textView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     @Override
@@ -135,5 +173,13 @@ public class UnitsDrawActivity extends AppCompatActivity {
             }
         }
         return icoName;
+    }
+
+    private void textToast(String str) {
+        Toast toast;
+        toast = Toast.makeText(this,
+                str, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM, 0, 40);
+        toast.show();
     }
 }

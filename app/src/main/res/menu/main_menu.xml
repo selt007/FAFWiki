@@ -40,10 +40,6 @@
                 android:id="@+id/action_pl"
                 android:orderInCategory="9"
                 android:title="Polskie" />
-            <item
-                android:id="@+id/action_tmz"
-                android:orderInCategory="10"
-                android:title="Türk" />
         </menu>
     </item>
     <item

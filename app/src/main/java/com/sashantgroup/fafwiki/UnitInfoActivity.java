@@ -1,6 +1,7 @@
 package com.sashantgroup.fafwiki;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,14 +10,21 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sashantgroup.fafwiki.units.Defense;
 import com.sashantgroup.fafwiki.units.Economy;
 import com.sashantgroup.fafwiki.units.Enhancements;
@@ -27,6 +35,8 @@ import com.sashantgroup.fafwiki.units.Unit;
 import com.sashantgroup.fafwiki.units.UnitAir;
 import com.sashantgroup.fafwiki.units.Weapon;
 import com.sashantgroup.fafwiki.units.Wreckage;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +50,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class UnitInfoActivity extends AppCompatActivity {
+    private AdView mAdView;
     Unit info = UnitsDrawActivity.unitInfo;
     UnitsDrawActivity unitsDrawActivity = new UnitsDrawActivity();
     Map<String, String> mapMain = MainActivity.mapMain;
@@ -47,10 +58,15 @@ public class UnitInfoActivity extends AppCompatActivity {
     LinearLayout.LayoutParams layoutParamsBut;
     LinearLayout.LayoutParams layoutParamsHeader;
     LinearLayout.LayoutParams layoutParamsWrap;
+    String nameTab;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_unit);
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = MainActivity.adRequest;
+        mAdView.loadAd(adRequest);
 
         linearLayout3 = findViewById(R.id.linearLayout3);
         layoutParamsBut = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,110);
@@ -58,6 +74,24 @@ public class UnitInfoActivity extends AppCompatActivity {
         layoutParamsHeader = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,60);
         layoutParamsWrap = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
+        displayAllInfo();
+
+        FloatingActionButton fab = findViewById(R.id.fabPlus);
+        fab.setOnClickListener(v -> {
+            String id = info.getID().toLowerCase();
+            nameTab = MainActivity.translatorJson.Attempt(id);
+
+            Intent intent = new Intent(this, UnitInfoActivity.class);
+            TabHost.TabSpec tabSpec = CompareActivity.tabHost.newTabSpec(id);
+            tabSpec.setIndicator(nameTab);
+            tabSpec.setContent(intent);
+
+            CompareActivity.tabSpecList.add(tabSpec);
+            MainActivity.textToast(MainActivity.mapMain.get("addCompare"), this);
+        });
+    }
+
+    public void displayAllInfo() {
         ImageView view = findViewById(R.id.imageView3);
         TextView textMainInfo = findViewById(R.id.textMainInfo);
         InputStream inputStream;
@@ -91,32 +125,44 @@ public class UnitInfoActivity extends AppCompatActivity {
         displayVeterancy();
         displayWeaponList();
         displayEnchancements();
+
+        TextView textView = new TextView(this);
+        textView.setTextSize(14);
+        textView.setText("\n\n");
+        linearLayout3.addView(textView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     private void displayEnchancements() {
+        String icoPath = "enhancements/";
+        switch (MainActivity.fraction) {
+            case "aeon":
+                icoPath += "Aeon/";
+                linearLayout3.setBackgroundColor(Color.parseColor("#464C43"));
+                break;
+            case "uef":
+                icoPath += "UEF/";
+                linearLayout3.setBackgroundColor(Color.parseColor("#43454C"));
+                break;
+            case "cybran":
+                icoPath += "Cybran/";
+                linearLayout3.setBackgroundColor(Color.parseColor("#4C4343"));
+                break;
+            case "seraphim":
+                icoPath += "Seraphim/";
+                linearLayout3.setBackgroundColor(Color.parseColor("#504F40"));
+                break;
+            case "nomads":
+                icoPath += "Nomads/";
+                linearLayout3.setBackgroundColor(Color.parseColor("#504C40"));
+                break;
+        }
+        
         if (info.getEnhancements() != null) {
             Enhancements enchancements = info.getEnhancements();
             TextView header = setParamsText(mapMain.get("enhancements"));
             linearLayout3.addView(header, layoutParamsHeader);
 
-            String icoPath = "enhancements/";
-            switch (MainActivity.fraction) {
-                case "aeon":
-                    icoPath += "Aeon/";
-                    break;
-                case "uef":
-                    icoPath += "UEF/";
-                    break;
-                case "cybran":
-                    icoPath += "Cybran/";
-                    break;
-                case "seraphim":
-                    icoPath += "Seraphim/";
-                    break;
-                case "nomads":
-                    icoPath += "Nomads/";
-                    break;
-            }
             List<Method> methodsObj = Arrays.asList(Object.class.getMethods());
             Method[] methods = enchancements.getClass().getMethods();
             for (Method method : methods) {
