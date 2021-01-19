@@ -1,68 +1,58 @@
 package com.sashantgroup.fafwiki;
 
-import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TabHost;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class CompareActivity extends TabActivity {
-    public static ArrayList<TabHost.TabSpec> tabSpecList = new ArrayList<>();
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.sashantgroup.fafwiki.ui.main.SectionsPagerAdapter;
+
+public class CompareActivity extends AppCompatActivity {
     private AdView mAdView;
-    public static TabHost tabHost;
-    static boolean start = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compare);
-        tabHost = getTabHost();
-        drawTabs();
+        TabLayout tabs = findViewById(R.id.tabs);
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabs.setupWithViewPager(viewPager);
+        FloatingActionButton fabDelete = findViewById(R.id.fabDelete);
 
-        FloatingActionButton fabMinus = findViewById(R.id.fabMinus);
-        fabMinus.setOnClickListener(v -> {
-            if (tabHost.getCurrentTab() > -1) {
-                tabSpecList.remove(tabHost.getCurrentTab());
-                tabHost.clearAllTabs();
-                drawTabs();
-                MainActivity.textToast(MainActivity.mapMain.get("delCompare"), this);
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = MainActivity.adRequest;
+        mAdView.loadAd(adRequest);
+
+        fabDelete.setOnClickListener(v -> {
+            if (MainActivity.tabNameList.size() == 0)
+                Snackbar.make((findViewById(R.id.linearLayout2)),
+                        MainActivity.mapMain.get("deletedCompare"), Snackbar.LENGTH_SHORT).show();
+                //MainActivity.textToast(MainActivity.mapMain.get("deletedCompare"), this);
+            else {
+                int selected = tabs.getSelectedTabPosition();
+                MainActivity.tabNameList.remove(selected);
+                MainActivity.tabContentList.remove(selected);
+                viewPager.setAdapter(sectionsPagerAdapter);
+                tabs.setupWithViewPager(viewPager);
+                Snackbar.make((findViewById(R.id.linearLayout2)),
+                        MainActivity.mapMain.get("delCompare"), Snackbar.LENGTH_SHORT).show();
+                //MainActivity.textToast(MainActivity.mapMain.get("delCompare"), this);
             }
-            else
-                MainActivity.textToast(MainActivity.mapMain.get("deletedCompare"), this);
         });
-
-        FloatingActionButton fabBack = findViewById(R.id.fabBack);
-        fabBack.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
-
-        if (!start) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            start = true;
-        }
-        else {
-            fabMinus.setVisibility(View.VISIBLE);
-            fabBack.setVisibility(View.VISIBLE);
-            mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = MainActivity.adRequest;
-            mAdView.loadAd(adRequest);
-        }
-    }
-
-    private void drawTabs() {
-        if (tabSpecList != null) {
-            for (TabHost.TabSpec tab : tabSpecList) {
-                tabHost.addTab(tab);
-            }
-        }
     }
 }

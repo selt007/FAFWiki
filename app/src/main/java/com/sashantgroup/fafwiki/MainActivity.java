@@ -26,6 +26,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.sashantgroup.fafwiki.units.Converter;
 import com.sashantgroup.fafwiki.units.Unit;
@@ -37,6 +38,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
+    public static ArrayList<String> tabNameList;
+    public static ArrayList<Unit> tabContentList;
     public static TranslatorMap translatorMap = new TranslatorMap();
     private static String fileBP = "blueprints.json";
     public static int color, progress = 1;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public static TranslatorJson translatorJson;
     public static String lang;
     public static AdRequest adRequest;
+    private static boolean start = false;
     FloatingActionButton fab;
     ProgressBar progressBar;
     TextView textInfo;
@@ -68,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
         if (prefs.getString(APP_OPS_SERVICE, "").equals("")) {
             lang = "US";
             onPause();
+        }
+
+        if (!start) {
+            tabNameList = new ArrayList<>();
+            tabContentList = new ArrayList<>();
+            start = true;
         }
 
         Thread threadUnit = new Thread(() -> {
@@ -108,34 +118,50 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_us:
                 lang = "US";
                 textToast("Selected english language!",this);
+                Snackbar.make((findViewById(R.id.aeonBut)),
+                        "Selected english language!", Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.action_ru:
                 lang = "RU";
-                textToast("Выбран русский язык!",this);
+                //textToast("Выбран русский язык!",this);
+                Snackbar.make((findViewById(R.id.aeonBut)),
+                        "Выбран русский язык!", Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.action_cz:
                 lang = "CZ";
-                textToast("Byl vybrán jazyk Chezh!",this);
+                //textToast("Byl vybrán jazyk Chezh!",this);
+                Snackbar.make((findViewById(R.id.aeonBut)),
+                        "Byl vybrán jazyk Chezh!", Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.action_de:
                 lang = "DE";
-                textToast("Deutsche Sprache ausgewählt!",this);
+                //textToast("Deutsche Sprache ausgewählt!",this);
+                Snackbar.make((findViewById(R.id.aeonBut)),
+                        "Deutsche Sprache ausgewählt!", Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.action_es:
                 lang = "ES";
-                textToast("Español seleccionado!",this);
+                //textToast("Español seleccionado!",this);
+                Snackbar.make((findViewById(R.id.aeonBut)),
+                        "Español seleccionado!", Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.action_fr:
                 lang = "FR";
-                textToast("Langue française sélectionnée!",this);
+                //textToast("Langue française sélectionnée!",this);
+                Snackbar.make((findViewById(R.id.aeonBut)),
+                        "Langue française sélectionnée!", Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.action_it:
                 lang = "IT";
-                textToast("Lingua italiana selezionata!",this);
+                //textToast("Lingua italiana selezionata!",this);
+                Snackbar.make((findViewById(R.id.aeonBut)),
+                        "Lingua italiana selezionata!", Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.action_pl:
                 lang = "PL";
-                textToast("Wybrano język polski!",this);
+                //textToast("Wybrano język polski!",this);
+                Snackbar.make((findViewById(R.id.aeonBut)),
+                        "Wybrano język polski!", Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.action_about:
                 FragmentManager manager = getSupportFragmentManager();

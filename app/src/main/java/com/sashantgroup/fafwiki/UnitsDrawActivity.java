@@ -26,6 +26,7 @@ import androidx.core.app.BundleCompat;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.snackbar.Snackbar;
 import com.sashantgroup.fafwiki.units.General;
 import com.sashantgroup.fafwiki.units.Unit;
 
@@ -85,8 +86,14 @@ public class UnitsDrawActivity extends AppCompatActivity {
                                 break;
                             case MotionEvent.ACTION_UP:
                                 if (currTime - lastAction >= 350L) {
-                                    //add compare
-                                    //textToast(MainActivity.mapMain.get("addCompare"));
+                                    String id = attr.getID().toLowerCase();
+                                    String tabName = MainActivity.translatorJson.Attempt(id);
+
+                                    MainActivity.tabNameList.add(tabName);
+                                    MainActivity.tabContentList.add(attr);
+                                    unitInfo = attr;
+                                    Snackbar.make((findViewById(R.id.mainLayout)),
+                                            MainActivity.mapMain.get("addCompare"), Snackbar.LENGTH_SHORT).show();
                                 }
                                 else {
                                     unitInfo = attr;
