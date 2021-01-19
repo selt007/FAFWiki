@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.sashantgroup.fafwiki">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,22 +11,20 @@
         android:roundIcon="@mipmap/sc_faf_ico_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:label="Compare Units"
-            android:noHistory="false"
-            android:parentActivityName=".CompareActivity"/>
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9426458721249532~3975324328" />
-
-        <activity android:name=".CompareActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CompareActivity"
+            android:label="Compare Units"
+            android:noHistory="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UnitsDrawActivity"
             android:label="Units Draw"
